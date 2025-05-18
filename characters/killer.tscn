@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvquo8dq47kay"]
+[gd_scene load_steps=10 format=3 uid="uid://dvquo8dq47kay"]
 
 [ext_resource type="Script" uid="uid://vx64j622sod" path="res://characters/killer.gd" id="1_h1eha"]
+[ext_resource type="Script" uid="uid://ccmurvcjf28h4" path="res://features/player_detector.gd" id="2_0uksx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
 
@@ -28,7 +29,10 @@ properties/2/path = NodePath("Camera3D:rotation")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Killer" type="CharacterBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h1eha"]
+radius = 0.969238
+
+[node name="Killer" type="CharacterBody3D" groups=["killer", "player"]]
 script = ExtResource("1_h1eha")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -58,5 +62,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_energy = 5.0
 omni_range = 20.0
 
+[node name="KillArea" type="Area3D" parent="."]
+script = ExtResource("2_0uksx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
+shape = SubResource("CylinderShape3D_h1eha")
+
 [connection signal="screen_entered" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
 [connection signal="screen_exited" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]
+[connection signal="player_entered" from="KillArea" to="." method="_on_kill_area_player_entered"]

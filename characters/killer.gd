@@ -69,3 +69,8 @@ func _on_visible_detector_screen_entered():
 
 func _on_visible_detector_screen_exited():
 	set_can_move.rpc(true)
+
+
+func _on_kill_area_player_entered(player):
+	if player.dead == true: return
+	player.kill()
