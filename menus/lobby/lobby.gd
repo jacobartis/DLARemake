@@ -78,6 +78,8 @@ func update_ready_list(list):
 			%PlayerList.get_displayed_label(id).modulate = Color.WHITE
 
 func start():
+	#Server starts the game
+	if not multiplayer.is_server(): return
 	MultiplayerManager.load_scene.rpc("res://levels/test_world.tscn")
 
 func _on_start_delay_timeout():
