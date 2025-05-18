@@ -12,3 +12,7 @@ func remove_player(id):
 	if not id in displayed_players: return
 	displayed_players[id].queue_free()
 	displayed_players.erase(id)
+
+func get_displayed_label(id):
+	if not displayed_players.has(id): return
+	return displayed_players[id]
