@@ -1,7 +1,6 @@
 extends Node3D
 
-const SURVIVOR = preload("res://characters/survivor.tscn")
-@onready var spawner = $MultiplayerSpawner
+@export var char_man: CharacterManager
 
 func _ready():
 	if multiplayer.is_server():
@@ -10,11 +9,8 @@ func _ready():
 
 func start():
 	print("start")
-	for id in MultiplayerManager.players:
-		var surv = SURVIVOR.instantiate()
-		add_child(surv,true)
-		surv.update_owner.rpc(id)
-		surv.global_position = Vector3(randi()%20,1,randi()%20)
+	char_man.spawn_survivors([MultiplayerManager.players.keys()[0]])
+	char_man.spawn_killers([MultiplayerManager.players.keys()[1]])
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):

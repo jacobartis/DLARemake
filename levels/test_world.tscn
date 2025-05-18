@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=9 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_kbvng"]
+[ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -19,8 +20,9 @@ albedo_texture = SubResource("NoiseTexture2D_c576j")
 material = SubResource("StandardMaterial3D_lqt7o")
 size = Vector2(100, 100)
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" node_paths=PackedStringArray("char_man")]
 script = ExtResource("1_kbvng")
+char_man = NodePath("CharacterManager")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -34,5 +36,9 @@ mesh = SubResource("PlaneMesh_vytw3")
 transform = Transform3D(1, 0, 0, 0, -0.965926, 0.258819, 0, -0.258819, -0.965926, 0, 0, 0)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j")
+_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay")
 spawn_path = NodePath("..")
+
+[node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
+script = ExtResource("2_kbvng")
+spawn_parent = NodePath("..")
