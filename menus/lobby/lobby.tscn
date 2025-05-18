@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn57enccajwlt"]
+
+[ext_resource type="Script" uid="uid://bkm0fcgm23uyx" path="res://menus/lobby/lobby.gd" id="1_l1s41"]
+[ext_resource type="Script" uid="uid://cn1a8jcmx6u4f" path="res://menus/lobby/player_list.gd" id="2_kssl2"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l1s41")
+
+[node name="PlayerList" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.302
+anchor_top = 0.309
+anchor_right = 0.698
+anchor_bottom = 0.693
+offset_left = 0.0959778
+offset_top = -0.23201
+offset_right = -0.0960083
+offset_bottom = -0.0640259
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kssl2")
+
+[node name="Start" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start"
