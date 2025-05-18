@@ -3,11 +3,12 @@ class_name CharacterManager
 
 const SURVIVOR = preload("res://characters/survivor.tscn")
 const KILLER = preload("res://characters/killer.tscn")
+const SPECTATOR = preload("res://characters/spectator.tscn")
 
 @export var spawn_parent:Node
 @onready var spawner = $MultiplayerSpawner
 
-var characters:Dictionary[int,CharacterBody3D] = {}
+var characters:Dictionary[int,Node3D] = {}
 
 func _ready():
 	spawner.spawn_function = spawn_func
@@ -38,6 +39,8 @@ func spawn_survivors(players:Array):
 		surv.global_position = spawn_data["pos"]
 		surv.update_owner.rpc(id)
 		characters[id] = surv
+		if not multiplayer.is_server(): return 
+		surv.killed.connect(survivor_killed.bind(id))
 
 func spawn_killers(players:Array):
 	for id in players:
@@ -50,3 +53,9 @@ func spawn_killers(players:Array):
 		killer.global_position = spawn_data["pos"]
 		killer.update_owner.rpc(id)
 		characters[id] = killer
+
+func survivor_killed(id):
+	var spectator = SPECTATOR.instantiate()
+	spawn_parent.add_child(spectator)
+	characters[id] = spectator
+	spectator.update_owner.rpc(id)

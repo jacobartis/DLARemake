@@ -19,6 +19,7 @@ func is_authority():
 
 func kill():
 	dead = true
+	cam.current = false
 	killed.emit()
 
 func _input(event):
