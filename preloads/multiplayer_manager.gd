@@ -66,8 +66,8 @@ func join_steam_server(id):
 	steam_peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = steam_peer
 
-func _on_lobby_created(connect,id):
-	if not connect: return
+func _on_lobby_created(con,id):
+	if not con: return
 	lobby_id = id
 	Steam.setLobbyData(lobby_id,"name",str(Steam.getPersonaName()+"'s Lobby"))
 	Steam.setLobbyJoinable(lobby_id,true)
@@ -89,12 +89,17 @@ func remove_multiplayer_peer():
 
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded(id):
+	if not multiplayer.is_server(): return
 	print(multiplayer.get_unique_id()," loaded into the game.")
 	players_loaded += 1
 	print(players_loaded," ",MultiplayerManager.players.size())
 	if players_loaded == MultiplayerManager.players.size():
 		all_loaded.emit()
-		players_loaded = 0
+
+@rpc("authority","call_local","reliable")
+func start_game(map_path):
+	players_loaded = 0
+	load_scene.rpc(map_path)
 
 @rpc("call_local","reliable")
 func load_scene(game_scene_path):
