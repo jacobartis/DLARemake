@@ -23,6 +23,9 @@ var player_info = {"name": "Name"}
 
 var players_loaded = 0
 
+func lobby_size():
+	return players.size()
+
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
