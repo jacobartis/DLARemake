@@ -1,9 +1,13 @@
 extends CharacterBody3D
 
-@onready var cam = $Camera3D
+signal killed()
+
+@onready var cam = %Camera3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+var dead:bool = false
 
 @rpc("any_peer","call_local")
 func update_owner(id):
@@ -13,12 +17,17 @@ func update_owner(id):
 func is_authority():
 	return get_multiplayer_authority()==multiplayer.get_unique_id()
 
+func kill():
+	dead = true
+	killed.emit()
+
 func _input(event):
 	if not is_authority(): return
 	look(event as InputEventMouseMotion)
 
 func look(motion:InputEventMouseMotion):
 	if not motion or Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED: return
+	if dead: return
 	cam.rotation.x -= motion.relative.y*Settings.mouse_sense
 	cam.rotation_degrees.x = clamp(cam.rotation_degrees.x,-70,80)
 	rotation.y -= motion.relative.x*Settings.mouse_sense
@@ -31,7 +40,13 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	if dead:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		move_and_slide()
+		return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
