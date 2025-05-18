@@ -9,8 +9,11 @@ func _ready():
 
 func start():
 	print("start")
-	char_man.spawn_survivors([MultiplayerManager.players.keys()[0]])
-	char_man.spawn_killers([MultiplayerManager.players.keys()[1]])
+	var killer = MultiplayerManager.players.keys().pick_random()
+	var surv = MultiplayerManager.players.keys().duplicate()
+	surv.erase(killer)
+	char_man.spawn_survivors(surv)
+	char_man.spawn_killers([killer])
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
