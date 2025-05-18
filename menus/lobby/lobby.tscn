@@ -119,6 +119,7 @@ label_settings = SubResource("LabelSettings_lv8s3")
 vertical_alignment = 1
 script = ExtResource("3_lv8s3")
 timer = NodePath("../../../StartDelay")
+step = 0.1
 
 [node name="StartDelay" type="Timer" parent="."]
 unique_name_in_owner = true
