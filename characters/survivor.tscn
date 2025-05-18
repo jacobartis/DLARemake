@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://hhg2l8rjh56j"]
+
+[ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_00wek"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg0eo"]
+albedo_color = Color(1, 0.305882, 0.317647, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_00wek"]
+material = SubResource("StandardMaterial3D_eg0eo")
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eg0eo"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Survivor" type="CharacterBody3D"]
+script = ExtResource("1_eg0eo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_eg0eo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_00wek")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607524, -0.032855)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.295818)
+mesh = SubResource("BoxMesh_00wek")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eg0eo")
