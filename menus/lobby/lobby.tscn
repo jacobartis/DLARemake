@@ -92,6 +92,19 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Unready"
 
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.104
+anchor_top = 0.878
+anchor_right = 0.219
+anchor_bottom = 0.939
+offset_left = -0.312004
+offset_top = 0.220001
+offset_right = -0.282013
+offset_bottom = 0.109955
+text = "Quit"
+
 [node name="Countdown" type="HBoxContainer" parent="Panel"]
 visible = false
 layout_mode = 1
@@ -126,14 +139,15 @@ unique_name_in_owner = true
 wait_time = 3.0
 one_shot = true
 
-[connection signal="start_countdown" from="." to="StartDelay" method="start"]
 [connection signal="start_countdown" from="." to="Panel/Countdown" method="show"]
-[connection signal="stop_countdown" from="." to="StartDelay" method="stop"]
+[connection signal="start_countdown" from="." to="StartDelay" method="start"]
 [connection signal="stop_countdown" from="." to="Panel/Countdown" method="hide"]
+[connection signal="stop_countdown" from="." to="StartDelay" method="stop"]
 [connection signal="pressed" from="Panel/Ready" to="." method="_on_ready_pressed"]
 [connection signal="pressed" from="Panel/Ready" to="Panel/Ready" method="hide"]
 [connection signal="pressed" from="Panel/Ready" to="Panel/Unready" method="show"]
 [connection signal="pressed" from="Panel/Unready" to="." method="_on_unready_pressed"]
 [connection signal="pressed" from="Panel/Unready" to="Panel/Ready" method="show"]
 [connection signal="pressed" from="Panel/Unready" to="Panel/Unready" method="hide"]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_disconnect_pressed"]
 [connection signal="timeout" from="StartDelay" to="." method="_on_start_delay_timeout"]
