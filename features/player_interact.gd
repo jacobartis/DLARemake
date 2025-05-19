@@ -6,6 +6,7 @@ signal is_held()
 signal is_released()
 
 func _ready():
+	super()
 	player_entered.connect(on_player_entered)
 	player_exited.connect(on_player_exited)
 
