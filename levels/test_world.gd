@@ -8,7 +8,6 @@ func _ready():
 	MultiplayerManager.player_loaded.rpc_id(1,multiplayer.get_unique_id())
 
 func start():
-	if not multiplayer.is_server(): return
 	print("start")
 	var killer = MultiplayerManager.players.keys().pick_random()
 	var surv = MultiplayerManager.players.keys().duplicate()
