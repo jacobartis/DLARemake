@@ -10,7 +10,15 @@
 		{
 			"uuid": "d13a6e57-f250-41cf-86e4-7a9d91b5c77e",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"abcd1240-b88e-4d33-af6b-aa014df48828",
+				"17d41e15-f737-419b-9f47-5c83c08bbb8d",
+				"631771b6-e4df-444b-915d-7c4495749aaa",
+				"290ebc72-4d17-4e80-aa18-7f9810397308",
+				"01e87d4a-a279-40da-921e-945d4f350d17",
+				"77ccc8aa-f95a-49fa-ac88-055703dd48f8",
+				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367"
+			]
 		},
 		{
 			"uuid": "abb80eb0-659e-4acb-b67c-0bd23ce763d3",
@@ -23,7 +31,57 @@
 			"tasks": []
 		}
 	],
-	"tasks": [],
+	"tasks": [
+		{
+			"uuid": "abcd1240-b88e-4d33-af6b-aa014df48828",
+			"title": "Killer swapping using a map",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "17d41e15-f737-419b-9f47-5c83c08bbb8d",
+			"title": "Killer Counter measures",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "631771b6-e4df-444b-915d-7c4495749aaa",
+			"title": "Game ending",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "290ebc72-4d17-4e80-aa18-7f9810397308",
+			"title": "Survivor objectives",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "01e87d4a-a279-40da-921e-945d4f350d17",
+			"title": "Local Voice Chat",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "77ccc8aa-f95a-49fa-ac88-055703dd48f8",
+			"title": "Player info for characters (display in spectate)",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
+			"title": "Lobby features (kicking, map selection, killer pref)",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		}
+	],
 	"layout": {
 		"columns": [
 			[
