@@ -5,3 +5,9 @@ class_name HighlightManager
 
 func highlight(color:Color):
 	highlight_mesh.get_active_material(0).albedo_color = color
+
+func hide():
+	highlight_mesh.hide()
+
+func show():
+	highlight_mesh.show()
