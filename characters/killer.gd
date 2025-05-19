@@ -1,12 +1,14 @@
 extends CharacterBody3D
 
-@onready var cam = $Camera3D
+@onready var cam_arm = %CamArm
+@onready var cam = %Camera3D
 @onready var vis = $VisibleDetector
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-var can_move: bool = true: set=set_can_move
+@export var can_move: bool = true: set=set_can_move
+var last_move_dir: Vector3 = Vector3.BACK
+var rot_speed: float = 10
 
 @rpc("any_peer","call_local")
 func set_can_move(val):
@@ -27,13 +29,14 @@ func _input(event):
 func look(motion:InputEventMouseMotion):
 	if not motion or Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED: return
 	if not can_move: return
-	cam.rotation.x -= motion.relative.y*Settings.mouse_sense
-	cam.rotation_degrees.x = clamp(cam.rotation_degrees.x,-70,80)
-	rotation.y -= motion.relative.x*Settings.mouse_sense
+	cam_arm.rotation.x -= motion.relative.y*Settings.mouse_sense
+	cam_arm.rotation_degrees.x = clamp(cam_arm.rotation_degrees.x,-70,80)
+	cam_arm.rotation.y -= motion.relative.x*Settings.mouse_sense
 
 func _process(delta):
 	$OmniLight3D.visible = not can_move
 	if not is_authority(): return
+	cam_arm.global_position = global_position
 
 func _physics_process(delta):
 	if not is_authority(): return
@@ -45,22 +48,31 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		move_and_slide()
 		return
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var raw_input = Input.get_vector("Left", "Right", "Forward", "Backward")
+	var view = get_viewport().get_camera_3d()
+	var forward = cam.global_basis.z
+	var right = cam.global_basis.x
+	var direction = forward*raw_input.y + right*raw_input.x
+	direction.y = 0
+	direction = direction.normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
 	move_and_slide()
+	if direction.length()>.5:
+		last_move_dir = direction
+	var target_angle = Vector3.BACK.signed_angle_to(last_move_dir,Vector3.UP)
+	global_rotation.y = lerp_angle(global_rotation.y,target_angle,rot_speed*delta)
 
 
 func _on_visible_detector_screen_entered():
