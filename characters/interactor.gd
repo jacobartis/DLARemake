@@ -14,10 +14,12 @@ func remove_interact(interact:ObjectInteract):
 	interacts.erase(interact)
 
 func get_closest() -> ObjectInteract:
+	if interacts.is_empty(): return null
 	interacts.sort_custom(closest)
 	return interacts[0]
 
 func _process(delta):
+	if interacts.is_empty(): return
 	if Input.is_action_just_pressed("Interact"):
 		interact()
 	elif Input.is_action_pressed("Interact"):
