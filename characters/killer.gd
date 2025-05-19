@@ -56,7 +56,7 @@ func is_killer():
 	return GameInfo.role(multiplayer.get_unique_id()) == "Killer"
 
 func is_authority():
-	return get_multiplayer_authority()==multiplayer.get_unique_id() and controlled
+	return get_multiplayer_authority()==multiplayer.get_unique_id()
 
 func _input(event):
 	if not is_authority(): return
