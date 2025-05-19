@@ -65,10 +65,10 @@ script = ExtResource("1_h1eha")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_eg0eo")
 
-[node name="CharacterAnimationPlayer" type="Node" parent="." node_paths=PackedStringArray("anims", "char")]
+[node name="CharacterAnimationPlayer" type="Node" parent="." node_paths=PackedStringArray("anims", "character")]
 script = ExtResource("2_6c3bm")
 anims = NodePath("AnimationPlayer")
-char = NodePath("..")
+character = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterAnimationPlayer"]
 root_node = NodePath("../../CharModel")
