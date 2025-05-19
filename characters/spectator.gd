@@ -41,6 +41,5 @@ func prev_player():
 func look(motion:InputEventMouseMotion):
 	if not motion or Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED: return
 	spring.rotation.x -= motion.relative.y*Settings.mouse_sense
-	print(spring.rotation_degrees.x)
 	spring.rotation_degrees.x = clamp(spring.rotation_degrees.x,-70,80)
 	rotation.y -= motion.relative.x*Settings.mouse_sense
