@@ -63,6 +63,16 @@ func spawn_killers(players:Array):
 		var spawn_killer = avalible.pop_at(randi()%avalible.size())
 		spawn_killer.gain_control.rpc(id)
 
+#For player disconnects
+func release_current_killer(id):
+	var controlled = killers.filter(func (k): return k.multiplayer_authority==id)
+	for k in controlled:
+		k.drop_control()
+
+#Server kills the surviver
+func kill_surviver(id):
+	survivers[id].kill()
+
 func survivor_killed(id):
 	spawn_spectator(id)
 	check_dead.rpc()
@@ -72,6 +82,10 @@ func spawn_spectator(id):
 	spawn_parent.add_child(spectator,true)
 	spectators[id] = spectator
 	spectator.update_owner.rpc(id)
+
+func delete_spectator(id):
+	spectators[id].queue_free()
+	spectators.erase(id)
 
 @rpc("any_peer","call_local","reliable")
 func check_dead():
