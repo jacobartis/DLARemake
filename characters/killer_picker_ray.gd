@@ -10,19 +10,19 @@ func set_hovered(val):
 		hovered.highlight.highlight(Color.WHITE)
 	hovered = val
 
-func valid_body(body):
-	return true
+func valid_area(area):
+	return area.is_in_group("pick_area")
 
 func _process(delta):
-	if not killer.controled:
+	if not killer.controlled:
 		hovered = null
 		return
-	if not is_colliding() or not valid_body(get_collider()): 
+	if not is_colliding() or not valid_area(get_collider()): 
 		hovered = null
 		return
-	var body = get_collider()
-	if body.controled:
-		body.highlight.highlight(Color.GRAY)
+	var body = get_collider().killer
+	if body.controlled:
+		body.highlight.highlight(Color.BLACK)
 		hovered = null
 		return
 	body.highlight.highlight(Color.RED)
