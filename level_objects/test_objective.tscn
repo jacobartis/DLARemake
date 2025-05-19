@@ -18,8 +18,9 @@ top_radius = 0.51
 bottom_radius = 0.51
 height = 0.0
 
-[node name="TestObjective" type="Node3D"]
+[node name="TestObjective" type="Node3D" node_paths=PackedStringArray("obj_node")]
 script = ExtResource("1_y2edy")
+obj_node = NodePath("ObjectiveNode")
 
 [node name="ObjectInteract" type="Area3D" parent="."]
 script = ExtResource("1_gtyln")
