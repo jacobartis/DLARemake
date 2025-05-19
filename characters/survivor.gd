@@ -3,6 +3,7 @@ extends CharacterBody3D
 signal killed()
 
 @onready var cam = %Camera3D
+@export var interactor:Interactor
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5

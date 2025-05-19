@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=17 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bdnyf6se7tk48" path="res://characters/character_animation_player.gd" id="3_xsby5"]
 [ext_resource type="AnimationLibrary" uid="uid://ctblgenud87wx" path="res://characters/models/Animations/IdleAnim.res" id="4_7ptos"]
 [ext_resource type="AnimationLibrary" uid="uid://ca3d8rr24q1k3" path="res://characters/models/Animations/RunAnim.res" id="5_prlgj"]
+[ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="7_7ptos"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prlgj"]
 resource_name = "skin"
@@ -171,11 +172,12 @@ _data = {
 &"die": SubResource("Animation_eg0eo")
 }
 
-[node name="Survivor" type="CharacterBody3D" groups=["player", "survivor"]]
+[node name="Survivor" type="CharacterBody3D" node_paths=PackedStringArray("interactor") groups=["player", "survivor"]]
 script = ExtResource("1_eg0eo")
+interactor = NodePath("Interactor")
 
 [node name="CharModel" parent="." instance=ExtResource("2_j52uj")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -1.7, 0)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, -1.7, 0)
 
 [node name="Skeleton3D" parent="CharModel/Root" index="0"]
 bones/0/rotation = Quaternion(-0.428388, -0.562568, 0.562569, 0.428388)
@@ -261,6 +263,9 @@ libraries = {
 &"RunAnims": ExtResource("5_prlgj")
 }
 autoplay = "IdleAnims/Idle"
+
+[node name="Interactor" type="Node" parent="."]
+script = ExtResource("7_7ptos")
 
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
 
