@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+signal new_controller()
+signal control_dropped()
+
 @onready var cam_arm = %CamArm
 @onready var cam = %Camera3D
 @onready var vis = $VisibleDetector
@@ -8,7 +11,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var can_move: bool = true: set=set_can_move
-@export var controled:bool = false
+@export var controlled:bool = false
 
 var last_move_dir: Vector3 = Vector3.BACK
 var rot_speed: float = 10
@@ -26,20 +29,27 @@ func update_owner(id):
 
 @rpc("any_peer","call_local","reliable")
 func gain_control(id):
-	if controled: return
-	controled = true
-	set_collision_layer_value(4,false)
+	if controlled: return
+	new_controller.emit()
+	controlled = true
 	update_owner(id)
+	if is_authority():
+		highlight.hide()
+	else:
+		highlight.highlight(Color.BLACK)
 
 @rpc("any_peer","call_local","reliable")
 func drop_control():
+	if is_authority():
+		highlight.show()
+	highlight.highlight(Color.WHITE)
 	set_multiplayer_authority(1)
-	set_collision_layer_value(4,true)
+	control_dropped.emit()
 	cam.current = false
-	controled = false
+	controlled = false
 
 func is_authority():
-	return get_multiplayer_authority()==multiplayer.get_unique_id() and controled
+	return get_multiplayer_authority()==multiplayer.get_unique_id() and controlled
 
 func _input(event):
 	if not is_authority(): return
@@ -61,7 +71,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if not can_move or not controled: 
+	if not can_move or not controlled: 
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		move_and_slide()
