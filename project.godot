@@ -46,6 +46,8 @@ enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
 
 player=""
 objective=""
+survivor=""
+killer=""
 
 [input]
 

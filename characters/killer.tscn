@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dvquo8dq47kay"]
+[gd_scene load_steps=21 format=4 uid="uid://dvquo8dq47kay"]
 
 [ext_resource type="Script" uid="uid://vx64j622sod" path="res://characters/killer.gd" id="1_h1eha"]
 [ext_resource type="Script" uid="uid://ccmurvcjf28h4" path="res://features/player_detector.gd" id="2_0uksx"]
@@ -8,6 +8,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://ca3d8rr24q1k3" path="res://characters/models/Animations/RunAnim.res" id="4_6c3bm"]
 [ext_resource type="Texture2D" uid="uid://do0ygqmlim5ht" path="res://characters/models/Skins/cyborgFemaleA.png" id="6_i1ft4"]
 [ext_resource type="Script" uid="uid://c122ij7s5ew3p" path="res://characters/killer_picker_ray.gd" id="7_3n1e1"]
+[ext_resource type="Script" uid="uid://mnyasa03pcs1" path="res://characters/visible_detector.gd" id="8_eehct"]
 [ext_resource type="Script" uid="uid://6hdo8xeqjljc" path="res://characters/killer_pick_area.gd" id="8_jcivy"]
 [ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="9_urqhd"]
 
@@ -318,9 +319,12 @@ skeleton = NodePath("../CharModel/Root/Skeleton3D")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
 
-[node name="VisibleDetector" type="VisibleOnScreenNotifier3D" parent="."]
+[node name="VisibleDetector" type="VisibleOnScreenNotifier3D" parent="." node_paths=PackedStringArray("killer", "marker_parent")]
 layers = 2
 aabb = AABB(-0.477909, -1.00587, -0.453724, 0.955818, 2.01174, 0.907448)
+script = ExtResource("8_eehct")
+killer = NodePath("..")
+marker_parent = NodePath("../ViewMarkers")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -348,10 +352,57 @@ debug_color = Color(0.995841, 0, 0.197996, 0.42)
 script = ExtResource("9_urqhd")
 highlight_mesh = NodePath("../Highlight")
 
+[node name="ViewMarkers" type="Node3D" parent="."]
+
+[node name="LowMiddle" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="LowLeft" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="LowRight" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="MiddleMiddle2" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.182305, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="MidLeft2" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.182305, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="MidRight2" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.182305, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="TopMiddle3" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608151, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="TopLeft3" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.608151, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
+[node name="TopRight3" type="RayCast3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.608151, 0)
+target_position = Vector3(0, 0, -100)
+collision_mask = 17
+
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]
-[connection signal="screen_entered" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
-[connection signal="screen_exited" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]
+[connection signal="hidden" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]
+[connection signal="seen" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
 [connection signal="player_entered" from="KillArea" to="." method="_on_kill_area_player_entered"]
 
 [editable path="CharModel"]

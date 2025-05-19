@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=16 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
@@ -39,12 +39,8 @@ blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eg0eo"]
-albedo_color = Color(1, 0.305882, 0.317647, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_00wek"]
-material = SubResource("StandardMaterial3D_eg0eo")
-size = Vector3(0.5, 0.2, 0.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ptos"]
+size = Vector3(0.797852, 0.578369, 0.303955)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eg0eo"]
 properties/0/path = NodePath(".:position")
@@ -165,20 +161,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector3(0, -1.7, 0), Vector3(-1.5, -0.5, 0)]
 }
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Camera3D")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.0666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4cfvx"]
 _data = {
@@ -251,10 +233,14 @@ shape = SubResource("CapsuleShape3D_eg0eo")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607524, -0.127323)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+[node name="LookBox" type="StaticBody3D" parent="Camera3D" groups=["look_box"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.258329)
-layers = 0
-mesh = SubResource("BoxMesh_00wek")
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/LookBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.162231)
+shape = SubResource("BoxShape3D_7ptos")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
