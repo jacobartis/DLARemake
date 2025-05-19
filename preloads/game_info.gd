@@ -5,9 +5,6 @@ var surviver_players = []
 var spectator_players = []
 
 func role(id):
-	if not multiplayer.is_server():
-		push_warning("Only access players through rpc_id 1 (server)")
-		return null
 	print(killer_players," ",id)
 	if killer_players.has(id): return "Killer"
 	elif surviver_players.has(id): return "Surviver"

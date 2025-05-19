@@ -41,12 +41,17 @@ func _on_character_manager_all_dead():
 func mid_round_connect(id,info):
 	GameInfo.spectator_players.append(id)
 	char_man.spawn_spectator(id)
+	GameInfo.server_update()
 
 func mid_round_disconnect(id):
 	var role = GameInfo.role(id)
 	if role=="Killer":
-		char_man.release_current_killer(id)
+		char_man.release_current_killer.rpc(id)
+		GameInfo.killer_players.erase(id)
 	elif role=="Surviver":
 		char_man.kill_surviver(id)
+		GameInfo.surviver_players.erase(id)
 	elif role=="Spectator":
 		char_man.delete_spectator(id)
+		GameInfo.spectator_players.erase(id)
+	GameInfo.server_update()

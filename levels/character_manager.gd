@@ -68,6 +68,7 @@ func spawn_killers(players:Array):
 		spawn_killer.gain_control.rpc(id)
 
 #For player disconnects
+@rpc("any_peer","call_local","reliable")
 func release_current_killer(id):
 	var controlled = killers.filter(func (k): return k.multiplayer_authority==id)
 	for k in controlled:
@@ -75,11 +76,11 @@ func release_current_killer(id):
 
 #Server kills the surviver
 func kill_surviver(id):
-	survivers[id].kill()
+	survivers[id].kill.rpc()
 
 func survivor_killed(id):
 	#Spawns spectator is player is still connected.
-	if MultiplayerManager.players[id]:
+	if MultiplayerManager.players.keys().has(id):
 		spawn_spectator(id)
 	check_dead.rpc()
 

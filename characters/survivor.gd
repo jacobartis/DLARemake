@@ -18,6 +18,7 @@ func update_owner(id):
 func is_authority():
 	return get_multiplayer_authority()==multiplayer.get_unique_id()
 
+@rpc("any_peer","call_local","reliable")
 func kill():
 	dead = true
 	cam.current = false
