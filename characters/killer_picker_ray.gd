@@ -2,7 +2,13 @@ extends RayCast3D
 
 @export var killer: CharacterBody3D
 
-var hovered:CharacterBody3D = null
+var hovered:CharacterBody3D = null:set=set_hovered
+
+func set_hovered(val):
+	if hovered == val: return
+	if hovered!=null:
+		hovered.highlight.highlight(Color.WHITE)
+	hovered = val
 
 func valid_body(body):
 	return true
@@ -26,5 +32,5 @@ func _input(event):
 
 func swap_control():
 	if not hovered: return
-	hovered.gain_control.rpc(multiplayer.get_unique_id())
 	killer.drop_control.rpc()
+	hovered.gain_control.rpc(multiplayer.get_unique_id())
