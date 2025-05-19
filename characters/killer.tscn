@@ -303,10 +303,10 @@ bones/55/rotation = Quaternion(-0.62104, 0.120485, 0.153852, 0.759027)
 bones/56/rotation = Quaternion(0.0282626, 0.953941, -0.297574, -0.0254524)
 
 [node name="characterMedium" parent="CharModel/Root/Skeleton3D" index="0"]
+visible = false
 mesh = SubResource("ArrayMesh_urqhd")
 
 [node name="Highlight" type="MeshInstance3D" parent="CharModel/Root/Skeleton3D" index="1"]
-visible = false
 mesh = SubResource("ArrayMesh_jcivy")
 skin = SubResource("Skin_taxm3")
 

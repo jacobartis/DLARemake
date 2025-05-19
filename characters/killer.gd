@@ -47,7 +47,6 @@ func _input(event):
 
 func look(motion:InputEventMouseMotion):
 	if not motion or Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED: return
-	if not can_move: return
 	cam_arm.rotation.x -= motion.relative.y*Settings.mouse_sense
 	cam_arm.rotation_degrees.x = clamp(cam_arm.rotation_degrees.x,-70,80)
 	cam_arm.rotation.y -= motion.relative.x*Settings.mouse_sense
