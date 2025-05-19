@@ -75,7 +75,7 @@ func kill_surviver(id):
 
 func survivor_killed(id):
 	#Spawns spectator is player is still connected.
-	if MultiplayerManager.players[players]:
+	if MultiplayerManager.players[id]:
 		spawn_spectator(id)
 	check_dead.rpc()
 
