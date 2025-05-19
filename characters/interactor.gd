@@ -37,8 +37,8 @@ func hold_interact():
 
 func release_interact():
 	if not hold_inter: return
-	hold_inter = null
 	hold_inter.released.rpc()
+	hold_inter = null
 
 func closest(a,b):
 	var b_pos = body.global_position
