@@ -24,8 +24,6 @@ func set_can_move(val):
 func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
-	print(get_multiplayer_authority()," ",id)
-	print(is_authority())
 
 @rpc("any_peer","call_local","reliable")
 func gain_control(id):
@@ -33,26 +31,36 @@ func gain_control(id):
 	new_controller.emit()
 	controlled = true
 	update_owner(id)
-	if is_authority():
-		highlight.hide()
-	else:
-		highlight.highlight(Color.BLACK)
+	if is_killer():
+		if is_authority():
+			highlight.hide()
+		else:
+			highlight.highlight(Color.BLACK)
 
 @rpc("any_peer","call_local","reliable")
 func drop_control():
-	if is_authority():
-		highlight.show()
-	highlight.highlight(Color.WHITE)
+	if is_killer():
+		if is_authority():
+			highlight.show()
+		highlight.highlight(Color.WHITE)
 	set_multiplayer_authority(1)
 	control_dropped.emit()
 	cam.current = false
 	controlled = false
+
+func _ready():
+	if not is_killer():
+		highlight.hide()
+
+func is_killer():
+	return GameInfo.role(multiplayer.get_unique_id()) == "Killer"
 
 func is_authority():
 	return get_multiplayer_authority()==multiplayer.get_unique_id() and controlled
 
 func _input(event):
 	if not is_authority(): return
+	print(GameInfo.role(multiplayer.get_unique_id()))
 	look(event as InputEventMouseMotion)
 
 func look(motion:InputEventMouseMotion):

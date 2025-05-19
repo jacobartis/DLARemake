@@ -2,9 +2,7 @@ extends Node3D
 
 @export var char_man: CharacterManager
 
-var killer_players = []
-var surviver_players = []
-var spectator_players = []
+
 
 func _ready():
 	if multiplayer.is_server():
@@ -15,12 +13,13 @@ func _ready():
 
 func start():
 	print("start")
-	killer_players = [MultiplayerManager.players.keys().pick_random()]
-	surviver_players = MultiplayerManager.players.keys().duplicate()
-	for id in killer_players:
-		surviver_players.erase(id)
-	char_man.spawn_survivors(surviver_players)
-	char_man.spawn_killers(killer_players)
+	GameInfo.killer_players = [MultiplayerManager.players.keys().pick_random()]
+	GameInfo.surviver_players = MultiplayerManager.players.keys().duplicate()
+	for id in GameInfo.killer_players:
+		GameInfo.surviver_players.erase(id)
+	char_man.spawn_survivors(GameInfo.surviver_players)
+	char_man.spawn_killers(GameInfo.killer_players)
+	GameInfo.server_update()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -40,13 +39,14 @@ func _on_character_manager_all_dead():
 	end_round()
 
 func mid_round_connect(id,info):
-	spectator_players.append(id)
+	GameInfo.spectator_players.append(id)
 	char_man.spawn_spectator(id)
 
 func mid_round_disconnect(id):
-	if killer_players.has(id):
+	var role = GameInfo.role(id)
+	if role=="Killer":
 		char_man.release_current_killer(id)
-	elif surviver_players.has(id):
+	elif role=="Surviver":
 		char_man.kill_surviver(id)
-	else:
+	elif role=="Spectator":
 		char_man.delete_spectator(id)

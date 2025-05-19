@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MultiplayerManager="*res://preloads/multiplayer_manager.gd"
 SteamSetup="*res://preloads/steam_setup.gd"
 Settings="*res://preloads/settings.gd"
+GameInfo="*res://preloads/game_info.gd"
 
 [debug]
 
