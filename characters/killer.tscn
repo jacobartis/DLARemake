@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dvquo8dq47kay"]
+[gd_scene load_steps=15 format=4 uid="uid://dvquo8dq47kay"]
 
 [ext_resource type="Script" uid="uid://vx64j622sod" path="res://characters/killer.gd" id="1_h1eha"]
 [ext_resource type="Script" uid="uid://ccmurvcjf28h4" path="res://features/player_detector.gd" id="2_0uksx"]
@@ -7,6 +7,8 @@
 [ext_resource type="AnimationLibrary" uid="uid://ctblgenud87wx" path="res://characters/models/Animations/IdleAnim.res" id="3_e7eau"]
 [ext_resource type="AnimationLibrary" uid="uid://ca3d8rr24q1k3" path="res://characters/models/Animations/RunAnim.res" id="4_6c3bm"]
 [ext_resource type="Texture2D" uid="uid://do0ygqmlim5ht" path="res://characters/models/Skins/cyborgFemaleA.png" id="6_i1ft4"]
+[ext_resource type="Script" uid="uid://c122ij7s5ew3p" path="res://characters/killer_picker_ray.gd" id="7_3n1e1"]
+[ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="9_urqhd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
 
@@ -60,6 +62,7 @@ properties/4/replication_mode = 1
 radius = 0.969238
 
 [node name="Killer" type="CharacterBody3D" groups=["killer", "player"]]
+collision_layer = 9
 script = ExtResource("1_h1eha")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -132,16 +135,21 @@ bones/56/rotation = Quaternion(0.0282603, 0.953941, -0.297574, -0.0254478)
 [node name="characterMedium" parent="CharModel/Root/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_urqhd")
 
-[node name="Node" type="Node" parent="."]
+[node name="CamNode" type="Node" parent="."]
 
-[node name="CamArm" type="SpringArm3D" parent="Node"]
+[node name="CamArm" type="SpringArm3D" parent="CamNode"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 spring_length = 5.0
 
-[node name="Camera3D" type="Camera3D" parent="Node/CamArm"]
+[node name="Camera3D" type="Camera3D" parent="CamNode/CamArm"]
 unique_name_in_owner = true
 cull_mask = 1048573
+
+[node name="KillerPickerRay" type="RayCast3D" parent="CamNode/CamArm"]
+target_position = Vector3(0, 0, -100)
+collision_mask = 8
+script = ExtResource("7_3n1e1")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
@@ -160,6 +168,9 @@ script = ExtResource("2_0uksx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillArea"]
 shape = SubResource("CylinderShape3D_h1eha")
+
+[node name="HighlightManager" type="Node" parent="."]
+script = ExtResource("9_urqhd")
 
 [connection signal="screen_entered" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
 [connection signal="screen_exited" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]

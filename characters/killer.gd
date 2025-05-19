@@ -3,10 +3,13 @@ extends CharacterBody3D
 @onready var cam_arm = %CamArm
 @onready var cam = %Camera3D
 @onready var vis = $VisibleDetector
+@export var highlight: HighlightManager
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @export var can_move: bool = true: set=set_can_move
+@export var controled:bool = false
+
 var last_move_dir: Vector3 = Vector3.BACK
 var rot_speed: float = 10
 
@@ -19,8 +22,20 @@ func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
 
+@rpc("any_peer","call_local")
+func gain_control(id):
+	if controled: return
+	update_owner(id)
+	controled = true
+
+@rpc("any_peer","call_local")
+func drop_control():
+	set_multiplayer_authority(1)
+	cam.current = false
+	controled = false
+
 func is_authority():
-	return get_multiplayer_authority()==multiplayer.get_unique_id()
+	return get_multiplayer_authority()==multiplayer.get_unique_id() and controled
 
 func _input(event):
 	if not is_authority(): return
