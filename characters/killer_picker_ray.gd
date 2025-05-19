@@ -14,6 +14,9 @@ func valid_body(body):
 	return true
 
 func _process(delta):
+	if not killer.controled:
+		hovered = null
+		return
 	if not is_colliding() or not valid_body(get_collider()): 
 		hovered = null
 		return
