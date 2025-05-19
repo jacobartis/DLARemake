@@ -21,6 +21,7 @@ func spawn_func(data):
 		packed = KILLER
 	var player = packed.instantiate()
 	if not multiplayer.is_server(): return player
+	
 	#Sets pos server side
 	var id = data["id"]
 	var pos = data["pos"]
@@ -56,6 +57,6 @@ func spawn_killers(players:Array):
 
 func survivor_killed(id):
 	var spectator = SPECTATOR.instantiate()
-	spawn_parent.add_child(spectator)
+	spawn_parent.add_child(spectator,true)
 	characters[id] = spectator
 	spectator.update_owner.rpc(id)
