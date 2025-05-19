@@ -177,8 +177,8 @@ size_flags_horizontal = 3
 text = "Hide"
 
 [connection signal="pressed" from="ButtonContainer/HostButton" to="." method="_on_host_steam_pressed"]
-[connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="show"]
 [connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="_on_server_update"]
+[connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="show"]
 [connection signal="pressed" from="LanButtons/LanHostButton" to="." method="_on_host_ip_pressed"]
 [connection signal="pressed" from="LanButtons/LanConnect" to="." method="_on_join_local_host"]
 [connection signal="pressed" from="ServerList/HBoxContainer/RefreshButton" to="ServerList" method="_on_server_update"]
