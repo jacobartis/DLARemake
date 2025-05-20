@@ -70,7 +70,7 @@ func spawn_killers(players:Array):
 #For player disconnects
 @rpc("any_peer","call_local","reliable")
 func release_current_killer(id):
-	var controlled = killers.filter(func (k): return k.multiplayer_authority==id)
+	var controlled = killers.filter(func (k): return k.get_multiplayer_authority()==id)
 	for k in controlled:
 		k.drop_control()
 
