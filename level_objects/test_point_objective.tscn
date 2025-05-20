@@ -29,6 +29,8 @@ obj_node = NodePath("ObjectiveNode")
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("2_nri1e")
+type = "Hold"
+interact_message = "Fill"
 metadata/_custom_type_script = "uid://b3s178yt4aica"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PointInteract"]
