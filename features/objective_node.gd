@@ -11,6 +11,7 @@ func _ready():
 	if manager:
 		manager.connect_obj(self)
 
+@rpc("any_peer","call_local","reliable")
 func finish():
 	complete = true
 	completed.emit()
