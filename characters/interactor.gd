@@ -19,7 +19,12 @@ func get_closest() -> StandInteract:
 	return interacts[0]
 
 func _process(delta):
-	if interacts.is_empty(): return
+	if not body.is_authority(): return
+	var interact_prompt = get_tree().get_first_node_in_group("interact_prompt")
+	if interacts.is_empty():
+		interact_prompt.area_interact = null
+		return
+	interact_prompt.area_interact = get_closest()
 	if Input.is_action_just_pressed("Interact"):
 		interact()
 	elif Input.is_action_pressed("Interact"):

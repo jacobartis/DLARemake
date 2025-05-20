@@ -11,8 +11,19 @@ func get_interactable():
 	return null
 
 func _process(delta):
-	if not is_colliding(): return
-	if not get_interactable(): return
+	if not body.is_authority(): return
+	var interact_prompt = get_tree().get_first_node_in_group("interact_prompt")
+	if not is_colliding(): 
+		interact_prompt.point_interact = null
+		return
+	if not get_interactable():
+		interact_prompt.point_interact = null 
+		return
+	
+	var type = get_interactable().type
+	var msg = get_interactable().interact_message
+	interact_prompt.show_text(type,msg)
+	interact_prompt.point_interact = get_interactable()
 	if Input.is_action_just_pressed("Interact"):
 		interact()
 	elif Input.is_action_pressed("Interact"):
