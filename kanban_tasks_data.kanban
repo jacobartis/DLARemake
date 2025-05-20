@@ -11,34 +11,32 @@
 			"uuid": "d13a6e57-f250-41cf-86e4-7a9d91b5c77e",
 			"title": "Todo",
 			"tasks": [
-				"abcd1240-b88e-4d33-af6b-aa014df48828",
 				"17d41e15-f737-419b-9f47-5c83c08bbb8d",
-				"631771b6-e4df-444b-915d-7c4495749aaa",
-				"290ebc72-4d17-4e80-aa18-7f9810397308",
 				"01e87d4a-a279-40da-921e-945d4f350d17",
 				"77ccc8aa-f95a-49fa-ac88-055703dd48f8",
-				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367"
+				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
+				"88f01de9-75c4-4a86-a5cd-554f3f530872",
+				"437dfe55-17f5-46b5-a65f-aeff3dbdb505",
+				"f487f440-501d-480d-b9ff-ef24995bff18"
 			]
 		},
 		{
 			"uuid": "abb80eb0-659e-4acb-b67c-0bd23ce763d3",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"334339b2-5260-47be-a00d-d03980235c03"
+			]
 		},
 		{
 			"uuid": "ddf6ecac-4172-49d6-aa74-9083b3999524",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"631771b6-e4df-444b-915d-7c4495749aaa",
+				"290ebc72-4d17-4e80-aa18-7f9810397308"
+			]
 		}
 	],
 	"tasks": [
-		{
-			"uuid": "abcd1240-b88e-4d33-af6b-aa014df48828",
-			"title": "Killer swapping using a map",
-			"description": "",
-			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
-			"steps": []
-		},
 		{
 			"uuid": "17d41e15-f737-419b-9f47-5c83c08bbb8d",
 			"title": "Killer Counter measures",
@@ -77,6 +75,47 @@
 		{
 			"uuid": "a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
 			"title": "Lobby features (kicking, map selection, killer pref)",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": [
+				{
+					"details": "Kick Button",
+					"done": false
+				},
+				{
+					"details": "Map Selection",
+					"done": true
+				},
+				{
+					"details": "Killer Pref",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "334339b2-5260-47be-a00d-d03980235c03",
+			"title": "Create Simple Map",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "88f01de9-75c4-4a86-a5cd-554f3f530872",
+			"title": "Test Steam Multiplayer",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "437dfe55-17f5-46b5-a65f-aeff3dbdb505",
+			"title": "Escape Menu",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "f487f440-501d-480d-b9ff-ef24995bff18",
+			"title": "Settings",
 			"description": "",
 			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
 			"steps": []
