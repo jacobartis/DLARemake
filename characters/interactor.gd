@@ -4,16 +4,16 @@ class_name Interactor
 @export var body:Node3D
 
 var interacts: Array = []
-var hold_inter:ObjectInteract = null
+var hold_inter:StandInteract = null
 
-func add_interact(interact:ObjectInteract):
+func add_interact(interact:StandInteract):
 	if interacts.has(interact): return
 	interacts.append(interact)
 
-func remove_interact(interact:ObjectInteract):
+func remove_interact(interact:StandInteract):
 	interacts.erase(interact)
 
-func get_closest() -> ObjectInteract:
+func get_closest() -> StandInteract:
 	if interacts.is_empty(): return null
 	interacts.sort_custom(closest)
 	return interacts[0]

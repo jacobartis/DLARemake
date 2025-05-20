@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://jds7c1op5hox"]
+
+[ext_resource type="Script" uid="uid://bryi720jnpol4" path="res://level_objects/test_objective.gd" id="1_y2edy"]
+[ext_resource type="Script" uid="uid://b3s178yt4aica" path="res://features/point_interact.gd" id="2_nri1e"]
+[ext_resource type="Script" uid="uid://c5j7amvm22631" path="res://features/objective_node.gd" id="3_mxc8b"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ve0gd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nri1e"]
+albedo_color = Color(0.327682, 0.618375, 0.684707, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ve0gd"]
+material = SubResource("StandardMaterial3D_nri1e")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2edy"]
+albedo_color = Color(0.156863, 1, 0.156863, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0v25t"]
+material = SubResource("StandardMaterial3D_y2edy")
+top_radius = 0.51
+bottom_radius = 0.51
+height = 0.0
+
+[node name="TestPointObjective" type="Node3D" node_paths=PackedStringArray("obj_node")]
+script = ExtResource("1_y2edy")
+obj_node = NodePath("ObjectiveNode")
+
+[node name="PointInteract" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_nri1e")
+metadata/_custom_type_script = "uid://b3s178yt4aica"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PointInteract"]
+shape = SubResource("CylinderShape3D_ve0gd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_ve0gd")
+
+[node name="Fill" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("CylinderMesh_0v25t")
+
+[node name="ObjectiveNode" type="Node" parent="."]
+script = ExtResource("3_mxc8b")
+
+[connection signal="is_held" from="PointInteract" to="." method="_on_object_interact_is_held"]
