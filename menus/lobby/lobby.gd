@@ -36,11 +36,6 @@ func player_ready(id):
 	#Only the server updates the player list
 	if not multiplayer.is_server(): return
 	
-	if not ready_players.has(id):
-		print("no id {val}".format({"val":id}))
-		print(ready_players)
-		return
-	
 	ready_players[id] = true
 	update_ready_list.rpc(ready_players)
 	check_ready.rpc()
