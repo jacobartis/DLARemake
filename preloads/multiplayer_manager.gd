@@ -94,6 +94,7 @@ func player_loaded(id):
 	print(players_loaded," ",MultiplayerManager.players.size())
 	if players_loaded == MultiplayerManager.players.size():
 		all_loaded.emit()
+		players_loaded = 0
 
 @rpc("authority","call_local","reliable")
 func start_game(map_path):
