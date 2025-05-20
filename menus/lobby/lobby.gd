@@ -4,6 +4,7 @@ signal start_countdown()
 signal stop_countdown()
 
 var ready_players = {}
+var selected_level:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,7 +76,11 @@ func update_ready_list(list):
 func start():
 	#Server starts the game
 	if not multiplayer.is_server(): return
-	MultiplayerManager.load_scene.rpc("res://levels/test_world.tscn")
+	MultiplayerManager.load_scene.rpc(selected_level)
 
 func _on_start_delay_timeout():
 	start()
+
+
+func _on_level_select_level_selected(level_id):
+	selected_level = GameInfo.level_infos[level_id].level_path

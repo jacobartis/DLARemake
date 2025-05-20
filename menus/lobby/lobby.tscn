@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn57enccajwlt"]
+[gd_scene load_steps=10 format=3 uid="uid://cn57enccajwlt"]
 
 [ext_resource type="Script" uid="uid://bkm0fcgm23uyx" path="res://menus/lobby/lobby.gd" id="1_l1s41"]
 [ext_resource type="Script" uid="uid://cn1a8jcmx6u4f" path="res://menus/lobby/player_list.gd" id="2_kssl2"]
 [ext_resource type="Script" uid="uid://ls8vpr77jcfm" path="res://menus/lobby/countdown.gd" id="3_lv8s3"]
+[ext_resource type="Script" uid="uid://cg0ogkfvscl7w" path="res://menus/lobby/level_select.gd" id="4_0itov"]
+[ext_resource type="Script" uid="uid://vjdyixrompvg" path="res://menus/lobby/selected_button.gd" id="4_b5bg5"]
+[ext_resource type="Texture2D" uid="uid://df6to2x7dyynb" path="res://icon.svg" id="5_xhjiu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kssl2"]
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_lv8s3"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_m1qwu"]
+font_size = 20
+font_color = Color(0.843184, 0.843184, 0.843184, 1)
+outline_size = 3
+outline_color = Color(0.00351917, 0.00351917, 0.00351917, 1)
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -46,13 +55,13 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.169
+anchor_left = 0.271
 anchor_top = 0.129
-anchor_right = 0.831
+anchor_right = 0.908
 anchor_bottom = 0.808
-offset_left = -0.382019
+offset_left = 0.0619812
 offset_top = 0.209999
-offset_right = 0.381958
+offset_right = -0.22406
 offset_bottom = -0.0800171
 grow_horizontal = 2
 grow_vertical = 2
@@ -134,6 +143,103 @@ script = ExtResource("3_lv8s3")
 timer = NodePath("../../../StartDelay")
 step = 0.1
 
+[node name="SelectedLevel" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065
+anchor_top = 0.212
+anchor_right = 0.248
+anchor_bottom = 0.341
+offset_left = -0.0700035
+offset_top = -0.120003
+offset_right = 0.255997
+offset_bottom = 0.0899963
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_b5bg5")
+
+[node name="ColorRect" type="ColorRect" parent="Panel/SelectedLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapIcon" type="TextureRect" parent="Panel/SelectedLevel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xhjiu")
+expand_mode = 1
+
+[node name="LevelName" type="Label" parent="Panel/SelectedLevel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "testte"
+label_settings = SubResource("LabelSettings_m1qwu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelSelect" type="Panel" parent="Panel" node_paths=PackedStringArray("display")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.085
+anchor_top = 0.075
+anchor_right = 0.915
+anchor_bottom = 0.925
+offset_left = 0.370003
+offset_top = -0.25
+offset_right = -0.369995
+offset_bottom = 0.249969
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_0itov")
+display = NodePath("../SelectedLevel")
+
+[node name="Title" type="Label" parent="Panel/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.051
+anchor_right = 1.0
+anchor_bottom = 0.154
+offset_top = -0.134001
+offset_bottom = 0.163994
+grow_horizontal = 2
+text = "Level Select"
+label_settings = SubResource("LabelSettings_kssl2")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/LevelSelect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.029
+anchor_top = 0.194
+anchor_right = 0.971
+anchor_bottom = 0.94
+offset_left = -0.112001
+offset_top = -0.195999
+offset_right = 0.111938
+offset_bottom = 0.039978
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelContainer" type="VBoxContainer" parent="Panel/LevelSelect/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="StartDelay" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
@@ -150,4 +256,7 @@ one_shot = true
 [connection signal="pressed" from="Panel/Unready" to="Panel/Ready" method="show"]
 [connection signal="pressed" from="Panel/Unready" to="Panel/Unready" method="hide"]
 [connection signal="pressed" from="Panel/Quit" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="Panel/SelectedLevel" to="Panel/LevelSelect" method="show"]
+[connection signal="level_selected" from="Panel/LevelSelect" to="." method="_on_level_select_level_selected"]
+[connection signal="level_selected" from="Panel/LevelSelect" to="Panel/SelectedLevel" method="_on_level_select_level_selected"]
 [connection signal="timeout" from="StartDelay" to="." method="_on_start_delay_timeout"]
