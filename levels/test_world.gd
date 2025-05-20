@@ -2,8 +2,6 @@ extends Node3D
 
 @export var char_man: CharacterManager
 
-
-
 func _ready():
 	if multiplayer.is_server():
 		MultiplayerManager.player_connected.connect(mid_round_connect)
@@ -28,15 +26,15 @@ func _process(delta):
 		else:
 			Settings.clamp_mouse()
 
-func end_round():
+func end_round(winner):
 	#Show summary screen
 	#Have play again button, returns to lobby
 	#Have quit button allows the player to exit
-	pass
+	%SummaryScreen.show_win.rpc(winner)
 
 func _on_character_manager_all_dead():
 	if not multiplayer.is_server(): return
-	end_round()
+	end_round("Killer")
 
 func mid_round_connect(id,info):
 	GameInfo.spectator_players.append(id)
@@ -55,3 +53,7 @@ func mid_round_disconnect(id):
 		char_man.delete_spectator(id)
 		GameInfo.spectator_players.erase(id)
 	GameInfo.server_update()
+
+
+func _on_objectives_manager_survivors_win():
+	end_round("Survivor")
