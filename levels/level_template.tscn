@@ -9,9 +9,8 @@
 script = ExtResource("1_13k7l")
 metadata/_custom_type_script = "uid://bgispvho0cwmg"
 
-[node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
+[node name="CharacterManager" type="Node3D" parent="."]
 script = ExtResource("2_8xmsw")
-spawn_parent = NodePath("")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
 _spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
