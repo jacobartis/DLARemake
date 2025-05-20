@@ -6,12 +6,12 @@ class_name Interactor
 var interacts: Array = []
 var hold_inter:StandInteract = null
 
-func add_interact(interact:StandInteract):
-	if interacts.has(interact): return
-	interacts.append(interact)
+func add_interact(int_obj:StandInteract):
+	if interacts.has(int_obj): return
+	interacts.append(int_obj)
 
-func remove_interact(interact:StandInteract):
-	interacts.erase(interact)
+func remove_interact(int_obj:StandInteract):
+	interacts.erase(int_obj)
 
 func get_closest() -> StandInteract:
 	if interacts.is_empty(): return null
@@ -28,7 +28,7 @@ func _process(delta):
 		release_interact()
 
 func interact():
-	get_closest().pressed.rpc(body)
+	get_closest().pressed.rpc()
 
 func hold_interact():
 	if not hold_inter:
