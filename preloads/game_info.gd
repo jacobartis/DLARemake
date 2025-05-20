@@ -5,7 +5,6 @@ var surviver_players = []
 var spectator_players = []
 
 func role(id):
-	print(killer_players," ",id)
 	if killer_players.has(id): return "Killer"
 	elif surviver_players.has(id): return "Survivor"
 	elif spectator_players.has(id): return "Spectator"
