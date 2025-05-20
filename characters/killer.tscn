@@ -354,50 +354,32 @@ highlight_mesh = NodePath("../Highlight")
 
 [node name="ViewMarkers" type="Node3D" parent="."]
 
-[node name="LowMiddle" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="LowMiddle" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.829928, 0)
 
-[node name="LowLeft" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -1, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="LowLeft" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278073, -0.829928, 0)
 
-[node name="LowRight" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -1, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="LowRight" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286617, -0.829928, 0)
 
-[node name="MiddleMiddle2" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.182305, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="MiddleMiddle2" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0122333, 0)
 
-[node name="MidLeft2" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.182305, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="LowLeft2" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278073, -0.0122333, 0)
 
-[node name="MidRight2" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.182305, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="MidRight2" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286617, -0.0122333, 0)
 
-[node name="TopMiddle3" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.608151, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="TopMiddle3" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.778223, 0)
 
-[node name="TopLeft3" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.608151, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="TopLeft3" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278073, 0.778223, 0)
 
-[node name="TopRight3" type="RayCast3D" parent="ViewMarkers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.608151, 0)
-target_position = Vector3(0, 0, -100)
-collision_mask = 17
+[node name="TopRight3" type="Marker3D" parent="ViewMarkers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286617, 0.778223, 0)
 
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]

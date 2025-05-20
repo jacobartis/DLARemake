@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=15 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
@@ -38,9 +38,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7ptos"]
-size = Vector3(0.797852, 0.578369, 0.303955)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eg0eo"]
 properties/0/path = NodePath(".:position")
@@ -233,14 +230,10 @@ shape = SubResource("CapsuleShape3D_eg0eo")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607524, -0.127323)
 
-[node name="LookBox" type="StaticBody3D" parent="Camera3D" groups=["look_box"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.258329)
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/LookBox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.162231)
-shape = SubResource("BoxShape3D_7ptos")
+[node name="KillerChecker" type="RayCast3D" parent="Camera3D" groups=["killer_checker"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106389, 0.127323)
+target_position = Vector3(0, 0, -100)
+debug_shape_thickness = 5
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")

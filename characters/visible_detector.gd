@@ -18,8 +18,7 @@ func _process(delta):
 	delay = max(delay-delta,0)
 	if delay: return
 	if is_on_screen():
-		print("Shown ",multiplayer.get_unique_id()," ",killer.is_authority())
-		if check_all():
+		if check_los():
 			add_viewer.rpc(multiplayer.get_unique_id())
 		else:
 			remove_viewer.rpc(multiplayer.get_unique_id())
@@ -41,17 +40,18 @@ func remove_viewer(id):
 	if viewers.is_empty():
 		hidden.emit()
 
-func check_all():
-	for surv in get_tree().get_nodes_in_group("survivor").filter(func(s):return s.global_position.distance_to(global_position)<100 and not s.dead):
-		if check_player(surv):
+func check_los():
+	if GameInfo.role(multiplayer.get_unique_id()) != "Survivor": return
+	for ray in get_tree().get_nodes_in_group("killer_checker").filter(func (r):return r.get_multiplayer_authority()==multiplayer.get_unique_id()):
+		if check_player(ray):
 			return true
 	return false
 
-func check_player(body):
-	for ray in marker_parent.get_children():
-		ray.look_at(body.cam.global_position)
+func check_player(ray):
+	for mark in marker_parent.get_children():
+		ray.look_at(mark.global_position)
 		ray.force_raycast_update()
 		if not ray.is_colliding(): continue
-		if ray.get_collider().is_in_group("look_box"):
+		if ray.get_collider() == killer:
 			return true
 	return false
