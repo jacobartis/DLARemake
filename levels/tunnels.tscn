@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4iayybapkwb3"]
+
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_sscd3"]
+[ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_2hlnk"]
+[ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="3_aoxel"]
+[ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="4_nmfs6"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sscd3"]
+
+[sub_resource type="Gradient" id="Gradient_2hlnk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aoxel"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nmfs6"]
+color_ramp = SubResource("Gradient_2hlnk")
+noise = SubResource("FastNoiseLite_aoxel")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0j0v"]
+albedo_texture = SubResource("NoiseTexture2D_nmfs6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jnby3"]
+material = SubResource("StandardMaterial3D_n0j0v")
+size = Vector2(50, 50)
+
+[node name="LevelTemplate" type="Node3D"]
+script = ExtResource("1_sscd3")
+metadata/_custom_type_script = "uid://bgispvho0cwmg"
+
+[node name="CharacterManager" type="Node3D" parent="."]
+script = ExtResource("2_2hlnk")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
+_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
+spawn_path = NodePath("../..")
+
+[node name="SurvSpawns" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="KillerSpawns" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("3_aoxel")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
+script = ExtResource("4_nmfs6")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_sscd3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_jnby3")
+
+[node name="LevelObjects" type="Node3D" parent="."]
