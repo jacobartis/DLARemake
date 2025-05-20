@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelDisplay" load_steps=3 format=3 uid="uid://bky3qswhp0uuo"]
+
+[ext_resource type="Texture2D" uid="uid://df6to2x7dyynb" path="res://icon.svg" id="1_tvkgl"]
+[ext_resource type="Script" uid="uid://b82rid6rfc4my" path="res://levels/resource/level_display.gd" id="3_4brls"]
+
+[resource]
+script = ExtResource("3_4brls")
+level_path = "uid://b4iayybapkwb3"
+level_name = "Tunnels"
+level_background = ExtResource("1_tvkgl")
+metadata/_custom_type_script = "uid://b82rid6rfc4my"
