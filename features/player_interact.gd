@@ -1,5 +1,5 @@
 extends PlayerDetector
-class_name ObjectInteract
+class_name StandInteract
 
 signal is_pressed()
 signal is_held()
