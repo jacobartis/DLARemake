@@ -42,7 +42,6 @@ func join_ip_server(address = ""):
 	var error = peer.create_client(address, port)
 	if error:
 		return error
-	print(peer.host.get_peers()[0].is_active())
 	multiplayer.multiplayer_peer = peer
 
 func create_ip_server():
