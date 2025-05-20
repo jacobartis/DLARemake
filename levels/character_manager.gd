@@ -30,8 +30,6 @@ func spawn_func(data):
 	var id = data["id"]
 	var pos = data["pos"]
 	player.global_position = pos
-	if id:
-		player.update_owner.rpc(id)
 	return player
 
 func spawn_survivors(players:Array):
