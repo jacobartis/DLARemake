@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=16 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
 [ext_resource type="Texture2D" uid="uid://cw2tpon1cmoiy" path="res://characters/models/Skins/skaterMaleA.png" id="3_7ptos"]
 [ext_resource type="Script" uid="uid://bdnyf6se7tk48" path="res://characters/character_animation_player.gd" id="3_xsby5"]
 [ext_resource type="AnimationLibrary" uid="uid://ctblgenud87wx" path="res://characters/models/Animations/IdleAnim.res" id="4_7ptos"]
+[ext_resource type="Script" uid="uid://ct1ikdo68vese" path="res://characters/interactor_ray.gd" id="4_prlgj"]
 [ext_resource type="AnimationLibrary" uid="uid://ca3d8rr24q1k3" path="res://characters/models/Animations/RunAnim.res" id="5_prlgj"]
 [ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="7_7ptos"]
 
@@ -233,7 +234,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607524, -0.127323)
 [node name="KillerChecker" type="RayCast3D" parent="Camera3D" groups=["killer_checker"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106389, 0.127323)
 target_position = Vector3(0, 0, -100)
-debug_shape_thickness = 5
+debug_shape_thickness = 1
+
+[node name="InteractorRay" type="RayCast3D" parent="Camera3D" node_paths=PackedStringArray("body")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.607524, 0.127323)
+target_position = Vector3(0, 0, -5)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("4_prlgj")
+body = NodePath("../..")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
@@ -257,8 +267,10 @@ libraries = {
 }
 autoplay = "IdleAnims/Idle"
 
-[node name="Interactor" type="Node" parent="."]
+[node name="Interactor" type="Node" parent="." node_paths=PackedStringArray("body")]
 script = ExtResource("7_7ptos")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://cavh7vlmltk7q"
 
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
 
