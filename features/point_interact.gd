@@ -5,6 +5,9 @@ signal is_pressed()
 signal is_held()
 signal is_released()
 
+@export_enum("Press","Hold") var type: String = "Press"
+@export var interact_message: String = ""
+
 func _ready():
 	add_to_group("interact")
 
