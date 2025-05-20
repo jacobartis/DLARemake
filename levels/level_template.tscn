@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://nu0cayw4u4cc"]
+
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_13k7l"]
+[ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8xmsw"]
+[ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="3_yglgk"]
+[ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="4_glpk1"]
+
+[node name="LevelTemplate" type="Node3D"]
+script = ExtResource("1_13k7l")
+metadata/_custom_type_script = "uid://bgispvho0cwmg"
+
+[node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
+script = ExtResource("2_8xmsw")
+spawn_parent = NodePath("")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
+_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
+spawn_path = NodePath("../..")
+
+[node name="SurvSpawns" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="KillerSpawns" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("3_yglgk")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
+script = ExtResource("4_glpk1")
