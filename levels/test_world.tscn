@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=17 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
-[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/test_objective.tscn" id="3_c576j"]
+[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/test_point_objective.tscn" id="3_c576j"]
+[ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="4_lqt7o"]
+[ext_resource type="PackedScene" uid="uid://c6u5p0arbeioq" path="res://level_objects/test_area_objective.tscn" id="4_vytw3"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -134,9 +136,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, 0)
 shape = SubResource("BoxShape3D_kbvng")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
+layers = 3
 mesh = SubResource("BoxMesh_c576j")
 
-[node name="TestObjective" parent="." instance=ExtResource("3_c576j")]
+[node name="TestPointObjective" parent="." instance=ExtResource("3_c576j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+
+[node name="TestAreaObjective" parent="." instance=ExtResource("4_vytw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("4_lqt7o")]
 
 [connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
