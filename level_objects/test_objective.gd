@@ -32,7 +32,3 @@ func _process(delta):
 	$Fill.position.y = -1*(1-perc)
 	if perc == 1:
 		obj_node.finish()
-
-
-func _on_object_interact_player_entered(player):
-	print(player)

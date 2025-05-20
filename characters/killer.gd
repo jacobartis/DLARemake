@@ -60,7 +60,6 @@ func is_authority():
 
 func _input(event):
 	if not is_authority(): return
-	print(GameInfo.role(multiplayer.get_unique_id()))
 	look(event as InputEventMouseMotion)
 
 func look(motion:InputEventMouseMotion):
