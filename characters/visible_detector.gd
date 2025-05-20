@@ -6,15 +6,12 @@ signal hidden()
 @export var killer:CharacterBody3D
 @export var marker_parent:Node3D
 
-var delay = .2
+var delay = .1
 
 #Keeps list of current observers
 var viewers = []
 
 func _process(delta):
-	#Need to fix
-	#On_screen() is unique to whoever is looking
-	#Meaning other people have false, just emitting hidden
 	delay = max(delay-delta,0)
 	if delay: return
 	if is_on_screen():
