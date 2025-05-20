@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=19 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="4_lqt7o"]
 [ext_resource type="PackedScene" uid="uid://c6u5p0arbeioq" path="res://level_objects/test_area_objective.tscn" id="4_vytw3"]
 [ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="6_37vfl"]
+[ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="6_edsus"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -151,6 +152,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("4_lqt7o")]
 unique_name_in_owner = true
 visible = false
+
+[node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("6_edsus")]
 
 [node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
 script = ExtResource("6_37vfl")

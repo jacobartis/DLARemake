@@ -1,4 +1,5 @@
 extends Node3D
+class_name Level
 
 @export var char_man: CharacterManager
 
