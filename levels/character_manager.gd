@@ -33,7 +33,7 @@ func spawn_func(data):
 	return player
 
 func spawn_survivors(players:Array):
-	var spawn_points = %SurvSpawns.get_children()
+	var spawn_points = get_tree().get_nodes_in_group("spawn").filter(func(s):return s.type == "survivor")
 	spawn_points.shuffle()
 	for id in players:
 		var spawn_data = {
@@ -49,7 +49,7 @@ func spawn_survivors(players:Array):
 		surv.killed.connect(survivor_killed.bind(id))
 
 func spawn_killers(players:Array):
-	var spawn_points = %KillerSpawns.get_children()
+	var spawn_points = get_tree().get_nodes_in_group("spawn").filter(func(s):return s.type == "killer")
 	spawn_points.shuffle()
 	for i in (players.size()+1)*2:
 		var spawn_data = {
