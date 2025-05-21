@@ -7,6 +7,8 @@ signal control_dropped()
 @onready var cam = %Camera3D
 @onready var vis = $VisibleDetector
 @export var highlight: HighlightManager
+@export var interactor:Interactor
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 

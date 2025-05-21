@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dvquo8dq47kay"]
+[gd_scene load_steps=22 format=4 uid="uid://dvquo8dq47kay"]
 
 [ext_resource type="Script" uid="uid://vx64j622sod" path="res://characters/killer.gd" id="1_h1eha"]
 [ext_resource type="Script" uid="uid://ccmurvcjf28h4" path="res://features/player_detector.gd" id="2_0uksx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://mnyasa03pcs1" path="res://characters/visible_detector.gd" id="8_eehct"]
 [ext_resource type="Script" uid="uid://6hdo8xeqjljc" path="res://characters/killer_pick_area.gd" id="8_jcivy"]
 [ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="9_urqhd"]
+[ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="12_6k8bb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eg0eo"]
 
@@ -211,10 +212,11 @@ size = Vector3(1.5, 2, 1.5)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_h1eha"]
 radius = 0.969238
 
-[node name="Killer" type="CharacterBody3D" node_paths=PackedStringArray("highlight") groups=["killer", "player"]]
+[node name="Killer" type="CharacterBody3D" node_paths=PackedStringArray("highlight", "interactor") groups=["killer", "player"]]
 collision_layer = 9
 script = ExtResource("1_h1eha")
 highlight = NodePath("HighlightManager")
+interactor = NodePath("Interactor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_eg0eo")
@@ -375,6 +377,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278073, 0.778223, 0)
 
 [node name="TopRight3" type="Marker3D" parent="ViewMarkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286617, 0.778223, 0)
+
+[node name="Interactor" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("12_6k8bb")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://cavh7vlmltk7q"
 
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]
