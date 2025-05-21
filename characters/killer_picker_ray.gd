@@ -7,6 +7,7 @@ var hovered:CharacterBody3D = null:set=set_hovered
 func set_hovered(val):
 	if hovered == val: return
 	if hovered!=null:
+		hovered.highlight.up()
 		hovered.highlight.highlight(Color.WHITE)
 	hovered = val
 
@@ -22,11 +23,12 @@ func _process(delta):
 		return
 	var body = get_collider().killer
 	if body.controlled:
-		body.highlight.highlight(Color.BLACK)
+		body.highlight.highlight(Color.DIM_GRAY)
 		hovered = null
 		return
-	body.highlight.highlight(Color.RED)
+	body.highlight.highlight(Color.CHOCOLATE)
 	hovered = body
+	hovered.highlight.down()
 
 func _input(event):
 	if not killer.is_authority(): return

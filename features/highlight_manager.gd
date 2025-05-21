@@ -6,6 +6,12 @@ class_name HighlightManager
 func highlight(color:Color):
 	highlight_mesh.get_active_material(0).albedo_color = color
 
+func down():
+	highlight_mesh.mesh.size.y = -.7
+
+func up():
+	highlight_mesh.mesh.size.y = .7
+
 func hide():
 	highlight_mesh.hide()
 
