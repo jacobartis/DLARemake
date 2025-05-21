@@ -69,7 +69,6 @@ func look(motion:InputEventMouseMotion):
 	cam_arm.rotation.y -= motion.relative.x*Settings.mouse_sense
 
 func _process(delta):
-	$OmniLight3D.visible = not can_move
 	if not is_authority(): return
 	%CamHolder.global_position = global_position
 
