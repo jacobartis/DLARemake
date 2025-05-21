@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cj7ghhue6488v"]
+
+[ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_ixy1a"]
+[ext_resource type="Script" uid="uid://bveiglrvr42w7" path="res://level_objects/lights/tb_omnilight.gd" id="2_g55n5"]
+
+[resource]
+script = ExtResource("1_ixy1a")
+script_class = ExtResource("2_g55n5")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "Light_OmniLight3D"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"attention": 1.0,
+"color": Color(0.955963, 0.955963, 0.955963, 1),
+"energy": 1.0,
+"range": 5.0
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "OmniLight3D"
+name_property = ""
+metadata/_custom_type_script = "uid://rly1n6m7di5y"

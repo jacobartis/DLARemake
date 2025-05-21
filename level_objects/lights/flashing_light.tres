@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=4 format=3 uid="uid://dnkachmq4xbje"]
+
+[ext_resource type="Resource" uid="uid://cj7ghhue6488v" path="res://level_objects/lights/tb_omnilight.tres" id="1_nmny2"]
+[ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_yrqxq"]
+[ext_resource type="Script" uid="uid://ddsre2ypfh4ik" path="res://level_objects/lights/flashing_light.gd" id="3_1hm6q"]
+
+[resource]
+script = ExtResource("1_yrqxq")
+script_class = ExtResource("3_1hm6q")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "Light_Flashing"
+description = "Flashing omnilight"
+func_godot_internal = false
+base_classes = Array[Resource]([ExtResource("1_nmny2")])
+class_properties = {
+"off_duration": 1.0,
+"on_duration": 1.0,
+"randomness": 0.0
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "OmniLight3D"
+name_property = ""
+metadata/_custom_type_script = "uid://rly1n6m7di5y"
