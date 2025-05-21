@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dekhu35b5ik5w"]
+
+[ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_nj0nm"]
+[ext_resource type="Script" uid="uid://byfu7xg2wqjyl" path="res://level_objects/spawns/player_spawn.gd" id="2_wlvtl"]
+
+[resource]
+script = ExtResource("1_nj0nm")
+script_class = ExtResource("2_wlvtl")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "PlayerSpawn"
+description = "Spawn point for players"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"type": "survivor"
+}
+class_property_descriptions = {
+"type": "Type of player than can spawn (survivor or killer)"
+}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "Marker3D"
+name_property = ""
+metadata/_custom_type_script = "uid://rly1n6m7di5y"
