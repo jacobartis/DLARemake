@@ -14,6 +14,7 @@ func _ready():
 		%LevelContainer.add_child(button)
 		if !first: first = button
 	first.button_pressed = true
+	level_pressed(first)
 
 func level_pressed(button):
 	print(button)
