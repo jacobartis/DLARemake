@@ -7,6 +7,7 @@ var spectator_players = []
 var level_infos:Dictionary[String,LevelDisplay] = {
 	"Test":preload("res://levels/resource/test_world.tres"),
 	"Tunnels":preload("res://levels/resource/tunnels.tres"),
+	"ShoppingCenter":preload("res://levels/resource/shopping_center.tres"),
 }
 
 func role(id):
