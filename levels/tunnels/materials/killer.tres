@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dlcrtv1drot2v"]
+
+[ext_resource type="Shader" uid="uid://bfjbae8wuxtbs" path="res://characters/survivor.gdshader" id="1_2rup5"]
+[ext_resource type="Texture2D" uid="uid://c6kvv113s0n36" path="res://color_palettes/slso8-1x.png" id="2_63rfo"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1vc8c"]
+load_path = "res://.godot/imported/bayer16tile2.png-8a6b5676097f433b13e81942f7232deb.ctex"
+
+[resource]
+shader = ExtResource("1_2rup5")
+shader_parameter/u_dither_tex = SubResource("CompressedTexture2D_1vc8c")
+shader_parameter/u_color_tex = ExtResource("2_63rfo")
+shader_parameter/u_bit_depth = 8
+shader_parameter/u_contrast = 1.5
+shader_parameter/u_offset = 0.0
+shader_parameter/u_dither_size = 2
