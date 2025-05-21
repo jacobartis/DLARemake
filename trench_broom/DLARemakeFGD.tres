@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://cjy8snctvjmoy"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=8 format=3 uid="uid://cjy8snctvjmoy"]
 
 [ext_resource type="Resource" uid="uid://dekhu35b5ik5w" path="res://level_objects/spawns/spawn.tres" id="1_i7638"]
 [ext_resource type="Script" uid="uid://cqhpjabqyn3mj" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_t5apr"]
 [ext_resource type="Resource" uid="uid://cj7ghhue6488v" path="res://level_objects/lights/tb_omnilight.tres" id="2_13qhn"]
 [ext_resource type="Resource" uid="uid://dnkachmq4xbje" path="res://level_objects/lights/flashing_light.tres" id="3_2ej0i"]
+[ext_resource type="Resource" uid="uid://ymu4rj0cipql" path="res://level_objects/interactable/stand_interact.tres" id="4_4vbxa"]
+[ext_resource type="Resource" uid="uid://col5a83kwm5vx" path="res://level_objects/interactable/point_interact.tres" id="5_ia16v"]
+[ext_resource type="Resource" uid="uid://bn3euyhwjeq4a" path="res://level_objects/objects/interact_test.tres" id="6_ia16v"]
 
 [resource]
 script = ExtResource("1_t5apr")
@@ -11,5 +14,5 @@ export_file = false
 target_map_editor = 1
 fgd_name = "DLARemake"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_i7638"), ExtResource("2_13qhn"), ExtResource("3_2ej0i")])
+entity_definitions = Array[Resource]([ExtResource("1_i7638"), ExtResource("2_13qhn"), ExtResource("3_2ej0i"), ExtResource("4_4vbxa"), ExtResource("5_ia16v"), ExtResource("6_ia16v")])
 metadata/_custom_type_script = "uid://cqhpjabqyn3mj"
