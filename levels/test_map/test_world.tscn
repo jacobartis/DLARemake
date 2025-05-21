@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://drl44pii3gfh1"]
 
-[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_kbvng"]
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
 [ext_resource type="Script" uid="uid://byfu7xg2wqjyl" path="res://level_objects/spawns/player_spawn.gd" id="3_1vc8c"]
 [ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test_point_objective.tscn" id="3_c576j"]
