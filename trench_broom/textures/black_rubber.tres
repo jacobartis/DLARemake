@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://sb6oic14mjya"]
+
+[ext_resource type="Texture2D" uid="uid://dtfu7ggujp1vt" path="res://trench_broom/textures/black_rubber.jpg" id="1_78kff"]
+
+[resource]
+albedo_texture = ExtResource("1_78kff")
+metallic_specular = 0.0
+texture_filter = 2

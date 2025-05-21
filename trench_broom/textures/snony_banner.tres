@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b77vlbsjimu2y"]
+
+[ext_resource type="Texture2D" uid="uid://c280ta6i7cnem" path="res://trench_broom/textures/snony_banner.png" id="1_40e42"]
+
+[resource]
+albedo_texture = ExtResource("1_40e42")
+metallic_specular = 0.0
+texture_filter = 2

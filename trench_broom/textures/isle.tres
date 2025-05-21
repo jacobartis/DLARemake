@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bnu4sa7qdj1bp"]
+
+[ext_resource type="Texture2D" uid="uid://dt7gue7hqdoj3" path="res://trench_broom/textures/isle.png" id="1_urmfq"]
+
+[resource]
+albedo_texture = ExtResource("1_urmfq")
+metallic_specular = 0.0
+texture_filter = 2
