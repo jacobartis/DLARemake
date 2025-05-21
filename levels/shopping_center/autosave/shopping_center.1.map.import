@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://danen4pnyosqx"
+path="res://.godot/imported/shopping_center.1.map-24e56e147023bd38659d6e39ca19fa01.tres"
+
+[deps]
+
+source_file="res://levels/shopping_center/autosave/shopping_center.1.map"
+dest_files=["res://.godot/imported/shopping_center.1.map-24e56e147023bd38659d6e39ca19fa01.tres"]
+
+[params]
+

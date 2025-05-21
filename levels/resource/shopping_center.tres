@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="LevelDisplay" load_steps=3 format=3 uid="uid://cb1tbkiagykm"]
+
+[ext_resource type="Texture2D" uid="uid://c280ta6i7cnem" path="res://trench_broom/textures/snony_banner.png" id="1_2lwr1"]
+[ext_resource type="Script" uid="uid://b82rid6rfc4my" path="res://levels/resource/level_display.gd" id="1_lyjwh"]
+
+[resource]
+script = ExtResource("1_lyjwh")
+level_path = "uid://cnhxkssihbwix"
+level_name = "Shopping Center"
+level_background = ExtResource("1_2lwr1")
+metadata/_custom_type_script = "uid://b82rid6rfc4my"
