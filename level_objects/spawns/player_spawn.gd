@@ -9,8 +9,5 @@ func _func_godot_apply_properties(entity_properties: Dictionary):
 	if entity_properties.has("type"):
 		type = entity_properties["type"]
 
-func _func_godot_build_complete():
-	print("Build complete")
-
 func _ready():
 	add_to_group("spawn")
