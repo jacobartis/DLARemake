@@ -1,0 +1,4 @@
+@PointClass size(-8.0 -8.0 -8.0, 8.0 8.0 8.0) color(204 204 204) = PlayerSpawn : "Spawn point for players" 
+[
+	Type(string) : "Type of player than can spawn (survivor or killer)" : "survivor"
+]
