@@ -1,6 +1,8 @@
 extends Node3D
 class_name Level
 
+signal game_start()
+
 @export var char_man: CharacterManager
 
 func _ready():
@@ -14,11 +16,12 @@ func start():
 	print("start")
 	GameInfo.killer_players = [MultiplayerManager.players.keys().pick_random()]
 	GameInfo.surviver_players = MultiplayerManager.players.keys().duplicate()
+	GameInfo.server_update()
 	for id in GameInfo.killer_players:
 		GameInfo.surviver_players.erase(id)
 	char_man.spawn_survivors(GameInfo.surviver_players)
 	char_man.spawn_killers(GameInfo.killer_players)
-	GameInfo.server_update()
+	game_start.emit()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
