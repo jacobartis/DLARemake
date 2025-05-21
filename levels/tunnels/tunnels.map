@@ -18,7 +18,7 @@
 // entity 1
 {
 "classname" "PlayerSpawn"
-"origin" "48 32 48"
+"origin" "160 32 32"
 "type" "killer"
 }
 // entity 2
@@ -45,4 +45,81 @@
 "on_duration" "2"
 "energy" "4"
 "range" "10"
+}
+// entity 5
+{
+"classname" "interact_stand"
+"playertype" "1"
+// brush 0
+{
+( -240 -160 16 ) ( -240 -159 16 ) ( -240 -160 17 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 270 1 1
+( -240 -160 16 ) ( -240 -160 17 ) ( -239 -160 16 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 270 1 1
+( -240 -160 16 ) ( -239 -160 16 ) ( -240 -159 16 ) __TB_empty [ -1 0 0 0 ] [ 0 -1 0 0 ] 270 1 1
+( -64 -64 64 ) ( -64 -63 64 ) ( -63 -64 64 ) __TB_empty [ 1 0 0 0 ] [ 0 -1 0 0 ] 180 1 1
+( -64 -64 32 ) ( -63 -64 32 ) ( -64 -64 33 ) __TB_empty [ -1 0 0 0 ] [ 0 0 -1 0 ] 270 1 1
+( -64 -64 32 ) ( -64 -64 33 ) ( -64 -63 32 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 270 1 1
+}
+}
+// entity 6
+{
+"classname" "interact_point"
+"targetname" ""
+"target" "test"
+// brush 0
+{
+( -144 0 16 ) ( -144 1 16 ) ( -144 0 17 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 180 1 1
+( -144 0 16 ) ( -144 0 17 ) ( -143 0 16 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 180 1 1
+( -144 0 16 ) ( -143 0 16 ) ( -144 1 16 ) __TB_empty [ -1 0 0 0 ] [ 0 -1 0 0 ] 180 1 1
+( -112 32 64 ) ( -112 33 64 ) ( -111 32 64 ) __TB_empty [ 1 0 0 0 ] [ 0 -1 0 0 ] 90 1 1
+( -112 32 32 ) ( -111 32 32 ) ( -112 32 33 ) __TB_empty [ -1 0 0 0 ] [ 0 0 -1 0 ] 180 1 1
+( -112 32 32 ) ( -112 32 33 ) ( -112 33 32 ) __TB_empty [ 0 1 0 0 ] [ 0 0 -1 0 ] 180 1 1
+}
+}
+// entity 7
+{
+"classname" "PlayerSpawn"
+"origin" "160 96 32"
+"type" "killer"
+}
+// entity 8
+{
+"classname" "PlayerSpawn"
+"origin" "224 32 32"
+"type" "killer"
+}
+// entity 9
+{
+"classname" "PlayerSpawn"
+"origin" "224 96 32"
+"type" "killer"
+}
+// entity 10
+{
+"classname" "PlayerSpawn"
+"origin" "160 160 32"
+"type" "killer"
+}
+// entity 11
+{
+"classname" "PlayerSpawn"
+"origin" "160 224 32"
+"type" "killer"
+}
+// entity 12
+{
+"classname" "PlayerSpawn"
+"origin" "224 224 32"
+"type" "killer"
+}
+// entity 13
+{
+"classname" "PlayerSpawn"
+"origin" "224 160 32"
+"type" "killer"
+}
+// entity 14
+{
+"classname" "InteractTest"
+"origin" "-184 24 56"
+"targetname" "test"
 }

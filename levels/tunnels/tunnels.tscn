@@ -1,0 +1,236 @@
+[gd_scene load_steps=28 format=4 uid="uid://b4iayybapkwb3"]
+
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_w43ti"]
+[ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8uilv"]
+[ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="3_j5paj"]
+[ext_resource type="Material" uid="uid://dlcrtv1drot2v" path="res://levels/tunnels/materials/killer.tres" id="4_wlqce"]
+[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/survivor_shader.tres" id="5_lcytx"]
+[ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="6_ua8dj"]
+[ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="7_vfca4"]
+[ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="8_b7f6d"]
+[ext_resource type="Script" uid="uid://dxotka5rmdqtd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="9_forkc"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="10_pcqrx"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="11_a65kd"]
+[ext_resource type="Script" uid="uid://byfu7xg2wqjyl" path="res://level_objects/spawns/player_spawn.gd" id="12_tr1n1"]
+[ext_resource type="Script" uid="uid://bveiglrvr42w7" path="res://level_objects/lights/tb_omnilight.gd" id="13_kro7h"]
+[ext_resource type="Script" uid="uid://ddsre2ypfh4ik" path="res://level_objects/lights/flashing_light.gd" id="14_dcrjo"]
+[ext_resource type="Script" uid="uid://q6ar581rqjb5" path="res://level_objects/interactable/stand_interact.gd" id="15_j5paj"]
+[ext_resource type="Script" uid="uid://b3s178yt4aica" path="res://level_objects/interactable/point_interact.gd" id="16_wlqce"]
+[ext_resource type="PackedScene" uid="uid://5idg4un7rsvm" path="res://level_objects/objects/interact_test.tscn" id="17_wlqce"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_sscd3"]
+
+[sub_resource type="Gradient" id="Gradient_2hlnk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aoxel"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nmfs6"]
+color_ramp = SubResource("Gradient_2hlnk")
+noise = SubResource("FastNoiseLite_aoxel")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0j0v"]
+albedo_texture = SubResource("NoiseTexture2D_nmfs6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jnby3"]
+material = SubResource("StandardMaterial3D_n0j0v")
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlqce"]
+albedo_texture = ExtResource("11_a65kd")
+metallic_specular = 0.0
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_lcytx"]
+_surfaces = [{
+"aabb": AABB(-2, -0.5, -2, 4, 1, 4),
+"attribute_data": PackedByteArray("AACAPwAAgL4AAIA/AACAPgAAgL8AAIA+AACAvwAAgL4AAIC/AACAvgAAgD8AAIC+AACAPwAAgD4AAIC/AACAPgAAgD8AAIC/AACAPwAAgD8AAIC/AACAPwAAgL8AAIC/AACAvwAAgL8AAIA/AACAvwAAgD8AAIA/AACAvwAAgD8AAIA/AACAvgAAgD8AAIA+AACAvwAAgD4AAIC/AACAvgAAgL8AAIC+AACAPwAAgL4AAIA/AACAPgAAgL8AAIA+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcA"),
+"material": SubResource("StandardMaterial3D_wlqce"),
+"name": "__TB_empty",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAwAAAAD8AAADAAAAAwAAAAL8AAADAAAAAQAAAAL8AAADAAAAAQAAAAD8AAADAAAAAwAAAAD8AAADAAAAAwAAAAD8AAABAAAAAwAAAAL8AAABAAAAAwAAAAL8AAADAAAAAQAAAAL8AAADAAAAAwAAAAL8AAADAAAAAwAAAAL8AAABAAAAAQAAAAL8AAABAAAAAQAAAAD8AAADAAAAAQAAAAD8AAABAAAAAwAAAAD8AAABAAAAAwAAAAD8AAADAAAAAQAAAAD8AAADAAAAAQAAAAL8AAADAAAAAQAAAAL8AAABAAAAAQAAAAD8AAABAAAAAwAAAAD8AAABAAAAAQAAAAD8AAABAAAAAQAAAAL8AAABAAAAAwAAAAL8AAABA/////wAA/7//////AAD/v/////8AAP+//////wAA/78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//v/9/AAD//////38AAP//////fwAA//////9/AAD//////3////9//7//f////3//v/9/////f/+//3////9//7////9//////////3//////////f/////////9///////9//3////+//3//f////7//f/9/////v/9//3////+/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ua8dj"]
+points = PackedVector3Array(-1.5, 0.75, -2.75, -1.5, -0.75, -2.75, 1.5, -0.75, -2.75, 1.5, 0.75, -2.75, -1.5, 0.75, 2.75, -1.5, -0.75, 2.75, 1.5, -0.75, 2.75, 1.5, 0.75, 2.75)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vfca4"]
+points = PackedVector3Array(-0.5, 0.75, -0.5, -0.5, -0.75, -0.5, 0.5, -0.75, -0.5, 0.5, 0.75, -0.5, -0.5, 0.75, 0.5, -0.5, -0.75, 0.5, 0.5, -0.75, 0.5, 0.5, 0.75, 0.5)
+
+[node name="LevelTemplate" type="Node3D" node_paths=PackedStringArray("char_man")]
+script = ExtResource("1_w43ti")
+char_man = NodePath("CharacterManager")
+metadata/_custom_type_script = "uid://bgispvho0cwmg"
+
+[node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
+script = ExtResource("2_8uilv")
+spawn_parent = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
+_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
+spawn_path = NodePath("../../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("3_j5paj")
+killer = ExtResource("4_wlqce")
+survivor = ExtResource("5_lcytx")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="PlayerHolder" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+
+[node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("6_ua8dj")]
+unique_name_in_owner = true
+visible = false
+
+[node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("7_vfca4")]
+
+[node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
+script = ExtResource("8_b7f6d")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_sscd3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_jnby3")
+
+[node name="LevelObjects" type="Node3D" parent="."]
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("9_forkc")
+local_map_file = "uid://bahn2x3oimc3t"
+map_settings = ExtResource("10_pcqrx")
+metadata/_custom_type_script = "uid://dxotka5rmdqtd"
+
+[node name="entity_0_worldspawn" type="Node3D" parent="FuncGodotMap"]
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+cast_shadow = 2
+gi_mode = 0
+mesh = SubResource("ArrayMesh_lcytx")
+
+[node name="entity_1_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1, 5)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_2_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 1.5, -1)
+script = ExtResource("12_tr1n1")
+
+[node name="entity_3_Light_OmniLight3D" type="OmniLight3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, 1, 0)
+light_color = Color(0.0431373, 0.784314, 0.0941176, 1)
+light_energy = 2.0
+omni_range = 10.0
+script = ExtResource("13_kro7h")
+
+[node name="entity_4_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1, 0)
+visible = false
+light_color = Color(0.784314, 0.784314, 0.784314, 1)
+light_energy = 4.0
+omni_range = 10.0
+script = ExtResource("14_dcrjo")
+
+[node name="entity_5_interact_stand" type="Area3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1.25, -4.75)
+collision_layer = 0
+script = ExtResource("15_j5paj")
+interact_message = "interact"
+func_godot_properties = {
+"classname": "interact_stand",
+"message": "interact",
+"playertype": 1,
+"target": "",
+"targetname": "",
+"type": "Press"
+}
+player_type = 1
+
+[node name="entity_5_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_5_interact_stand"]
+shape = SubResource("ConvexPolygonShape3D_ua8dj")
+
+[node name="entity_6_interact_point" type="Area3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.25, -4)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("16_wlqce")
+func_godot_properties = {
+"classname": "interact_point",
+"message": "interact",
+"target": "test",
+"targetname": "",
+"type": "Press"
+}
+interact_message = "interact"
+
+[node name="entity_6_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_6_interact_point"]
+shape = SubResource("ConvexPolygonShape3D_vfca4")
+
+[node name="entity_7_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 1, 5)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_8_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, 1, 7)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_9_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 1, 7)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_10_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 1, 5)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_11_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 1, 5)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_12_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7, 1, 7)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_13_PlayerSpawn" type="Marker3D" parent="FuncGodotMap"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 1, 7)
+script = ExtResource("12_tr1n1")
+type = "killer"
+
+[node name="entity_14_InteractTest" parent="FuncGodotMap" instance=ExtResource("17_wlqce")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.75, 1.75, -5.75)
+func_godot_properties = {
+"classname": "InteractTest",
+"origin": "-184 24 56",
+"targetname": "test"
+}
+targetname = "test"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+
+[connection signal="game_start" from="." to="CanvasLayer/SubViewportContainer" method="_on_world_game_start"]
+[connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
+[connection signal="survivors_win" from="ObjectivesManager" to="." method="_on_objectives_manager_survivors_win"]
