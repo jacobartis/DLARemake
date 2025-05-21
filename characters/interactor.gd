@@ -20,7 +20,10 @@ func get_closest() -> StandInteract:
 
 func _process(delta):
 	if not body.is_authority(): return
+	if body.is_in_group("killer"):
+		if not body.controlled: return
 	var interact_prompt = get_tree().get_first_node_in_group("interact_prompt")
+	
 	if interacts.is_empty():
 		interact_prompt.area_interact = null
 		return
