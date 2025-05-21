@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5idg4un7rsvm"]
+
+[ext_resource type="Script" uid="uid://bxemsrw3oik6k" path="res://level_objects/objects/interact_test.gd" id="1_rojmm"]
+
+[node name="InteractTest" type="OmniLight3D"]
+visible = false
+light_energy = 16.0
+omni_range = 27.54
+script = ExtResource("1_rojmm")
