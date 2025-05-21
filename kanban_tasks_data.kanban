@@ -16,7 +16,6 @@
 				"77ccc8aa-f95a-49fa-ac88-055703dd48f8",
 				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
 				"88f01de9-75c4-4a86-a5cd-554f3f530872",
-				"437dfe55-17f5-46b5-a65f-aeff3dbdb505",
 				"f487f440-501d-480d-b9ff-ef24995bff18"
 			]
 		},
@@ -24,7 +23,10 @@
 			"uuid": "abb80eb0-659e-4acb-b67c-0bd23ce763d3",
 			"title": "Doing",
 			"tasks": [
-				"334339b2-5260-47be-a00d-d03980235c03"
+				"334339b2-5260-47be-a00d-d03980235c03",
+				"4630ada4-04c3-4855-ac94-668817ce2ed7",
+				"437dfe55-17f5-46b5-a65f-aeff3dbdb505",
+				"fb66db4c-7796-44d2-a767-21c2f56daac7"
 			]
 		},
 		{
@@ -116,6 +118,20 @@
 		{
 			"uuid": "f487f440-501d-480d-b9ff-ef24995bff18",
 			"title": "Settings",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "4630ada4-04c3-4855-ac94-668817ce2ed7",
+			"title": "Dithering filter",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "fb66db4c-7796-44d2-a767-21c2f56daac7",
+			"title": "Change dither filter to use hue",
 			"description": "",
 			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
 			"steps": []
