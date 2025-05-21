@@ -1,32 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://nu0cayw4u4cc"]
+[gd_scene load_steps=10 format=3 uid="uid://nu0cayw4u4cc"]
 
-[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_world.gd" id="1_13k7l"]
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_13k7l"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8xmsw"]
+[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/survivor_shader.tres" id="3_glpk1"]
 [ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="3_yglgk"]
+[ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="4_22dcj"]
 [ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="4_glpk1"]
+[ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="6_8urs1"]
+[ext_resource type="Script" uid="uid://dxotka5rmdqtd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="8_8urs1"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="9_64qpc"]
 
-[node name="LevelTemplate" type="Node3D"]
+[node name="LevelTemplate" type="Node3D" node_paths=PackedStringArray("char_man")]
 script = ExtResource("1_13k7l")
+char_man = NodePath("CharacterManager")
 metadata/_custom_type_script = "uid://bgispvho0cwmg"
 
-[node name="CharacterManager" type="Node3D" parent="."]
+[node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
 script = ExtResource("2_8xmsw")
+spawn_parent = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
 _spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
-spawn_path = NodePath("../..")
-
-[node name="SurvSpawns" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="KillerSpawns" type="Node3D" parent="."]
-unique_name_in_owner = true
+spawn_path = NodePath("../../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+texture_repeat = 2
+material = ExtResource("3_glpk1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("4_22dcj")
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="PlayerHolder" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 
 [node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("3_yglgk")]
 unique_name_in_owner = true
 visible = false
 
+[node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("6_8urs1")]
+
 [node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
 script = ExtResource("4_glpk1")
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("8_8urs1")
+map_settings = ExtResource("9_64qpc")
+metadata/_custom_type_script = "uid://dxotka5rmdqtd"
+
+[connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
+[connection signal="survivors_win" from="ObjectivesManager" to="." method="_on_objectives_manager_survivors_win"]
