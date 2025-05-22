@@ -29,7 +29,6 @@ obj_node = NodePath("ObjectiveNode")
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("2_nri1e")
-func_godot_properties = null
 type = "Hold"
 interact_message = "Fill"
 metadata/_custom_type_script = "uid://b3s178yt4aica"

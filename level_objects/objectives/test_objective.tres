@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cqsvmyxts1wft"]
+
+[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test_point_objective.tscn" id="1_2po7y"]
+[ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_crxrq"]
+
+[resource]
+script = ExtResource("1_crxrq")
+scene_file = ExtResource("1_2po7y")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "objective_test"
+description = "Test objective"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://rly1n6m7di5y"

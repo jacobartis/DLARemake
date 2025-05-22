@@ -14,7 +14,6 @@ var hold_buffer: float = 0
 func _on_object_interact_is_held():
 	press_buffer = 0.2
 
-
 func _process(delta):
 	if obj_node.complete: return
 	if press_buffer:
