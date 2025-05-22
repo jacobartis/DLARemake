@@ -8,7 +8,7 @@ var enabled: bool = false
 func _ready():
 	var manager = get_tree().get_first_node_in_group("objective_manager")
 	manager.objective_complete.connect(check_remaining)
-	$Highlight.hide()
+	hide()
 
 func check_remaining():
 	if get_tree().get_nodes_in_group("objective").filter(func (o): return o!=objective_node).all(func(o):return o.completed):
@@ -16,7 +16,7 @@ func check_remaining():
 
 func enable():
 	if GameInfo.role(multiplayer.get_unique_id())=="Survivor":
-		$Highlight.show()
+		show()
 		enabled = true
 
 func check_all():

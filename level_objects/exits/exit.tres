@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dsn504svi8204"]
+
+[ext_resource type="PackedScene" uid="uid://lel5gbr3ud7j" path="res://level_objects/exits/exit.tscn" id="1_tksn1"]
+[ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_77u3h"]
+
+[resource]
+script = ExtResource("2_77u3h")
+scene_file = ExtResource("1_tksn1")
+apply_rotation_on_map_build = true
+apply_scale_on_map_build = true
+classname = "exit"
+description = "Exit for the surviver players"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://rly1n6m7di5y"
