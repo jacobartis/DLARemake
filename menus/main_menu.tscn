@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct8inqcui4702"]
+[gd_scene load_steps=9 format=3 uid="uid://ct8inqcui4702"]
 
 [ext_resource type="Script" uid="uid://dggitpxi68su5" path="res://menus/main_menu.gd" id="1_8gy84"]
 [ext_resource type="Shader" uid="uid://chsq85x6lqvqu" path="res://menus/scroll_shader.gdshader" id="2_ij7vn"]
@@ -17,6 +17,11 @@ shader_parameter/dir = Vector2(1, 0)
 seamless = true
 color_ramp = SubResource("Gradient_rqbgu")
 noise = SubResource("FastNoiseLite_oblsv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yjgyn"]
+font_size = 20
+outline_size = 10
+outline_color = Color(0.151276, 0.151276, 0.151276, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -176,9 +181,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Hide"
 
+[node name="Output" type="Label" parent="." groups=["err_label"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 462.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
+label_settings = SubResource("LabelSettings_yjgyn")
+horizontal_alignment = 1
+
 [connection signal="pressed" from="ButtonContainer/HostButton" to="." method="_on_host_steam_pressed"]
-[connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="_on_server_update"]
 [connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="show"]
+[connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="_on_server_update"]
 [connection signal="pressed" from="LanButtons/LanHostButton" to="." method="_on_host_ip_pressed"]
 [connection signal="pressed" from="LanButtons/LanConnect" to="." method="_on_join_local_host"]
 [connection signal="pressed" from="ServerList/HBoxContainer/RefreshButton" to="ServerList" method="_on_server_update"]

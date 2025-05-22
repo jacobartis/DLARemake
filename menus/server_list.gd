@@ -26,5 +26,11 @@ func on_lobby_match_list(lobbies):
 func join_lobby(lobby):
 	for child in %SteamLobbies.get_children():
 		child.disabled = true
+	set_player_name_steam()
 	joining_lobby.emit()
 	MultiplayerManager.join_steam_server(lobby)
+
+func set_player_name_steam():
+	var id = Steam.getSteamID()
+	var player_name = Steam.getFriendPersonaName(id)
+	MultiplayerManager.player_info["name"] = player_name

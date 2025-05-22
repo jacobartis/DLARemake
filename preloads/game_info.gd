@@ -5,10 +5,13 @@ var surviver_players = []
 var spectator_players = []
 
 var level_infos:Dictionary[String,LevelDisplay] = {
-	"Test":preload("res://levels/resource/test_world.tres"),
-	"Tunnels":preload("res://levels/resource/tunnels.tres"),
-	"ShoppingCenter":preload("res://levels/resource/shopping_center.tres"),
 }
+
+func _ready():
+	for path in GGResourceFinder.find("res://levels/resource/",".tres"):
+		var res = ResourceLoader.load(path)
+		level_infos[res.level_id] = res
+
 
 func role(id):
 	if killer_players.has(id): return "Killer"

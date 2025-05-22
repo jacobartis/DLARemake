@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cn57enccajwlt"]
+[gd_scene load_steps=11 format=3 uid="uid://cn57enccajwlt"]
 
 [ext_resource type="Script" uid="uid://bkm0fcgm23uyx" path="res://menus/lobby/lobby.gd" id="1_l1s41"]
 [ext_resource type="Script" uid="uid://cn1a8jcmx6u4f" path="res://menus/lobby/player_list.gd" id="2_kssl2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cg0ogkfvscl7w" path="res://menus/lobby/level_select.gd" id="4_0itov"]
 [ext_resource type="Script" uid="uid://vjdyixrompvg" path="res://menus/lobby/selected_button.gd" id="4_b5bg5"]
 [ext_resource type="Texture2D" uid="uid://df6to2x7dyynb" path="res://icon.svg" id="5_xhjiu"]
+[ext_resource type="PackedScene" uid="uid://xgi5py3dopl6" path="res://menus/lobby/level_button.tscn" id="7_jpmg3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_kssl2"]
 font_size = 32
@@ -205,6 +206,7 @@ offset_bottom = 0.249969
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_0itov")
+level_button = ExtResource("7_jpmg3")
 display = NodePath("../SelectedLevel")
 
 [node name="Title" type="Label" parent="Panel/LevelSelect"]

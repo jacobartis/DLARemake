@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("3_lrnf7")
-level_path = "uid://drl44pii3gfh1"
+level_id = "Test"
+level_path = "res://levels/test_map/test_world.tscn"
 level_name = "test world"
 level_background = ExtResource("1_yhp8g")
 metadata/_custom_type_script = "uid://b82rid6rfc4my"

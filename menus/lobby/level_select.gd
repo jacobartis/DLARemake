@@ -1,14 +1,14 @@
 extends Panel
 signal level_selected(level_id:String)
 
-const LEVEL_BUTTON = preload("res://menus/lobby/level_button.tscn")
-
+@export var level_button:PackedScene
 @export var display:Button
 
 func _ready():
+	if not multiplayer.is_server(): return
 	var first = null
 	for level_id in GameInfo.level_infos:
-		var button = LEVEL_BUTTON.instantiate()
+		var button = level_button.instantiate()
 		button.display(level_id)
 		button.button_up.connect(level_pressed.bind(button))
 		%LevelContainer.add_child(button)

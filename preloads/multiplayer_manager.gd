@@ -35,6 +35,9 @@ func _ready():
 	steam_peer.lobby_created.connect(_on_lobby_created)
 	steam_peer.network_session_failed.connect(_on_server_disconnected)
 
+func display_err_msg(msg:String):
+	get_tree().get_first_node_in_group("err_label").text = msg
+
 func join_ip_server(address = ""):
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
@@ -56,17 +59,24 @@ func create_ip_server():
 	player_connected.emit(1,player_info)
 
 func create_steam_server():
-	steam_peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+	display_err_msg("CREATE CALLED")
+	var err = steam_peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+	display_err_msg("PASSED CREATE LOBBY "+error_string(err))
+	if err!=OK: return err
+	display_err_msg("PASSED ERR GATE")
 	multiplayer.multiplayer_peer = steam_peer
 	players[1] = player_info
 	player_connected.emit(1,player_info)
+	display_err_msg("FINISHED CALL")
 
 func join_steam_server(id):
 	steam_peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = steam_peer
 
 func _on_lobby_created(con,id):
-	if not con: return
+	if con != Steam.Result.RESULT_OK: 
+		get_tree().get_first_node_in_group("err_label").text = error_string(con)
+		return
 	lobby_id = id
 	Steam.setLobbyData(lobby_id,"name",str(Steam.getPersonaName()+"'s Lobby"))
 	Steam.setLobbyJoinable(lobby_id,true)
@@ -77,7 +87,7 @@ func leave_server():
 		players.clear()
 		emit_signal("server_stopped")
 	remove_multiplayer_peer()
-	get_tree().change_scene_to_file("res://menus/main_menu.tscn")
+	get_tree().change_scene_to_file("user://menus/main_menu.tscn")
 
 func remove_multiplayer_peer():
 	if steam_peer.get_lobby_id()!=0:
@@ -103,7 +113,8 @@ func start_game(map_path):
 
 @rpc("call_local","reliable")
 func load_scene(game_scene_path):
-	get_tree().change_scene_to_file(game_scene_path)
+	var scene = GGResourceFinder.find_file(game_scene_path)
+	var err = get_tree().change_scene_to_packed(scene)
 
 @rpc("any_peer", "reliable")
 func _kicked(reason):
@@ -127,13 +138,15 @@ func _on_player_disconnected(id):
 	DisplayServer.window_set_title("Test Game")
 
 func _on_connected_ok():
+	get_tree().get_first_node_in_group("err_label").text = "Connected OK"
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)
 	DisplayServer.window_set_title("Test Game "+str(multiplayer.get_unique_id()))
-	load_scene("res://menus/lobby/lobby.tscn")
+	load_scene("user://menus/lobby/lobby.tscn")
 
 func _on_connected_fail():
+	get_tree().get_first_node_in_group("err_label").text = "Connection Failed"
 	multiplayer.multiplayer_peer = null
 
 func _on_server_disconnected():
@@ -142,4 +155,4 @@ func _on_server_disconnected():
 	players.clear()
 	server_disconnected.emit()
 	#Returns to menu when the connection fails
-	load_scene("res://menus/main_menu.tscn")
+	load_scene("user://menus/main_menu.tscn")
