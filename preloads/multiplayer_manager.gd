@@ -59,15 +59,11 @@ func create_ip_server():
 	player_connected.emit(1,player_info)
 
 func create_steam_server():
-	display_err_msg("CREATE CALLED")
 	var err = steam_peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
-	display_err_msg("PASSED CREATE LOBBY "+error_string(err))
 	if err!=OK: return err
-	display_err_msg("PASSED ERR GATE")
 	multiplayer.multiplayer_peer = steam_peer
 	players[1] = player_info
 	player_connected.emit(1,player_info)
-	display_err_msg("FINISHED CALL")
 
 func join_steam_server(id):
 	steam_peer.connect_lobby(id)
@@ -75,23 +71,20 @@ func join_steam_server(id):
 
 func _on_lobby_created(con,id):
 	if con != Steam.Result.RESULT_OK: 
-		get_tree().get_first_node_in_group("err_label").text = error_string(con)
 		return
 	lobby_id = id
 	Steam.setLobbyData(lobby_id,"name",str(Steam.getPersonaName()+"'s Lobby"))
 	Steam.setLobbyJoinable(lobby_id,true)
-	print(lobby_id)
 
 func leave_server():
 	if multiplayer.is_server():
 		players.clear()
 		emit_signal("server_stopped")
 	remove_multiplayer_peer()
-	get_tree().change_scene_to_file("user://menus/main_menu.tscn")
+	load_scene("res://menus/main_menu.tscn")
 
 func remove_multiplayer_peer():
 	if steam_peer.get_lobby_id()!=0:
-		print("test")
 		steam_peer.close()
 	multiplayer.multiplayer_peer = null
 	players.clear()
@@ -138,21 +131,21 @@ func _on_player_disconnected(id):
 	DisplayServer.window_set_title("Test Game")
 
 func _on_connected_ok():
-	get_tree().get_first_node_in_group("err_label").text = "Connected OK"
 	var peer_id = multiplayer.get_unique_id()
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)
 	DisplayServer.window_set_title("Test Game "+str(multiplayer.get_unique_id()))
-	load_scene("user://menus/lobby/lobby.tscn")
+	load_scene("res://menus/lobby/lobby.tscn")
 
 func _on_connected_fail():
-	get_tree().get_first_node_in_group("err_label").text = "Connection Failed"
+	remove_multiplayer_peer()
 	multiplayer.multiplayer_peer = null
 
 func _on_server_disconnected():
+	remove_multiplayer_peer()
 	multiplayer.multiplayer_peer = null
 	steam_peer.close()
 	players.clear()
 	server_disconnected.emit()
 	#Returns to menu when the connection fails
-	load_scene("user://menus/main_menu.tscn")
+	load_scene("res://menus/main_menu.tscn")
