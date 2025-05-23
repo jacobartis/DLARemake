@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=25 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="6_lbfdw"]
 [ext_resource type="Material" uid="uid://dlcrtv1drot2v" path="res://levels/tunnels/materials/killer.tres" id="8_5odyp"]
 [ext_resource type="PackedScene" uid="uid://lel5gbr3ud7j" path="res://level_objects/exits/exit.tscn" id="8_iophl"]
+[ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="11_3ilff"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -216,6 +217,9 @@ unique_name_in_owner = true
 visible = false
 
 [node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("6_edsus")]
+
+[node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("end_screen") instance=ExtResource("11_3ilff")]
+end_screen = NodePath("../SummaryScreen")
 
 [node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
 script = ExtResource("6_37vfl")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://nu0cayw4u4cc"]
+[gd_scene load_steps=16 format=3 uid="uid://nu0cayw4u4cc"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_13k7l"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8xmsw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="4_22dcj"]
 [ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="4_glpk1"]
 [ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="6_8urs1"]
+[ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="7_2ip8h"]
 [ext_resource type="Script" uid="uid://dxotka5rmdqtd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="8_8urs1"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="9_64qpc"]
 [ext_resource type="Script" uid="uid://sld2pvhyfqra" path="res://levels/environment_setter.gd" id="10_64qpc"]
@@ -75,6 +76,10 @@ unique_name_in_owner = true
 visible = false
 
 [node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("6_8urs1")]
+
+[node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("end_screen") instance=ExtResource("7_2ip8h")]
+visible = true
+end_screen = NodePath("../SummaryScreen")
 
 [node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
 script = ExtResource("4_glpk1")
