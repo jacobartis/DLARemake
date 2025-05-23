@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dyetfmb8h0drx"
+path="res://.godot/imported/tunnels.4.map-7b77b1800412057057fecef5d7c446f3.tres"
+
+[deps]
+
+source_file="res://levels/tunnels/autosave/tunnels.4.map"
+dest_files=["res://.godot/imported/tunnels.4.map-7b77b1800412057057fecef5d7c446f3.tres"]
+
+[params]
+
