@@ -1,0 +1,167 @@
+[gd_scene load_steps=6 format=3 uid="uid://frcr38t27ofx"]
+
+[ext_resource type="Script" uid="uid://cfqyu6th304j4" path="res://menus/UI/settings/settings.gd" id="1_jcdvr"]
+[ext_resource type="Theme" uid="uid://bkkvxg05cycuj" path="res://menus/GameTheme.tres" id="1_sedor"]
+[ext_resource type="FontFile" uid="uid://dismtux5i3ntq" path="res://menus/Font/NewRocker-Regular.ttf" id="2_sedor"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0o1pg"]
+font = ExtResource("2_sedor")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcdvr"]
+
+[node name="Settings" type="Control" node_paths=PackedStringArray("master_vol", "music_vol", "SFX_vol", "sense_slide")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sedor")
+script = ExtResource("1_jcdvr")
+master_vol = NodePath("Panel/ScrollContainer/Scroll/Master/MasterVol")
+music_vol = NodePath("Panel/ScrollContainer/Scroll/Music/MusicVol")
+SFX_vol = NodePath("Panel/ScrollContainer/Scroll/SFX/SFXVol")
+sense_slide = NodePath("Panel/ScrollContainer/Scroll/Sence/MouseSense")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.269
+anchor_top = 0.09
+anchor_right = 0.731
+anchor_bottom = 0.91
+offset_left = 0.111969
+offset_top = -0.320004
+offset_right = -0.112
+offset_bottom = 0.320007
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 14.0
+offset_bottom = 67.0
+grow_horizontal = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_0o1pg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.164
+anchor_right = 0.85
+anchor_bottom = 0.863
+offset_left = 0.199997
+offset_top = -0.248009
+offset_right = -0.200012
+offset_bottom = -0.116028
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Scroll" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Audio" type="Label" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+text = "Audio"
+label_settings = SubResource("LabelSettings_jcdvr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MasterVolLabel" type="Label" parent="Panel/ScrollContainer/Scroll/Master"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "Master"
+
+[node name="MasterVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/Master"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Music" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MusicVolLabel" type="Label" parent="Panel/ScrollContainer/Scroll/Music"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "Sound"
+
+[node name="MusicVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/Music"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="SFX" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="SFXVolLabel" type="Label" parent="Panel/ScrollContainer/Scroll/SFX"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "SFX"
+
+[node name="SFXVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/SFX"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MouseSense" type="Label" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+text = "Input"
+horizontal_alignment = 1
+
+[node name="Sence" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="MouseSenseLabels" type="Label" parent="Panel/ScrollContainer/Scroll/Sence"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "Mouse Sense"
+
+[node name="MouseSense" type="HSlider" parent="Panel/ScrollContainer/Scroll/Sence"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+step = 4.0
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282
+anchor_top = 0.906
+anchor_right = 0.718
+anchor_bottom = 0.961
+offset_left = -0.0240021
+offset_top = 0.00799561
+offset_right = 0.0239563
+offset_bottom = -0.252014
+grow_horizontal = 2
+grow_vertical = 0
+text = "Close"
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Master/MasterVol" to="." method="_on_master_vol_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Music/MusicVol" to="." method="_on_music_vol_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/SFX/SFXVol" to="." method="_on_sfx_vol_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Sence/MouseSense" to="." method="_on_mouse_sense_value_changed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
