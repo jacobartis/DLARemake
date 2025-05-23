@@ -14,6 +14,7 @@ var dead:bool = false
 func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
+	$TorchLight.visible = is_authority()
 
 func is_authority():
 	return get_multiplayer_authority()==multiplayer.get_unique_id()

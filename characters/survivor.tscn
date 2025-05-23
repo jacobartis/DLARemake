@@ -293,6 +293,14 @@ script = ExtResource("7_7ptos")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cavh7vlmltk7q"
 
+[node name="TorchLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0924918)
+visible = false
+layers = 4
+light_energy = 2.179
+omni_range = 11.487
+omni_attenuation = 0.467
+
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
 
 [editable path="CharModel"]
