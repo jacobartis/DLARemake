@@ -1,19 +1,29 @@
 extends Node
 class_name HighlightManager
 
-@export var highlight_mesh:MeshInstance3D
+@export var highlight_node:Node3D
 
 func highlight(color:Color):
-	highlight_mesh.get_active_material(0).albedo_color = color
+	if highlight_node is MeshInstance3D:
+		highlight_node.get_active_material(0).albedo_color = color
+	elif highlight_node is Sprite3D:
+		highlight_node.modulate = color
 
 func down():
-	highlight_mesh.mesh.size.y = -.7
+	if highlight_node is Sprite3D:
+		highlight_node.flip_v = false
+		return
+	highlight_node.rotation_degrees.y = -180
 
 func up():
-	highlight_mesh.mesh.size.y = .7
+	if highlight_node is Sprite3D:
+		highlight_node.flip_v = true
+		return
+	highlight_node.rotation_degrees.y = 0
+
 
 func hide():
-	highlight_mesh.hide()
+	highlight_node.hide()
 
 func show():
-	highlight_mesh.show()
+	highlight_node.show()
