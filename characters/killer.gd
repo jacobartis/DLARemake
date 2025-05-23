@@ -66,13 +66,13 @@ func _input(event):
 
 func look(motion:InputEventMouseMotion):
 	if not motion or Input.mouse_mode!=Input.MOUSE_MODE_CAPTURED: return
-	cam_arm.rotation.x -= motion.relative.y*Settings.mouse_sense
-	cam_arm.rotation_degrees.x = clamp(cam_arm.rotation_degrees.x,-70,80)
-	cam_arm.rotation.y -= motion.relative.x*Settings.mouse_sense
+	%CamHolder.rotation.x -= motion.relative.y*Settings.mouse_sense
+	%CamHolder.rotation_degrees.x = clamp(%CamHolder.rotation_degrees.x,-70,80)
+	%CamHolder.rotation.y -= motion.relative.x*Settings.mouse_sense
 
 func _process(delta):
 	if not is_authority(): return
-	%CamHolder.global_position = global_position
+	%CamHolder.global_position = global_position+Vector3(0,1,0)
 
 func _physics_process(delta):
 	if not get_multiplayer_authority()==multiplayer.get_unique_id(): return
