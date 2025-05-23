@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct8inqcui4702"]
+[gd_scene load_steps=9 format=3 uid="uid://ct8inqcui4702"]
 
 [ext_resource type="Script" uid="uid://dggitpxi68su5" path="res://menus/main_menu.gd" id="1_8gy84"]
 [ext_resource type="Shader" uid="uid://chsq85x6lqvqu" path="res://menus/scroll_shader.gdshader" id="2_ij7vn"]
 [ext_resource type="Script" uid="uid://vg8waf5rdsm7" path="res://menus/server_list.gd" id="3_yjgyn"]
+[ext_resource type="PackedScene" uid="uid://frcr38t27ofx" path="res://menus/UI/settings/settings.tscn" id="4_rqbgu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjgyn"]
 shader = ExtResource("2_ij7vn")
@@ -86,6 +87,21 @@ text = "Host Lan"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Connect Lan"
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.394
+anchor_top = 0.708
+anchor_right = 0.606
+anchor_bottom = 0.787
+offset_left = 0.111969
+offset_top = 0.216003
+offset_right = -0.112
+offset_bottom = 0.0239563
+grow_horizontal = 2
+grow_vertical = 0
+text = "Settings"
 
 [node name="ServerList" type="Panel" parent="."]
 visible = false
@@ -176,10 +192,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Hide"
 
+[node name="SettingsMenu" parent="." instance=ExtResource("4_rqbgu")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="ButtonContainer/HostButton" to="." method="_on_host_steam_pressed"]
 [connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="show"]
 [connection signal="pressed" from="ButtonContainer/ViewLobbies" to="ServerList" method="_on_server_update"]
 [connection signal="pressed" from="LanButtons/LanHostButton" to="." method="_on_host_ip_pressed"]
 [connection signal="pressed" from="LanButtons/LanConnect" to="." method="_on_join_local_host"]
+[connection signal="pressed" from="Settings" to="SettingsMenu" method="show"]
 [connection signal="pressed" from="ServerList/HBoxContainer/RefreshButton" to="ServerList" method="_on_server_update"]
 [connection signal="pressed" from="ServerList/HBoxContainer/HideButton" to="ServerList" method="hide"]
