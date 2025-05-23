@@ -16,6 +16,7 @@ material = SubResource("StandardMaterial3D_nri1e")
 albedo_color = Color(0.156863, 1, 0.156863, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0v25t"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_y2edy")
 top_radius = 0.51
 bottom_radius = 0.51
@@ -27,7 +28,7 @@ obj_node = NodePath("ObjectiveNode")
 
 [node name="PointInteract" type="Area3D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("2_nri1e")
 type = "Hold"
 interact_message = "Fill"
@@ -47,3 +48,4 @@ mesh = SubResource("CylinderMesh_0v25t")
 script = ExtResource("3_mxc8b")
 
 [connection signal="is_held" from="PointInteract" to="." method="_on_object_interact_is_held"]
+[connection signal="completed" from="ObjectiveNode" to="PointInteract" method="_on_objective_node_completed"]
