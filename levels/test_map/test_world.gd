@@ -11,6 +11,7 @@ func _ready():
 		MultiplayerManager.player_disconnected.connect(mid_round_disconnect)
 		MultiplayerManager.all_loaded.connect(start)
 	MultiplayerManager.player_loaded.rpc_id(1,multiplayer.get_unique_id())
+	Settings.clamp_mouse()
 
 func start():
 	print("start")
