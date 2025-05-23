@@ -1,7 +1,6 @@
 extends Control
 
 func _on_host_ip_pressed():
-	%Output.text = "HOST IP PRESSED"
 	set_player_name()
 	var error = MultiplayerManager.create_ip_server()
 	if error:
@@ -11,18 +10,14 @@ func _on_host_ip_pressed():
 	load_lobby()
 
 func _on_join_ip_pressed():
-	%Output.text = "JOIN IP PRESSED"
 	set_player_name()
 	var error = MultiplayerManager.join_ip_server(%IPTextBox.text)
 	if error:
-		%Output.text=(error_string(error))
 		return
 	print("OK!")
 	load_lobby()
 
 func _on_join_local_host():
-	%Output.text = "JOIN LOCAL HOST PRESSED"
-	
 	set_player_name()
 	var error = MultiplayerManager.join_ip_server("localhost")
 	if error:
@@ -32,24 +27,16 @@ func _on_join_local_host():
 	load_lobby()
 
 func _on_host_steam_pressed():
-	%Output.text = "HOST STEAM PRESSED"
-	
 	set_player_name_steam()
-	%Output.text = str(MultiplayerManager)
 	var error = MultiplayerManager.create_steam_server()
-	%Output.text = "GOT PASSED THE SERVER CALL"
-	
 	if error:
-		%Output.text=(error_string(error))
 		return
-	%Output.text = "GOT PASSED THE ERROR"
 	
 	print("OK!")
 	load_lobby()
 
 func load_lobby():
 	var file = GGResourceFinder.find_file("res://menus/lobby/lobby.tscn")
-	%Output.text = str(file)
 	get_tree().change_scene_to_packed(file)
 
 #Joining a steam game is handled in the server list script.
