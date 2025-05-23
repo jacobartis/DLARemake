@@ -11,6 +11,7 @@ func show_win(winner):
 	else:
 		survivor_win()
 	show()
+	Settings.free_mouse()
 
 func killer_win():
 	%SurvivorWin.hide()
