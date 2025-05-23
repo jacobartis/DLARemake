@@ -11,7 +11,7 @@ func _ready():
 	hide()
 
 func check_remaining():
-	if get_tree().get_nodes_in_group("objective").filter(func (o): return o!=objective_node).all(func(o):return o.completed):
+	if get_tree().get_nodes_in_group("objective").filter(func (o): return o!=objective_node and not o.complete).is_empty():
 		enable()
 
 func enable():
@@ -22,6 +22,7 @@ func enable():
 func check_all():
 	if not enabled: return
 	var surv = get_tree().get_nodes_in_group("survivor").filter(func (s): return not s.dead)
+	print("Survs in: ",survs_in," total: ",surv)
 	if surv.size() == survs_in.size():
 		objective_node.finish.rpc()
 
@@ -35,3 +36,4 @@ func _on_player_detector_player_entered(player):
 func _on_player_detector_player_exited(player):
 	if not survs_in.has(player): return
 	survs_in.erase(player)
+	check_all()
