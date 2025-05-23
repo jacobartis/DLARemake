@@ -57,3 +57,7 @@ func held():
 @rpc("any_peer","call_local","reliable")
 func released():
 	is_released.emit()
+
+
+func _on_objective_node_completed():
+	set_collision_layer_value(2,false)
