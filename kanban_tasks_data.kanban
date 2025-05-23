@@ -15,26 +15,30 @@
 				"01e87d4a-a279-40da-921e-945d4f350d17",
 				"77ccc8aa-f95a-49fa-ac88-055703dd48f8",
 				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
-				"88f01de9-75c4-4a86-a5cd-554f3f530872",
-				"f487f440-501d-480d-b9ff-ef24995bff18"
+				"621a7212-2c67-4ed1-8c7d-b238b3a858e1",
+				"2b66a908-03c2-40d0-b8ab-35ddbf04d1fb",
+				"e69a66a4-dd4f-47ba-8e45-ce7458345599",
+				"0b19e3e9-f7c5-478c-a60b-381e8c939793",
+				"a28a9c68-926e-485c-8f3f-d912959e1c98"
 			]
 		},
 		{
 			"uuid": "abb80eb0-659e-4acb-b67c-0bd23ce763d3",
 			"title": "Doing",
-			"tasks": [
-				"334339b2-5260-47be-a00d-d03980235c03",
-				"4630ada4-04c3-4855-ac94-668817ce2ed7",
-				"437dfe55-17f5-46b5-a65f-aeff3dbdb505",
-				"fb66db4c-7796-44d2-a767-21c2f56daac7"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "ddf6ecac-4172-49d6-aa74-9083b3999524",
 			"title": "Done",
 			"tasks": [
 				"631771b6-e4df-444b-915d-7c4495749aaa",
-				"290ebc72-4d17-4e80-aa18-7f9810397308"
+				"290ebc72-4d17-4e80-aa18-7f9810397308",
+				"334339b2-5260-47be-a00d-d03980235c03",
+				"4630ada4-04c3-4855-ac94-668817ce2ed7",
+				"fb66db4c-7796-44d2-a767-21c2f56daac7",
+				"88f01de9-75c4-4a86-a5cd-554f3f530872",
+				"f487f440-501d-480d-b9ff-ef24995bff18",
+				"437dfe55-17f5-46b5-a65f-aeff3dbdb505"
 			]
 		}
 	],
@@ -132,6 +136,41 @@
 		{
 			"uuid": "fb66db4c-7796-44d2-a767-21c2f56daac7",
 			"title": "Change dither filter to use hue",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "621a7212-2c67-4ed1-8c7d-b238b3a858e1",
+			"title": "Fix booting issue",
+			"description": "Booted players dont disconnect from the lobby.",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "2b66a908-03c2-40d0-b8ab-35ddbf04d1fb",
+			"title": "Killer freeze indicator",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "e69a66a4-dd4f-47ba-8e45-ce7458345599",
+			"title": "Settings men",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "0b19e3e9-f7c5-478c-a60b-381e8c939793",
+			"title": "Remaning objectives display",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "a28a9c68-926e-485c-8f3f-d912959e1c98",
+			"title": "Survivor name plates (for other suvs)",
 			"description": "",
 			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
 			"steps": []
