@@ -148,6 +148,7 @@ script = ExtResource("13_kro7h")
 
 [node name="entity_3_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4.5, -1)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -171,6 +172,7 @@ script = ExtResource("12_tr1n1")
 
 [node name="entity_8_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 4.5, -17.5)
+visible = false
 light_energy = 5.0
 omni_range = 15.0
 omni_attenuation = 1.25
@@ -178,6 +180,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_9_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.5, 4.5, -30)
+visible = false
 light_energy = 5.0
 omni_range = 15.0
 omni_attenuation = 1.25
@@ -185,6 +188,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_10_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.5, 4.5, -19.5)
+visible = false
 light_energy = 5.0
 omni_range = 15.0
 omni_attenuation = 1.25
@@ -192,6 +196,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_11_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 39.5, 4.5, 8)
+visible = false
 light_energy = 5.0
 omni_range = 15.0
 omni_attenuation = 1.25
@@ -199,6 +204,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_12_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap/Node3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5, 4.5, 16.5)
+visible = false
 light_energy = 5.0
 omni_range = 15.0
 omni_attenuation = 1.25
