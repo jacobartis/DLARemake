@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bkkvxg05cycuj"]
+
+[ext_resource type="FontFile" uid="uid://dismtux5i3ntq" path="res://menus/Font/NewRocker-Regular.ttf" id="1_vs51w"]
+
+[resource]
+default_font = ExtResource("1_vs51w")
