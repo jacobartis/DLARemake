@@ -15,6 +15,10 @@ run/main_scene="uid://ct8inqcui4702"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/enable_input=true
+
 [autoload]
 
 MultiplayerManager="*res://preloads/multiplayer_manager.gd"
