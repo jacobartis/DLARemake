@@ -23,6 +23,10 @@ func set_can_move(val):
 	can_move = val
 
 @rpc("any_peer","call_local","reliable")
+func spawn_pos(pos):
+	global_position = pos
+
+@rpc("any_peer","call_local","reliable")
 func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()

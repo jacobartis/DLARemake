@@ -23,6 +23,7 @@ func _position_player(n,pos):
 	if not get_node(path): 
 		return
 	get_node(path).global_position = pos
+	return
 
 func spawn_survivors(players:Array):
 	if not multiplayer.is_server(): return 
@@ -31,9 +32,9 @@ func spawn_survivors(players:Array):
 	for id in players:
 		var surv = SURVIVOR.instantiate()
 		spawn_parent.add_child(surv,true)
-		print(surv.get_path())
+		var pos = spawn_points.pop_front().global_position
 		surv.update_owner.rpc(id)
-		_position_player.rpc(surv.name,spawn_points.pop_front().global_position)
+		surv.spawn_pos.rpc(pos)
 		survivers[id] = surv
 		surv.killed.connect(survivor_killed.bind(id))
 
@@ -44,7 +45,8 @@ func spawn_killers(players:Array):
 	for i in (players.size()+1)*2:
 		var killer = KILLER.instantiate()
 		spawn_parent.add_child(killer,true)
-		_position_player.rpc(killer.name,spawn_points.pop_front().global_position)
+		var pos = spawn_points.pop_front().global_position
+		killer.spawn_pos.rpc(pos)
 		killers.append(killer)
 	var avalible = killers.duplicate()
 	for id in players:

@@ -17,7 +17,14 @@ func update_owner(id):
 	$TorchLight.visible = is_authority()
 	update_player_info()
 
+@rpc("any_peer","call_local","reliable")
+func spawn_pos(pos):
+	global_position = pos
+
 func update_player_info():
+	if GameInfo.role(multiplayer.get_unique_id())!="Survivor" or is_authority(): 
+		%NamePlate.hide()
+		return
 	var info = MultiplayerManager.players[get_multiplayer_authority()]
 	%NamePlate.text = info["name"]
 
@@ -29,6 +36,7 @@ func kill():
 	dead = true
 	cam.current = false
 	killed.emit()
+	%NamePlate.hide()
 
 func _input(event):
 	if not is_authority(): return
