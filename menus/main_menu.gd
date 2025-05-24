@@ -4,7 +4,6 @@ func _on_host_ip_pressed():
 	set_player_name()
 	var error = MultiplayerManager.create_ip_server()
 	if error:
-		%Output.text=(error_string(error))
 		return
 	print("OK")
 	load_lobby()
