@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=28 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="6_lbfdw"]
 [ext_resource type="Material" uid="uid://dlcrtv1drot2v" path="res://levels/tunnels/materials/killer.tres" id="8_5odyp"]
 [ext_resource type="PackedScene" uid="uid://lel5gbr3ud7j" path="res://level_objects/exits/exit.tscn" id="8_iophl"]
+[ext_resource type="Script" uid="uid://couuwyubfag77" path="res://menus/UI/killer_seen_display.gd" id="9_8xujf"]
 [ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="11_3ilff"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
@@ -48,6 +49,17 @@ size = Vector3(1, 5, 10)
 [sub_resource type="BoxMesh" id="BoxMesh_c576j"]
 size = Vector3(1, 5, 10)
 
+[sub_resource type="Gradient" id="Gradient_8xujf"]
+offsets = PackedFloat32Array(0.601329, 0.863787, 1)
+colors = PackedColorArray(0.627451, 0.145098, 0.145098, 0, 0.627388, 0.144, 0.144, 0.856, 0.564706, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8xujf"]
+gradient = SubResource("Gradient_8xujf")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="World" type="Node3D" node_paths=PackedStringArray("char_man")]
 script = ExtResource("1_kbvng")
 char_man = NodePath("CharacterManager")
@@ -75,42 +87,52 @@ spawn_path = NodePath("../../CanvasLayer/SubViewportContainer/SubViewport/Player
 unique_name_in_owner = true
 
 [node name="Marker3D" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D2" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D4" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D5" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -10)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D6" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D7" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -14)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D8" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D9" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -15)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D10" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -17)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
 [node name="Marker3D3" type="Node3D" parent="SurvSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -11)
 script = ExtResource("3_1vc8c")
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 
@@ -118,7 +140,7 @@ metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
 unique_name_in_owner = true
 
 [node name="Marker3D" type="Node3D" parent="KillerSpawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 10)
 script = ExtResource("3_1vc8c")
 type = "killer"
 metadata/_custom_type_script = "uid://byfu7xg2wqjyl"
@@ -211,6 +233,22 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="PlayerHolder" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+
+[node name="KillerSeenDisplay" type="TextureRect" parent="CanvasLayer" groups=["killer_seen_display"]]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(571, 321)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_8xujf")
+script = ExtResource("9_8xujf")
 
 [node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("4_lqt7o")]
 unique_name_in_owner = true
