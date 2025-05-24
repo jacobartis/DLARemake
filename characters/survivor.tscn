@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=20 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
 [ext_resource type="Texture2D" uid="uid://cw2tpon1cmoiy" path="res://characters/models/Skins/skaterMaleA.png" id="3_7ptos"]
+[ext_resource type="FontFile" uid="uid://dismtux5i3ntq" path="res://menus/Font/NewRocker-Regular.ttf" id="3_jhtef"]
 [ext_resource type="Script" uid="uid://bdnyf6se7tk48" path="res://characters/character_animation_player.gd" id="3_xsby5"]
 [ext_resource type="AnimationLibrary" uid="uid://ctblgenud87wx" path="res://characters/models/Animations/IdleAnim.res" id="4_7ptos"]
 [ext_resource type="Script" uid="uid://ct1ikdo68vese" path="res://characters/interactor_ray.gd" id="4_prlgj"]
@@ -187,6 +188,17 @@ interactor = NodePath("Interactor")
 [node name="CharModel" parent="." instance=ExtResource("2_j52uj")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, -1.7, 0)
 
+[node name="NamePlate" type="Label3D" parent="CharModel"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 2.7, 0)
+billboard = 2
+text = "test"
+font = ExtResource("3_jhtef")
+font_size = 42
+
+[node name="Root" parent="CharModel" index="1"]
+transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 6.47051e-07, 0, -0.255229)
+
 [node name="Skeleton3D" parent="CharModel/Root" index="0"]
 bones/0/rotation = Quaternion(-0.428388, -0.562568, 0.562569, 0.428388)
 bones/1/rotation = Quaternion(-0.507512, 0.508228, -0.491907, -0.492101)
@@ -239,7 +251,7 @@ bones/56/rotation = Quaternion(0.0282603, 0.953941, -0.297574, -0.0254478)
 mesh = SubResource("ArrayMesh_0d804")
 
 [node name="HeartBeat" type="MeshInstance3D" parent="CharModel"]
-transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, -2.7339e-07, 1.7, 0.107838)
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 1.97787e-07, 1.7, -0.0780172)
 layers = 4
 mesh = SubResource("SphereMesh_0d804")
 skeleton = NodePath("")

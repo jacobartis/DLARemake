@@ -15,6 +15,11 @@ func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
 	$TorchLight.visible = is_authority()
+	update_player_info()
+
+func update_player_info():
+	var info = MultiplayerManager.players[get_multiplayer_authority()]
+	%NamePlate.text = info["name"]
 
 func is_authority():
 	return get_multiplayer_authority()==multiplayer.get_unique_id()
