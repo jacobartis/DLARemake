@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=29 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://lel5gbr3ud7j" path="res://level_objects/exits/exit.tscn" id="8_iophl"]
 [ext_resource type="Script" uid="uid://couuwyubfag77" path="res://menus/UI/killer_seen_display.gd" id="9_8xujf"]
 [ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="11_3ilff"]
+[ext_resource type="Theme" uid="uid://bkkvxg05cycuj" path="res://menus/GameTheme.tres" id="12_s3gax"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -77,7 +78,7 @@ transform = Transform3D(1, 0, 0, 0, -0.965926, 0.258819, 0, -0.258819, -0.965926
 
 [node name="CharacterManager" type="Node3D" parent="." node_paths=PackedStringArray("spawn_parent")]
 script = ExtResource("2_kbvng")
-spawn_parent = NodePath("..")
+spawn_parent = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
 _spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
@@ -85,6 +86,7 @@ spawn_path = NodePath("../../CanvasLayer/SubViewportContainer/SubViewport/Player
 
 [node name="SurvSpawns" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.18473)
 
 [node name="Marker3D" type="Node3D" parent="SurvSpawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
@@ -256,11 +258,26 @@ visible = false
 
 [node name="InteractPrompt" parent="CanvasLayer" instance=ExtResource("6_edsus")]
 
+[node name="RemaningObjectives" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.043
+anchor_right = 1.0
+anchor_bottom = 0.187
+offset_top = 0.136
+offset_bottom = -0.176003
+grow_horizontal = 2
+theme = ExtResource("12_s3gax")
+theme_override_font_sizes/font_size = 32
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("end_screen") instance=ExtResource("11_3ilff")]
 end_screen = NodePath("../SummaryScreen")
 
-[node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
+[node name="ObjectivesManager" type="Node" parent="." node_paths=PackedStringArray("obj_display") groups=["objective_manager"]]
 script = ExtResource("6_37vfl")
+obj_display = NodePath("../CanvasLayer/RemaningObjectives")
 
 [node name="Exit" parent="." instance=ExtResource("8_iophl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, -3)
@@ -273,5 +290,6 @@ light_negative = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.215453, -22)
 
 [connection signal="game_start" from="." to="CanvasLayer/SubViewportContainer" method="_on_world_game_start"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
 [connection signal="survivors_win" from="ObjectivesManager" to="." method="_on_objectives_manager_survivors_win"]

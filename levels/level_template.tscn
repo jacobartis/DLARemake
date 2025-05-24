@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://nu0cayw4u4cc"]
+[gd_scene load_steps=20 format=3 uid="uid://nu0cayw4u4cc"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_13k7l"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8xmsw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="6_8urs1"]
 [ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="7_2ip8h"]
 [ext_resource type="Script" uid="uid://dxotka5rmdqtd" path="res://addons/func_godot/src/map/func_godot_map.gd" id="8_8urs1"]
+[ext_resource type="Theme" uid="uid://bkkvxg05cycuj" path="res://menus/GameTheme.tres" id="8_u3vgj"]
 [ext_resource type="Script" uid="uid://couuwyubfag77" path="res://menus/UI/killer_seen_display.gd" id="8_unwjj"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="9_64qpc"]
 [ext_resource type="Script" uid="uid://sld2pvhyfqra" path="res://levels/environment_setter.gd" id="10_64qpc"]
@@ -92,6 +93,20 @@ visible = false
 [node name="EscapeMenu" parent="CanvasLayer" node_paths=PackedStringArray("end_screen") instance=ExtResource("7_2ip8h")]
 end_screen = NodePath("../SummaryScreen")
 
+[node name="RemaningObjectives" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.043
+anchor_right = 1.0
+anchor_bottom = 0.187
+offset_top = 0.136
+offset_bottom = -0.176003
+grow_horizontal = 2
+theme = ExtResource("8_u3vgj")
+theme_override_font_sizes/font_size = 32
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="KillerSeenDisplay" type="TextureRect" parent="CanvasLayer" groups=["killer_seen_display"]]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -108,8 +123,9 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_u3vgj")
 script = ExtResource("8_unwjj")
 
-[node name="ObjectivesManager" type="Node" parent="." groups=["objective_manager"]]
+[node name="ObjectivesManager" type="Node" parent="." node_paths=PackedStringArray("obj_display") groups=["objective_manager"]]
 script = ExtResource("4_glpk1")
+obj_display = NodePath("../CanvasLayer/RemaningObjectives")
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("8_8urs1")
