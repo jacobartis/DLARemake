@@ -16,10 +16,30 @@ var lobby_id = 0
 var max_players = 4
 
 #Contains player unique ids
-var players = {}
+var players:Dictionary[int,Dictionary] = {}
 
 #Contains local info for players
 var player_info = {"name": "Name"}
+
+#Player recieves call to update
+@rpc("any_peer", "call_local", "reliable")
+func server_update_info():
+	set_info.rpc(players)
+
+#Server sends info to players
+@rpc("any_peer", "call_local", "reliable")
+func set_info(new:Dictionary[int,Dictionary]):
+	players = new
+
+@rpc("any_peer", "call_local", "reliable")
+func add_player_info(id:int,new_info:Dictionary):
+	players[id] = new_info
+	server_update_info()
+
+func remove_player_info(id):
+	if not players.has(id): return
+	players.erase(id)
+	server_update_info()
 
 var players_loaded = 0
 
@@ -55,14 +75,14 @@ func create_ip_server():
 		return error
 	multiplayer.multiplayer_peer = peer
 	#Assigns player id 1 to player making the server
-	players[1] = player_info
+	add_player_info(1,player_info)
 	player_connected.emit(1,player_info)
 
 func create_steam_server():
 	var err = steam_peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	if err!=OK: return err
 	multiplayer.multiplayer_peer = steam_peer
-	players[1] = player_info
+	add_player_info(1,player_info)
 	player_connected.emit(1,player_info)
 
 func join_steam_server(id):
@@ -111,22 +131,23 @@ func load_scene(game_scene_path):
 
 @rpc("any_peer", "reliable")
 func _kicked(reason):
-	print("Works")
 	remove_multiplayer_peer()
 	print("Kicked for: ",reason)
 	load_scene("res://menus/main_menu.tscn")
 
+#For clients who connect to register to the server
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
 
-@rpc("any_peer", "reliable")
+@rpc("any_peer","call_local","reliable")
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
-	players[new_player_id] = new_player_info
+	#Send player info to server
+	add_player_info.rpc_id(1,multiplayer.get_unique_id(),new_player_info)
 	player_connected.emit(new_player_id, new_player_info)
 
 func _on_player_disconnected(id):
-	players.erase(id)
+	remove_player_info(id)
 	player_disconnected.emit(id)
 	DisplayServer.window_set_title("Test Game")
 
