@@ -4,7 +4,9 @@ extends Control
 
 func _process(delta):
 	if end_screen:
-		if end_screen.visible: return
+		if end_screen.visible: 
+			hide()
+			return
 	if Input.is_action_just_pressed("Pause"):
 		visible = !visible
 		if visible:
