@@ -16,5 +16,5 @@ func set_filter():
 	else:
 		world_environment.environment = survivor
 
-func _on_level_template_game_start():
+func _on_world_game_start():
 	set_filter.rpc()
