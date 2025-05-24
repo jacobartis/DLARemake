@@ -30,9 +30,9 @@ func update_owner(id):
 @rpc("any_peer","call_local","reliable")
 func gain_control(id):
 	if controlled: return
-	new_controller.emit()
-	controlled = true
 	update_owner(id)
+	controlled = true
+	new_controller.emit()
 	if is_killer():
 		if is_authority():
 			highlight.hide()
