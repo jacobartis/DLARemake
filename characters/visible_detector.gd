@@ -5,11 +5,24 @@ signal hidden()
 
 @export var killer:CharacterBody3D
 @export var marker_parent:Node3D
+var killer_seen_display
 
 var delay = .1
 
 #Keeps list of current observers
 var viewers = []
+
+func update_display():
+	if not killer_seen_display: return
+	if not killer.is_authority() or not killer.controlled or not killer.is_killer(): return
+	if not viewers.is_empty():
+		killer_seen_display.fade_in()
+	else:
+		killer_seen_display.fade_out()
+
+
+func _ready():
+	killer_seen_display = get_tree().get_first_node_in_group("killer_seen_display")
 
 func _process(delta):
 	delay = max(delay-delta,0)
@@ -29,6 +42,7 @@ func add_viewer(id):
 	if viewers.is_empty():
 		seen.emit()
 	viewers.append(id)
+	update_display()
 
 @rpc("any_peer","call_local","reliable")
 func remove_viewer(id):
@@ -36,6 +50,7 @@ func remove_viewer(id):
 	viewers.erase(id)
 	if viewers.is_empty():
 		hidden.emit()
+	update_display()
 
 func check_los():
 	if GameInfo.role(multiplayer.get_unique_id()) != "Survivor": return
@@ -52,3 +67,7 @@ func check_player(ray):
 		if ray.get_collider() == killer:
 			return true
 	return false
+
+
+func _on_killer_new_controller():
+	update_display()
