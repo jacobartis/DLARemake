@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://sld2pvhyfqra" path="res://levels/environment_setter.gd" id="10_64qpc"]
 
 [sub_resource type="Gradient" id="Gradient_3ilff"]
-offsets = PackedFloat32Array(0.521595, 0.767442, 1)
+offsets = PackedFloat32Array(0.427586, 0.671264, 1)
 colors = PackedColorArray(0.627451, 0.145098, 0.145098, 0, 0.627388, 0.144, 0.144, 0.856, 0.564706, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u3vgj"]
@@ -123,5 +123,6 @@ survivor = SubResource("Environment_u3vgj")
 
 [connection signal="game_start" from="." to="CanvasLayer/SubViewportContainer" method="_on_world_game_start"]
 [connection signal="game_start" from="." to="EnvironmentSetter" method="_on_world_game_start"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
 [connection signal="survivors_win" from="ObjectivesManager" to="." method="_on_objectives_manager_survivors_win"]
