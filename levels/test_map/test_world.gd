@@ -21,6 +21,7 @@ func start():
 	for id in GameInfo.killer_players:
 		GameInfo.surviver_players.erase(id)
 	char_man.spawn_survivors(GameInfo.surviver_players)
+	await get_tree().process_frame
 	char_man.spawn_killers(GameInfo.killer_players)
 	game_start.emit()
 
@@ -62,3 +63,7 @@ func mid_round_disconnect(id):
 
 func _on_objectives_manager_survivors_win():
 	end_round("Survivor")
+
+
+func _on_tree_exiting():
+	Settings.free_mouse()
