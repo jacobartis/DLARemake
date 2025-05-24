@@ -237,6 +237,7 @@ body = NodePath("..")
 metadata/_custom_type_script = "uid://cavh7vlmltk7q"
 
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
+[connection signal="new_controller" from="." to="VisibleDetector" method="_on_killer_new_controller"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]
 [connection signal="hidden" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]
 [connection signal="seen" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
