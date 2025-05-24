@@ -14,51 +14,37 @@ var survivers:Dictionary[int,Node3D] = {}
 var killers = []
 var spectators:Dictionary[int,Node3D] = {}
 
-func _ready():
-	spawner.spawn_function = spawn_func
+#func _ready():
+	#spawner.spawn_function = spawn_func
 
-func spawn_func(data):
-	var packed = null
-	if data["type"]=="surv":
-		packed = SURVIVOR
-	else:
-		packed = KILLER
-	var player = packed.instantiate()
-	if not multiplayer.is_server(): return player
-	
-	#Sets pos server side
-	var id = data["id"]
-	var pos = data["pos"]
-	player.global_position = pos
-	return player
+@rpc("call_local")
+func _position_player(n,pos):
+	var path = "/root/World/CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder/%s" % n
+	if not get_node(path): 
+		return
+	get_node(path).global_position = pos
 
 func spawn_survivors(players:Array):
+	if not multiplayer.is_server(): return 
 	var spawn_points = get_tree().get_nodes_in_group("spawn").filter(func(s):return s.type == "survivor")
 	spawn_points.shuffle()
 	for id in players:
-		var spawn_data = {
-			"type":"surv",
-			"id":id,
-			"pos":spawn_points.pop_front().global_position
-		} 
-		var surv = spawner.spawn(spawn_data)
-		surv.global_position = spawn_data["pos"]
+		var surv = SURVIVOR.instantiate()
+		spawn_parent.add_child(surv,true)
+		print(surv.get_path())
 		surv.update_owner.rpc(id)
+		_position_player.rpc(surv.name,spawn_points.pop_front().global_position)
 		survivers[id] = surv
-		if not multiplayer.is_server(): return 
 		surv.killed.connect(survivor_killed.bind(id))
 
 func spawn_killers(players:Array):
+	if not multiplayer.is_server(): return 
 	var spawn_points = get_tree().get_nodes_in_group("spawn").filter(func(s):return s.type == "killer")
 	spawn_points.shuffle()
 	for i in (players.size()+1)*2:
-		var spawn_data = {
-			"type":"killer",
-			"id":null,
-			"pos":spawn_points.pop_front().global_position
-		} 
-		var killer = spawner.spawn(spawn_data)
-		killer.global_position = spawn_data["pos"]
+		var killer = KILLER.instantiate()
+		spawn_parent.add_child(killer,true)
+		_position_player.rpc(killer.name,spawn_points.pop_front().global_position)
 		killers.append(killer)
 	var avalible = killers.duplicate()
 	for id in players:
