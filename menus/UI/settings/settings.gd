@@ -34,3 +34,7 @@ func _on_draw():
 	music_vol.value = get_bus_vol("Music")*100
 	SFX_vol.value = get_bus_vol("SFX")*100
 	sense_slide.value = (Settings.mouse_sense/max_mouse_sense)*100
+
+
+func _on_audi_in_vol_value_changed(value):
+	set_bus_vol("AudioIn",value/100.0)

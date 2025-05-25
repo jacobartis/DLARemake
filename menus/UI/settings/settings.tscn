@@ -123,6 +123,21 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="AudioIn" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="AudiInLabel" type="Label" parent="Panel/ScrollContainer/Scroll/AudioIn"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "Audio In Level"
+
+[node name="AudiInVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/AudioIn"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
 [node name="MouseSense" type="Label" parent="Panel/ScrollContainer/Scroll"]
 layout_mode = 2
 text = "Input"
@@ -163,5 +178,6 @@ text = "Close"
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Master/MasterVol" to="." method="_on_master_vol_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Music/MusicVol" to="." method="_on_music_vol_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/SFX/SFXVol" to="." method="_on_sfx_vol_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/AudioIn/AudiInVol" to="." method="_on_audi_in_vol_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Sence/MouseSense" to="." method="_on_mouse_sense_value_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
