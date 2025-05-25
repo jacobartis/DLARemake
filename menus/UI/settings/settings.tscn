@@ -10,7 +10,7 @@ font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_jcdvr"]
 
-[node name="Settings" type="Control" node_paths=PackedStringArray("master_vol", "music_vol", "SFX_vol", "sense_slide")]
+[node name="Settings" type="Control" node_paths=PackedStringArray("master_vol", "music_vol", "SFX_vol", "sense_slide", "audio_in", "audio_out")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +23,8 @@ master_vol = NodePath("Panel/ScrollContainer/Scroll/Master/MasterVol")
 music_vol = NodePath("Panel/ScrollContainer/Scroll/Music/MusicVol")
 SFX_vol = NodePath("Panel/ScrollContainer/Scroll/SFX/SFXVol")
 sense_slide = NodePath("Panel/ScrollContainer/Scroll/Sence/MouseSense")
+audio_in = NodePath("Panel/ScrollContainer/Scroll/AudioIn/AudiInVol")
+audio_out = NodePath("Panel/ScrollContainer/Scroll/AudioOut/AudioOutVol")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -123,6 +125,13 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="Voice" type="Label" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+text = "Voice Chat"
+label_settings = SubResource("LabelSettings_jcdvr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AudioIn" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -131,12 +140,49 @@ alignment = 1
 [node name="AudiInLabel" type="Label" parent="Panel/ScrollContainer/Scroll/AudioIn"]
 layout_mode = 2
 size_flags_horizontal = 14
-text = "Audio In Level"
+text = "Voice Record Level"
 
 [node name="AudiInVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/AudioIn"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="AudioOut" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="AudiOutLabel" type="Label" parent="Panel/ScrollContainer/Scroll/AudioOut"]
+layout_mode = 2
+size_flags_horizontal = 14
+text = "Audio Output Level"
+
+[node name="AudioOutVol" type="HSlider" parent="Panel/ScrollContainer/Scroll/AudioOut"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VoiceType" type="HBoxContainer" parent="Panel/ScrollContainer/Scroll"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="VoiceTypeLabel" type="Label" parent="Panel/ScrollContainer/Scroll/VoiceType"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Voice Chat Type"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/Scroll/VoiceType"]
+layout_mode = 2
+size_flags_horizontal = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Always on"
+popup/item_0/id = 0
+popup/item_1/text = "Push to talk"
+popup/item_1/id = 1
+popup/item_2/text = "Off"
+popup/item_2/id = 2
 
 [node name="MouseSense" type="Label" parent="Panel/ScrollContainer/Scroll"]
 layout_mode = 2
@@ -179,5 +225,7 @@ text = "Close"
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Music/MusicVol" to="." method="_on_music_vol_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/SFX/SFXVol" to="." method="_on_sfx_vol_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/AudioIn/AudiInVol" to="." method="_on_audi_in_vol_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/Scroll/AudioOut/AudioOutVol" to="." method="_on_audio_out_vol_value_changed"]
+[connection signal="item_selected" from="Panel/ScrollContainer/Scroll/VoiceType/OptionButton" to="." method="_on_option_button_item_selected"]
 [connection signal="value_changed" from="Panel/ScrollContainer/Scroll/Sence/MouseSense" to="." method="_on_mouse_sense_value_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

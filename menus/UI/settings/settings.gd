@@ -4,6 +4,8 @@ extends Control
 @export var music_vol:HSlider
 @export var SFX_vol:HSlider
 @export var sense_slide:HSlider
+@export var audio_in:HSlider
+@export var audio_out:HSlider
 var max_mouse_sense: float = 0.02
 
 func set_bus_vol(bus_name:String,val:float):
@@ -33,8 +35,16 @@ func _on_draw():
 	master_vol.value = get_bus_vol("Master")*100
 	music_vol.value = get_bus_vol("Music")*100
 	SFX_vol.value = get_bus_vol("SFX")*100
+	audio_in.value = get_bus_vol("VoiceIn")*100
+	audio_out.value = get_bus_vol("VoiceOut")*100
 	sense_slide.value = (Settings.mouse_sense/max_mouse_sense)*100
 
-
 func _on_audi_in_vol_value_changed(value):
-	set_bus_vol("AudioIn",value/100.0)
+	set_bus_vol("VoiceIn",value/100.0)
+
+func _on_audio_out_vol_value_changed(value):
+	set_bus_vol("VoiceOut",value/100.0)
+
+
+func _on_option_button_item_selected(index):
+	Settings.voice_type = index
