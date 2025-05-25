@@ -28,6 +28,7 @@ func add_player(player_id,info):
 	ready_players[player_id] = false
 	%PlayerList.add_player(player_id,info)
 
+@rpc("any_peer","call_local","reliable")
 func remove_player(player_id):
 	ready_players.erase(player_id)
 	%PlayerList.remove_player(player_id)
@@ -84,3 +85,8 @@ func _on_start_delay_timeout():
 
 func _on_level_select_level_selected(level_id):
 	selected_level = GameInfo.level_infos[level_id].level_path
+
+
+func _on_player_list_kicking_player(id):
+	remove_player.rpc(id)
+	MultiplayerManager.kick(id,"lul")
