@@ -231,6 +231,7 @@ survivor = ExtResource("8_5odyp")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -292,4 +293,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.215453, -22)
 [connection signal="game_start" from="." to="CanvasLayer/SubViewportContainer" method="_on_world_game_start"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="all_dead" from="CharacterManager" to="." method="_on_character_manager_all_dead"]
+[connection signal="tree_exiting" from="CanvasLayer/KillerSeenDisplay" to="CanvasLayer/KillerSeenDisplay" method="_on_tree_exiting"]
 [connection signal="survivors_win" from="ObjectivesManager" to="." method="_on_objectives_manager_survivors_win"]
