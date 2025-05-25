@@ -5,6 +5,7 @@ signal control_dropped()
 
 @onready var cam_arm = %CamArm
 @onready var cam = %Camera3D
+@onready var aud = %AudioListener3D
 @onready var vis = $VisibleDetector
 @export var highlight: HighlightManager
 @export var interactor:Interactor
@@ -30,6 +31,7 @@ func spawn_pos(pos):
 func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
+	aud.current = is_authority()
 
 @rpc("any_peer","call_local","reliable")
 func gain_control(id):
