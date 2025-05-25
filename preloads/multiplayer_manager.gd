@@ -15,6 +15,8 @@ var lobby_id = 0
 
 var max_players = 4
 
+var current_map = ""
+
 #Contains player unique ids
 var players:Dictionary[int,Dictionary] = {}
 
@@ -25,6 +27,15 @@ var player_info = {"name": "Name"}
 @rpc("any_peer", "call_local", "reliable")
 func server_update_info():
 	set_info.rpc(players)
+
+@rpc("any_peer", "call_local", "reliable")
+func set_map(map_id):
+	current_map = map_id
+
+func server_update_map(map_id):
+	current_map = map_id
+	if multiplayer.is_server():
+		set_map.rpc(current_map)
 
 #Server sends info to players
 @rpc("any_peer", "call_local", "reliable")
