@@ -96,24 +96,23 @@ func sort_players():
 	
 	var killer_players = []
 	var survivor_players = []
-	
 	if players.size()<=killer_number:
 		killer_number = players.size()-1
 	if selected_killer.size()>=killer_number:
 		selected_killer.shuffle()
 		for i in killer_number:
 			killer_players.append(selected_killer.pop_front().player_id)
-	elif selected_killer.size()+selected_any.size()>=killer_number:
+	elif (selected_killer.size()+selected_any.size())>=killer_number:
 		for p in selected_killer:
 			killer_players.append(p.player_id)
-		for i in killer_players.size()-selected_killer:
+		for i in killer_number-killer_players.size():
 			killer_players.append(selected_any.pop_front().player_id)
 	else:
 		for p in selected_killer:
 			killer_players.append(p.player_id)
 		for p in selected_any:
 			killer_players.append(p.player_id)
-		for i in killer_players.size()-selected_killer.size():
+		for i in killer_number-killer_players.size():
 			killer_players.append(selected_survivor.pop_front())
 	
 	for p in players.filter(func(x):return not killer_players.has(x.player_id)):
