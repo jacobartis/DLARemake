@@ -40,9 +40,32 @@ size_flags_horizontal = 3
 text = "Test"
 horizontal_alignment = 1
 
+[node name="PrefContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PrefLabel" type="Label" parent="HBoxContainer/PrefContainer"]
+layout_mode = 2
+text = "Role Pref:"
+
+[node name="Preference" type="OptionButton" parent="HBoxContainer/PrefContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/text = "Random"
+popup/item_0/id = 0
+popup/item_1/text = "Survivor"
+popup/item_1/id = 1
+popup/item_2/text = "Killer"
+popup/item_2/id = 2
+
 [node name="Kick" type="Button" parent="HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Kick"
+
+[connection signal="item_selected" from="HBoxContainer/PrefContainer/Preference" to="." method="_on_preference_item_selected"]

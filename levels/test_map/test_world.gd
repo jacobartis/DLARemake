@@ -15,9 +15,9 @@ func _ready():
 
 func start():
 	print("start")
-	GameInfo.killer_players = [MultiplayerManager.players.keys().pick_random()]
-	GameInfo.surviver_players = MultiplayerManager.players.keys().duplicate()
 	GameInfo.server_update()
+	print(GameInfo.surviver_players)
+	print(GameInfo.killer_players)
 	for id in GameInfo.killer_players:
 		GameInfo.surviver_players.erase(id)
 	char_man.spawn_survivors(GameInfo.surviver_players)

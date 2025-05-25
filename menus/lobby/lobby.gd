@@ -8,6 +8,10 @@ var selected_level:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if multiplayer.is_server():
+		MultiplayerManager.set_map("Lobby")
+	else:
+		%KillerCountBox.editable = false
 	for player_id in MultiplayerManager.players.keys():
 		%PlayerList.add_player(player_id,MultiplayerManager.players[player_id])
 		ready_players[player_id] = false
@@ -77,11 +81,50 @@ func update_ready_list(list):
 func start():
 	#Server starts the game
 	if not multiplayer.is_server(): return
+	print(selected_level)
+	sort_players()
+	MultiplayerManager.server_update_map(selected_level)
 	MultiplayerManager.load_scene.rpc(selected_level)
+
+func sort_players():
+	var killer_number: int = %KillerCountBox.value
+	var players = %PlayerList.get_children()
+	
+	var selected_killer = players.filter(func(p):return p.get_pref()==2)
+	var selected_any = players.filter(func(p):return p.get_pref()==0)
+	var selected_survivor = players.filter(func(p):return p.get_pref()==1)
+	
+	var killer_players = []
+	var survivor_players = []
+	
+	if players.size()<=killer_number:
+		killer_number = players.size()-1
+	if selected_killer.size()>=killer_number:
+		selected_killer.shuffle()
+		for i in killer_number:
+			killer_players.append(selected_killer.pop_front().player_id)
+	elif selected_killer.size()+selected_any.size()>=killer_number:
+		for p in selected_killer:
+			killer_players.append(p.player_id)
+		for i in killer_players.size()-selected_killer:
+			killer_players.append(selected_any.pop_front().player_id)
+	else:
+		for p in selected_killer:
+			killer_players.append(p.player_id)
+		for p in selected_any:
+			killer_players.append(p.player_id)
+		for i in killer_players.size()-selected_killer.size():
+			killer_players.append(selected_survivor.pop_front())
+	
+	for p in players.filter(func(x):return not killer_players.has(x.player_id)):
+		survivor_players.append(p.player_id)
+	
+	GameInfo.killer_players = killer_players
+	GameInfo.surviver_players = survivor_players
+	GameInfo.server_update()
 
 func _on_start_delay_timeout():
 	start()
-
 
 func _on_level_select_level_selected(level_id):
 	selected_level = GameInfo.level_infos[level_id].level_path
