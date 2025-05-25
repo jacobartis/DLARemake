@@ -10,7 +10,7 @@ signal control_dropped()
 @export var highlight: HighlightManager
 @export var interactor:Interactor
 
-const SPEED = 5.0
+const SPEED = 8.75
 const JUMP_VELOCITY = 4.5
 
 @export var can_move: bool = true: set=set_can_move
