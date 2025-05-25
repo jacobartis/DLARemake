@@ -15,21 +15,22 @@
 				"359e0a53-b945-439a-a2a8-4292f51c5de9",
 				"43602aac-2981-4325-984d-97e5e5c8456e",
 				"3adfad64-9084-43c6-96e0-ecc64e6d4dbf",
-				"2985708c-4351-4f76-867f-63b54f3a5a4d"
+				"2985708c-4351-4f76-867f-63b54f3a5a4d",
+				"114f5604-463c-43c4-8a63-15550c786250",
+				"bf5921ba-c8ce-4f74-bee9-846c5ebcf356",
+				"d0561770-bb73-42ed-a92d-127b4f032fe2"
 			]
 		},
 		{
 			"uuid": "abb80eb0-659e-4acb-b67c-0bd23ce763d3",
 			"title": "Doing",
-			"tasks": [
-				"114f5604-463c-43c4-8a63-15550c786250",
-				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "ddf6ecac-4172-49d6-aa74-9083b3999524",
 			"title": "Done",
 			"tasks": [
+				"a9ba42c9-8a4f-4a90-bcbd-04d35dc5c367",
 				"01e87d4a-a279-40da-921e-945d4f350d17",
 				"0b19e3e9-f7c5-478c-a60b-381e8c939793",
 				"e69a66a4-dd4f-47ba-8e45-ce7458345599",
@@ -92,7 +93,7 @@
 			"steps": [
 				{
 					"details": "Kick Button",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "Map Selection",
@@ -100,7 +101,7 @@
 				},
 				{
 					"details": "Killer Pref",
-					"done": false
+					"done": true
 				}
 			]
 		},
@@ -213,6 +214,20 @@
 			"uuid": "114f5604-463c-43c4-8a63-15550c786250",
 			"title": "Voice chat settings",
 			"description": "Audio stream recorder effects volume not bus",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "bf5921ba-c8ce-4f74-bee9-846c5ebcf356",
+			"title": "Join mid game",
+			"description": "",
+			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
+			"steps": []
+		},
+		{
+			"uuid": "d0561770-bb73-42ed-a92d-127b4f032fe2",
+			"title": "Better models",
+			"description": "",
 			"category": "22fa12a0-63a8-4859-920d-f43dc4738328",
 			"steps": []
 		}
