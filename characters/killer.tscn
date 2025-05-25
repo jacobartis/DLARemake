@@ -163,6 +163,9 @@ collide_with_bodies = false
 script = ExtResource("7_3n1e1")
 killer = NodePath("../../..")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="CamNode/CamHolder"]
+unique_name_in_owner = true
+
 [node name="KillerHighlight" type="Sprite3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.40518, 0)
 billboard = 2
@@ -235,9 +238,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.286617, 0.778223, 0)
 script = ExtResource("12_6k8bb")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cavh7vlmltk7q"
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-unique_name_in_owner = true
 
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="VisibleDetector" method="_on_killer_new_controller"]
