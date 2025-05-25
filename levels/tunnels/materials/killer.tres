@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dlcrtv1drot2v"]
 
-[ext_resource type="Shader" uid="uid://bfjbae8wuxtbs" path="res://characters/survivor.gdshader" id="1_2rup5"]
+[ext_resource type="Shader" uid="uid://bfjbae8wuxtbs" path="res://characters/shaders/survivor.gdshader" id="1_2rup5"]
 [ext_resource type="Texture2D" uid="uid://c6kvv113s0n36" path="res://color_palettes/slso8-1x.png" id="2_63rfo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1vc8c"]

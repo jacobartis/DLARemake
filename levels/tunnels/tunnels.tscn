@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://nu0cayw4u4cc" path="res://levels/level_template.tscn" id="1_5kaai"]
 [ext_resource type="Material" uid="uid://dlcrtv1drot2v" path="res://levels/tunnels/materials/killer.tres" id="4_wlqce"]
-[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/survivor_shader.tres" id="5_lcytx"]
+[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/shaders/survivor_shader.tres" id="5_lcytx"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="11_a65kd"]
 [ext_resource type="Script" uid="uid://byfu7xg2wqjyl" path="res://level_objects/spawns/player_spawn.gd" id="12_tr1n1"]
 [ext_resource type="Script" uid="uid://bveiglrvr42w7" path="res://level_objects/lights/tb_omnilight.gd" id="13_kro7h"]
@@ -66,6 +66,7 @@ script = ExtResource("13_kro7h")
 
 [node name="entity_3_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="3"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, -1)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -88,6 +89,7 @@ script = ExtResource("12_tr1n1")
 
 [node name="entity_8_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="8"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 1.5, -17.5)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -95,6 +97,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_9_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="9"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.5, 1.5, -30)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -102,6 +105,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_10_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="10"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 36.5, 1.5, -19.5)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -109,6 +113,7 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_11_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="11"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 39.5, 1.5, 8)
+visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0
@@ -116,7 +121,6 @@ script = ExtResource("14_dcrjo")
 
 [node name="entity_12_Light_Flashing" type="OmniLight3D" parent="FuncGodotMap" index="12"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5, 1.5, 16.5)
-visible = false
 light_color = Color(0.784314, 0.784314, 0.784314, 1)
 light_energy = 5.0
 omni_range = 15.0

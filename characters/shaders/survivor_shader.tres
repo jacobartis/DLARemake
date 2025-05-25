@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dao77be232b10"]
+
+[ext_resource type="Shader" uid="uid://bc78kj3d0nl4a" path="res://characters/shaders/survivor_edited.gdshader" id="1_hr4ph"]
+[ext_resource type="Texture2D" uid="uid://ddkyfn1gx317x" path="res://color_palettes/bayer16tile2.png" id="2_puhoi"]
+
+[resource]
+shader = ExtResource("1_hr4ph")
+shader_parameter/colors = 4.0
+shader_parameter/dither = 0.307
+shader_parameter/u_dither_tex = ExtResource("2_puhoi")
+shader_parameter/u_dither_size = 1

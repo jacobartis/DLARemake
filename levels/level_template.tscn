@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=3 uid="uid://nu0cayw4u4cc"]
 
-[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/test_map/test_world.gd" id="1_13k7l"]
+[ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/level.gd" id="1_13k7l"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_8xmsw"]
-[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/survivor_shader.tres" id="3_glpk1"]
+[ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/shaders/survivor_shader.tres" id="3_glpk1"]
 [ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="3_yglgk"]
 [ext_resource type="Script" uid="uid://cwseu8wfeb2ym" path="res://levels/level_filter.gd" id="4_22dcj"]
 [ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="4_glpk1"]
@@ -61,7 +61,7 @@ script = ExtResource("2_8xmsw")
 spawn_parent = NodePath("../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="CharacterManager"]
-_spawnable_scenes = PackedStringArray("uid://hhg2l8rjh56j", "uid://dvquo8dq47kay", "uid://3fqhr5mt0oju")
+_spawnable_scenes = PackedStringArray("uid://dvquo8dq47kay", "uid://hhg2l8rjh56j", "uid://3fqhr5mt0oju")
 spawn_path = NodePath("../../CanvasLayer/SubViewportContainer/SubViewport/PlayerHolder")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

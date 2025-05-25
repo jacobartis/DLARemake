@@ -3,9 +3,9 @@ class_name CharacterManager
 
 signal all_dead()
 
-const SURVIVOR = preload("res://characters/survivor.tscn")
-const KILLER = preload("res://characters/killer.tscn")
-const SPECTATOR = preload("res://characters/spectator.tscn")
+const SURVIVOR = preload("res://characters/survivor/survivor.tscn")
+const KILLER = preload("res://characters/killer/killer.tscn")
+const SPECTATOR = preload("res://characters/spectator/spectator.tscn")
 
 @export var spawn_parent:Node
 @onready var spawner = $MultiplayerSpawner
