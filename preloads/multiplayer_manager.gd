@@ -129,7 +129,10 @@ func load_scene(game_scene_path):
 	var scene = GGResourceFinder.find_file(game_scene_path)
 	var err = get_tree().change_scene_to_packed(scene)
 
-@rpc("any_peer", "reliable")
+func kick(id,reason):
+	_kicked.rpc_id(id,reason)
+
+@rpc("call_local","reliable")
 func _kicked(reason):
 	remove_multiplayer_peer()
 	print("Kicked for: ",reason)
