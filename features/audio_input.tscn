@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mtgo8uhhchmn"]
+
+[ext_resource type="Script" uid="uid://mrwmqdu2qftg" path="res://features/audio_input.gd" id="1_qjyqr"]
+
+[node name="AudioInput" type="Node"]
+script = ExtResource("1_qjyqr")
+
+[node name="Input" type="AudioStreamPlayer" parent="."]
+bus = &"VoiceIn"
