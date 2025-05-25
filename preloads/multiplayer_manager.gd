@@ -32,7 +32,8 @@ func server_update_info():
 func set_map(map_id):
 	current_map = map_id
 
-func server_update_map(map_id):
+@rpc("any_peer", "call_local", "reliable")
+func server_update_map(map_id=current_map):
 	current_map = map_id
 	if multiplayer.is_server():
 		set_map.rpc(current_map)
