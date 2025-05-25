@@ -236,6 +236,9 @@ script = ExtResource("12_6k8bb")
 body = NodePath("..")
 metadata/_custom_type_script = "uid://cavh7vlmltk7q"
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+unique_name_in_owner = true
+
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="VisibleDetector" method="_on_killer_new_controller"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]
