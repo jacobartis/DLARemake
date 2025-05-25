@@ -26,3 +26,12 @@ func fade_out():
 			fade_in_tween.stop()
 	fade_out_tween = get_tree().create_tween()
 	fade_out_tween.tween_property(self,"modulate",Color(1,1,1,0),.5)
+
+
+func _on_tree_exiting():
+	if fade_in_tween:
+		fade_in_tween.kill()
+	if fade_out_tween:
+		fade_out_tween.kill()
+	if pulse_tween:
+		pulse_tween.kill()
