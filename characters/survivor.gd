@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
 signal killed()
+signal owner_updated()
 
 @onready var cam = %Camera3D
+@onready var aud = %AudioListener3D
 @export var interactor:Interactor
 
 const SPEED = 5.0
@@ -14,8 +16,10 @@ var dead:bool = false
 func update_owner(id):
 	set_multiplayer_authority(id)
 	cam.current = is_authority()
+	aud.current = is_authority()
 	$TorchLight.visible = is_authority()
 	update_player_info()
+	owner_updated.emit()
 
 @rpc("any_peer","call_local","reliable")
 func spawn_pos(pos):

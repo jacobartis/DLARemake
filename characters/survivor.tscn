@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=22 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
@@ -10,6 +10,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://ca3d8rr24q1k3" path="res://characters/models/Animations/RunAnim.res" id="5_prlgj"]
 [ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="7_7ptos"]
 [ext_resource type="Script" uid="uid://c16yoq67kl62j" path="res://characters/heart_beat.gd" id="9_0d804"]
+[ext_resource type="PackedScene" uid="uid://mtgo8uhhchmn" path="res://features/audio_input.tscn" id="11_llbkt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prlgj"]
 resource_name = "skin"
@@ -181,6 +182,9 @@ _data = {
 &"die": SubResource("Animation_eg0eo")
 }
 
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_llbkt"]
+buffer_length = 2.5
+
 [node name="Survivor" type="CharacterBody3D" node_paths=PackedStringArray("interactor") groups=["player", "survivor"]]
 script = ExtResource("1_eg0eo")
 interactor = NodePath("Interactor")
@@ -188,15 +192,7 @@ interactor = NodePath("Interactor")
 [node name="CharModel" parent="." instance=ExtResource("2_j52uj")]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, -1.7, 0)
 
-[node name="NamePlate" type="Label3D" parent="CharModel"]
-unique_name_in_owner = true
-transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 2.7, 0)
-billboard = 2
-text = "test"
-font = ExtResource("3_jhtef")
-font_size = 42
-
-[node name="Root" parent="CharModel" index="1"]
+[node name="Root" parent="CharModel" index="0"]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 6.47051e-07, 0, -0.255229)
 
 [node name="Skeleton3D" parent="CharModel/Root" index="0"]
@@ -250,6 +246,14 @@ bones/56/rotation = Quaternion(0.0282603, 0.953941, -0.297574, -0.0254478)
 [node name="characterMedium" parent="CharModel/Root/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_0d804")
 
+[node name="NamePlate" type="Label3D" parent="CharModel"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 2.7, 0)
+billboard = 2
+text = "test"
+font = ExtResource("3_jhtef")
+font_size = 42
+
 [node name="HeartBeat" type="MeshInstance3D" parent="CharModel"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 1.97787e-07, 1.7, -0.0780172)
 layers = 4
@@ -277,6 +281,10 @@ collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("4_prlgj")
 body = NodePath("../..")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.607524, 0.127323)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
@@ -313,6 +321,17 @@ light_energy = 2.179
 omni_range = 11.487
 omni_attenuation = 0.467
 
+[node name="AudioInput" parent="." node_paths=PackedStringArray("output") instance=ExtResource("11_llbkt")]
+output = NodePath("../AudioOutput")
+
+[node name="AudioOutput" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401325, -0.0871993)
+stream = SubResource("AudioStreamGenerator_llbkt")
+autoplay = true
+bus = &"VoiceOut"
+playback_type = 1
+
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
+[connection signal="owner_updated" from="." to="AudioInput" method="_on_owner_updated"]
 
 [editable path="CharModel"]
