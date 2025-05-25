@@ -22,9 +22,7 @@ var targetname: String = ""
 var target: String = ""
 
 func connect_targets():
-	print("target: ",target)
 	if target == "": return
-	print("Nodes in target group ",get_tree().get_nodes_in_group(target))
 	for targ in get_tree().get_nodes_in_group(target):
 		if targ.has_method("_on_is_pressed"):
 			if not is_pressed.is_connected(targ._on_is_pressed):
