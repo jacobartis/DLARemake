@@ -85,6 +85,30 @@ render_target_update_mode = 4
 
 [node name="PlayerHolder" type="Node3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
 
+[node name="Crosshair" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Crosshair"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="SummaryScreen" parent="CanvasLayer" instance=ExtResource("3_yglgk")]
 unique_name_in_owner = true
 visible = false
