@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://ymu4rj0cipql" path="res://level_objects/interactable/stand_interact.tres" id="4_4vbxa"]
 [ext_resource type="Resource" uid="uid://col5a83kwm5vx" path="res://level_objects/interactable/point_interact.tres" id="5_ia16v"]
 [ext_resource type="Resource" uid="uid://bn3euyhwjeq4a" path="res://level_objects/objects/interact_test.tres" id="6_ia16v"]
-[ext_resource type="Resource" uid="uid://cqsvmyxts1wft" path="res://level_objects/objectives/test_objective.tres" id="7_61mbe"]
+[ext_resource type="Resource" uid="uid://cqsvmyxts1wft" path="res://level_objects/objectives/test/test_objective.tres" id="7_61mbe"]
 [ext_resource type="Resource" uid="uid://dsn504svi8204" path="res://level_objects/exits/exit.tres" id="8_hmwxs"]
 
 [resource]
