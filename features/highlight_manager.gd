@@ -1,29 +1,29 @@
 extends Node
 class_name HighlightManager
 
-@export var highlight_node:Node3D
+@export var meshes:Array[MeshInstance3D] = []
+var mat
+
+func _ready():
+	mat = StandardMaterial3D.new()
+	mat.albedo_color.a = 0
+	mat.no_depth_test = true
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	for mesh in meshes:
+		mesh.material_overlay = mat
+	default()
+
+func default():
+	mat.albedo_color = Color.WHITE
+	set_albedo(0)
 
 func highlight(color:Color):
-	if highlight_node is MeshInstance3D:
-		highlight_node.get_active_material(0).albedo_color = color
-	elif highlight_node is Sprite3D:
-		highlight_node.modulate = color
+	color.a = mat.albedo_color.a
+	mat.albedo_color = color
 
-func down():
-	if highlight_node is Sprite3D:
-		highlight_node.flip_v = false
-		return
-	highlight_node.rotation_degrees.y = -180
-
-func up():
-	if highlight_node is Sprite3D:
-		highlight_node.flip_v = true
-		return
-	highlight_node.rotation_degrees.y = 0
-
+func set_albedo(a:float):
+	mat.albedo_color.a = a
 
 func hide():
-	highlight_node.hide()
-
-func show():
-	highlight_node.show()
+	set_albedo(0)
