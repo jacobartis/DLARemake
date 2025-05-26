@@ -904,13 +904,11 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.607524, -0.127323)
 
 [node name="KillerChecker" type="RayCast3D" parent="Camera3D" groups=["killer_checker"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106389, 0.127323)
 target_position = Vector3(0, 0, -100)
 debug_shape_thickness = 1
 
 [node name="InteractorRay" type="RayCast3D" parent="Camera3D" node_paths=PackedStringArray("body")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.607524, 0.127323)
-target_position = Vector3(0, 0, -5)
+target_position = Vector3(0, 0, -7.5)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
