@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bnonojj308in0"]
+[gd_scene load_steps=40 format=3 uid="uid://bnonojj308in0"]
 
 [ext_resource type="Script" uid="uid://xd0m1g6vjx2i" path="res://level_objects/objectives/three_button_obj.gd" id="1_gdm5g"]
 [ext_resource type="Script" uid="uid://b3s178yt4aica" path="res://level_objects/interactable/point_interact.gd" id="2_p1evd"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://3jo1tcq3hfjp" path="res://level_objects/objectives/captcha/captcha_mini_game.gd" id="6_p1evd"]
 [ext_resource type="Shader" uid="uid://clobix1dbtj7v" path="res://level_objects/objectives/shader/static.gdshader" id="8_gdm5g"]
 [ext_resource type="FontFile" uid="uid://bepbj6soag2x5" path="res://menus/Font/Emoji/NotoColorEmoji-Regular.ttf" id="9_g4dmb"]
+[ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="11_q4srv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rbyea"]
 render_priority = 0
@@ -80,6 +81,21 @@ height = 0.25
 height = 0.3
 radius = 0.1
 
+[sub_resource type="Animation" id="Animation_f8a8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.3, 0.019, 0.245)]
+}
+
 [sub_resource type="Animation" id="Animation_q4srv"]
 resource_name = "press"
 length = 0.5
@@ -94,21 +110,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(3, 0.5, 3),
 "update": 0,
 "values": [Vector3(-0.3, 0.019, 0.245), Vector3(-0.3, -0.1, 0.245), Vector3(-0.3, 0.019, 0.245)]
-}
-
-[sub_resource type="Animation" id="Animation_f8a8w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.3, 0.019, 0.245)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7c1h"]
@@ -158,6 +159,21 @@ _data = {
 &"press": SubResource("Animation_scvm6")
 }
 
+[sub_resource type="Animation" id="Animation_g4dmb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.019, 0.245)]
+}
+
 [sub_resource type="Animation" id="Animation_xvnrv"]
 resource_name = "press"
 length = 0.5
@@ -172,21 +188,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(3, 0.5, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.245), Vector3(0, -0.1, 0.245), Vector3(0, 0, 0.245)]
-}
-
-[sub_resource type="Animation" id="Animation_g4dmb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.019, 0.245)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q4srv"]
@@ -377,6 +378,11 @@ libraries = {
 
 [node name="DisableTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="HighlightManager" type="Node" parent="." node_paths=PackedStringArray("meshes") groups=["h_obj", "highlight"]]
+script = ExtResource("11_q4srv")
+meshes = [NodePath("../Obj/MeshInstance3D"), NodePath("../Obj/MeshInstance3D2"), NodePath("../Left/MeshInstance3D"), NodePath("../Right/MeshInstance3D"), NodePath("../Middle/MeshInstance3D")]
+metadata/_custom_type_script = "uid://dg48hvyodoq2h"
 
 [connection signal="completed" from="ObjectiveNode" to="SFX/HornDelay" method="start"]
 [connection signal="timeout" from="SFX/HornDelay" to="SFX/Horn" method="play"]

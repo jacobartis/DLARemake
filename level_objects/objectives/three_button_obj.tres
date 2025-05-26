@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDEntityClass" load_steps=2 format=3 uid="uid://tr41bi3yh1n"]
+
+[ext_resource type="Script" uid="uid://dphjk5y4ve0vt" path="res://addons/func_godot/src/fgd/func_godot_fgd_entity_class.gd" id="1_4dm5o"]
+
+[resource]
+script = ExtResource("1_4dm5o")
+classname = "objective_three_button"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"punish_dur": 10.0
+}
+class_property_descriptions = {}
+auto_apply_to_matching_node_properties = false
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""
+metadata/_custom_type_script = "uid://dphjk5y4ve0vt"
