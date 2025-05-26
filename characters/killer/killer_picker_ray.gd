@@ -1,8 +1,11 @@
 extends RayCast3D
 
 @export var killer: CharacterBody3D
+@onready var cam_arm = %CamArm
 
+var mode: bool = false
 var hovered:CharacterBody3D = null:set=set_hovered
+var tween
 
 func set_hovered(val):
 	if hovered == val: return
@@ -16,6 +19,9 @@ func valid_area(area):
 
 func _process(delta):
 	if not killer.controlled:
+		hovered = null
+		return
+	if not mode:
 		hovered = null
 		return
 	if not is_colliding() or not valid_area(get_collider()): 
@@ -33,7 +39,26 @@ func _process(delta):
 func _input(event):
 	if not killer.is_authority(): return
 	if event.is_action_pressed("Transfer"):
-		swap_control()
+		enter_mode()
+	elif event.is_action_released("Transfer"):
+		if hovered:
+			swap_control()
+		exit_mode()
+
+func enter_mode():
+	if tween:
+		tween.kill()
+	mode = true
+	tween = get_tree().create_tween()
+	tween.tween_property(cam_arm,"spring_length",0,.2)
+
+func exit_mode():
+	if tween:
+		tween.kill()
+	mode = false
+	tween = get_tree().create_tween()
+	tween.tween_property(cam_arm,"spring_length",5,.2)
+
 
 func swap_control():
 	if not hovered: return

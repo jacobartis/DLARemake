@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn57enccajwlt"]
+[gd_scene load_steps=12 format=3 uid="uid://cn57enccajwlt"]
 
+[ext_resource type="Theme" uid="uid://bkkvxg05cycuj" path="res://menus/GameTheme.tres" id="1_jpmg3"]
 [ext_resource type="Script" uid="uid://bkm0fcgm23uyx" path="res://menus/lobby/lobby.gd" id="1_l1s41"]
 [ext_resource type="Script" uid="uid://cn1a8jcmx6u4f" path="res://menus/lobby/player_list.gd" id="2_kssl2"]
 [ext_resource type="Script" uid="uid://ls8vpr77jcfm" path="res://menus/lobby/countdown.gd" id="3_lv8s3"]
@@ -31,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_jpmg3")
 script = ExtResource("1_l1s41")
 
 [node name="Panel" type="Panel" parent="."]

@@ -78,7 +78,7 @@ func look(motion:InputEventMouseMotion):
 
 func _process(delta):
 	if not is_authority(): return
-	%CamHolder.global_position = global_position+Vector3(0,1,0)
+	%CamHolder.global_position = global_position+Vector3(0,.7,0)
 
 func _physics_process(delta):
 	if not get_multiplayer_authority()==multiplayer.get_unique_id(): return

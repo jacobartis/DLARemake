@@ -30,9 +30,9 @@ func _process(delta: float) -> void:
 	if Settings.voice_type == Settings.VoiceType.OFF: return
 	input.volume_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("VoiceIn"))
 	if Settings.voice_type == Settings.VoiceType.PUSH_TO_TALK and not Input.is_action_pressed("PushToTalk"): return
-	if (effect.can_get_buffer(256) && playback.can_push_buffer(256)):
+	if (effect.can_get_buffer(512) && playback.can_push_buffer(512)):
 		#fill_buffer()
-		send_data.rpc(effect.get_buffer(256))
+		send_data.rpc(effect.get_buffer(512))
 		#send_data(effect.get_buffer(512))
 	effect.clear_buffer()
 
@@ -40,6 +40,6 @@ func _process(delta: float) -> void:
 # also don't try and do "unreliable_ordered." didn't work from my experience
 @rpc("any_peer", "call_remote", "reliable")
 func send_data(data : PackedVector2Array):
-	for i in range(0,256):
+	for i in range(0,512):
 		playback.push_frame(data[i])
 	#playback.push_buffer(data)

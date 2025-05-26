@@ -961,6 +961,7 @@ omni_attenuation = 0.467
 
 [node name="Walk" type="AudioStreamPlayer3D" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_ehuor")
+volume_db = -10.0
 
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
 [connection signal="owner_updated" from="." to="AudioInput" method="_on_owner_updated"]
