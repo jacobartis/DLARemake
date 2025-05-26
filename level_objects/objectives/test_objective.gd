@@ -1,5 +1,6 @@
 extends Node3D
 
+signal filled()
 
 @onready var fill:MeshInstance3D = $Fill
 
@@ -30,4 +31,5 @@ func _process(delta):
 	mesh.height = (perc*2.0)
 	$Fill.position.y = -1*(1-perc)
 	if perc == 1:
+		filled.emit()
 		obj_node.finish.rpc()

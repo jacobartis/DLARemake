@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6u5p0arbeioq"]
+[gd_scene load_steps=14 format=3 uid="uid://c6u5p0arbeioq"]
 
 [ext_resource type="Script" uid="uid://bryi720jnpol4" path="res://level_objects/objectives/test_objective.gd" id="1_w8nhw"]
 [ext_resource type="Script" uid="uid://q6ar581rqjb5" path="res://level_objects/interactable/stand_interact.gd" id="2_cmk1l"]
 [ext_resource type="Script" uid="uid://c5j7amvm22631" path="res://features/objective_node.gd" id="3_d818g"]
+[ext_resource type="AudioStream" uid="uid://drlkjw4x3g0hw" path="res://level_objects/objectives/sfx/ding-36029.mp3" id="4_oit8y"]
+[ext_resource type="AudioStream" uid="uid://2oa0wafhhp0n" path="res://level_objects/objectives/sfx/horn.mp3" id="5_12oii"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_y2edy"]
 radius = 2.5
@@ -17,6 +19,134 @@ material = SubResource("StandardMaterial3D_y2edy")
 top_radius = 0.51
 bottom_radius = 0.51
 height = 0.0
+
+[sub_resource type="Animation" id="Animation_ctf4y"]
+resource_name = "SpinWhite"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light/SpotLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light/SpotLight3D2:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_locsc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light/SpotLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light/SpotLight3D2:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oit8y"]
+resource_name = "SpinRed"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light/SpotLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light/SpotLight3D2:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oit8y"]
+_data = {
+&"RESET": SubResource("Animation_locsc"),
+&"SpinRed": SubResource("Animation_oit8y"),
+&"SpinWhite": SubResource("Animation_ctf4y")
+}
 
 [node name="TestAreaObjective" type="Node3D" node_paths=PackedStringArray("obj_node")]
 script = ExtResource("1_w8nhw")
@@ -39,4 +169,39 @@ mesh = SubResource("CylinderMesh_0v25t")
 [node name="ObjectiveNode" type="Node" parent="."]
 script = ExtResource("3_d818g")
 
+[node name="Light" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20974, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Light"]
+light_color = Color(1, 0, 0, 1)
+spot_range = 10.0
+spot_attenuation = 1.5
+spot_angle = 20.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="Light"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+light_color = Color(1, 0, 0, 1)
+spot_range = 10.0
+spot_attenuation = 1.5
+spot_angle = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_oit8y")
+}
+autoplay = "SpinRed"
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="Ding" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("4_oit8y")
+bus = &"SFX"
+
+[node name="Horn" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("5_12oii")
+bus = &"SFX"
+
+[connection signal="filled" from="." to="SFX/Ding" method="play"]
 [connection signal="is_held" from="ObjectInteract" to="." method="_on_object_interact_is_held"]
+[connection signal="finished" from="SFX/Ding" to="SFX/Horn" method="play"]
+[connection signal="finished" from="SFX/Ding" to="AnimationPlayer" method="play" binds= ["SpinWhite"]]
