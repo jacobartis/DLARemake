@@ -531,6 +531,7 @@ loops = 3
 
 [node name="AudioDist" type="AudioStreamPlayer3D" parent="CamNode/CamHolder/DistractionRay/Node/DistNode"]
 stream = ExtResource("14_pwbxm")
+bus = &"SFX"
 
 [node name="Sprite3D" type="Sprite3D" parent="CamNode/CamHolder/DistractionRay/Node/DistNode"]
 billboard = 1
