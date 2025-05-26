@@ -1,0 +1,393 @@
+[gd_scene load_steps=39 format=3 uid="uid://bnonojj308in0"]
+
+[ext_resource type="Script" uid="uid://xd0m1g6vjx2i" path="res://level_objects/objectives/three_button_obj.gd" id="1_gdm5g"]
+[ext_resource type="Script" uid="uid://b3s178yt4aica" path="res://level_objects/interactable/point_interact.gd" id="2_p1evd"]
+[ext_resource type="Script" uid="uid://c5j7amvm22631" path="res://features/objective_node.gd" id="3_d4is2"]
+[ext_resource type="AudioStream" uid="uid://drlkjw4x3g0hw" path="res://level_objects/objectives/sfx/ding-36029.mp3" id="4_gdm5g"]
+[ext_resource type="AudioStream" uid="uid://dxl8sdeakse75" path="res://level_objects/objectives/sfx/buzzer.mp3" id="5_rbyea"]
+[ext_resource type="AudioStream" uid="uid://2oa0wafhhp0n" path="res://level_objects/objectives/sfx/horn.mp3" id="5_vbxh6"]
+[ext_resource type="Script" uid="uid://klicbpmieemo" path="res://level_objects/objectives/objective_sceen_manager.gd" id="6_d4is2"]
+[ext_resource type="Script" uid="uid://3jo1tcq3hfjp" path="res://level_objects/objectives/captcha/captcha_mini_game.gd" id="6_p1evd"]
+[ext_resource type="Shader" uid="uid://clobix1dbtj7v" path="res://level_objects/objectives/shader/static.gdshader" id="8_gdm5g"]
+[ext_resource type="FontFile" uid="uid://bepbj6soag2x5" path="res://menus/Font/Emoji/NotoColorEmoji-Regular.ttf" id="9_g4dmb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbyea"]
+render_priority = 0
+shader = ExtResource("8_gdm5g")
+shader_parameter/amount = 10.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d4is2"]
+viewport_path = NodePath("ObjectiveSceenManager/MingameDisplay/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xvnrv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4dmb"]
+material = SubResource("StandardMaterial3D_xvnrv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdm5g"]
+render_priority = 0
+shader = ExtResource("8_gdm5g")
+shader_parameter/amount = 40.0
+
+[sub_resource type="Gradient" id="Gradient_gdm5g"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vbxh6"]
+gradient = SubResource("Gradient_gdm5g")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbxh6"]
+render_priority = 0
+shader = ExtResource("8_gdm5g")
+shader_parameter/amount = 15.0
+
+[sub_resource type="Gradient" id="Gradient_rbyea"]
+offsets = PackedFloat32Array(0.152466, 0.430493, 0.55157, 0.735426)
+colors = PackedColorArray(0, 0, 0, 1, 0.6, 0.0980392, 0.0941176, 1, 0.552941, 0.141176, 0.0980392, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yioac"]
+gradient = SubResource("Gradient_rbyea")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_vbxh6"]
+offsets = PackedFloat32Array(0.152466, 0.430493, 0.55157, 0.735426)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.403922, 0, 1, 0, 0.332113, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rbyea"]
+gradient = SubResource("Gradient_vbxh6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gdm5g"]
+size = Vector3(1, 2, 0.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vbxh6"]
+data = PackedVector3Array(-0.5, 1, 0.25, 0.5, 1, 0.25, -0.5, -1, 0.25, 0.5, 1, 0.25, 0.5, -1, 0.25, -0.5, -1, 0.25, 0.5, 1, -0.25, -0.5, 1, -0.25, 0.5, -1, -0.25, -0.5, 1, -0.25, -0.5, -1, -0.25, 0.5, -1, -0.25, 0.5, 1, 0.25, 0.5, 1, -0.25, 0.5, -1, 0.25, 0.5, 1, -0.25, 0.5, -1, -0.25, 0.5, -1, 0.25, -0.5, 1, -0.25, -0.5, 1, 0.25, -0.5, -1, -0.25, -0.5, 1, 0.25, -0.5, -1, 0.25, -0.5, -1, -0.25, 0.5, 1, 0.25, -0.5, 1, 0.25, 0.5, 1, -0.25, -0.5, 1, 0.25, -0.5, 1, -0.25, 0.5, 1, -0.25, -0.5, -1, 0.25, 0.5, -1, 0.25, -0.5, -1, -0.25, 0.5, -1, 0.25, 0.5, -1, -0.25, -0.5, -1, -0.25)
+
+[sub_resource type="PrismMesh" id="PrismMesh_vbxh6"]
+left_to_right = 0.0
+size = Vector3(1, 0.5, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rbyea"]
+data = PackedVector3Array(-0.5, 0.25, 0.5, 0.5, -0.25, 0.5, -0.5, -0.25, 0.5, -0.5, 0.25, -0.5, -0.5, -0.25, -0.5, 0.5, -0.25, -0.5, -0.5, 0.25, 0.5, -0.5, 0.25, -0.5, 0.5, -0.25, 0.5, -0.5, 0.25, -0.5, 0.5, -0.25, -0.5, 0.5, -0.25, 0.5, -0.5, 0.25, -0.5, -0.5, 0.25, 0.5, -0.5, -0.25, -0.5, -0.5, 0.25, 0.5, -0.5, -0.25, 0.5, -0.5, -0.25, -0.5, -0.5, -0.25, 0.5, 0.5, -0.25, 0.5, -0.5, -0.25, -0.5, 0.5, -0.25, 0.5, 0.5, -0.25, -0.5, -0.5, -0.25, -0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yioac"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_11o48"]
+height = 0.3
+radius = 0.1
+
+[sub_resource type="Animation" id="Animation_q4srv"]
+resource_name = "press"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.466667),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(-0.3, 0.019, 0.245), Vector3(-0.3, -0.1, 0.245), Vector3(-0.3, 0.019, 0.245)]
+}
+
+[sub_resource type="Animation" id="Animation_f8a8w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.3, 0.019, 0.245)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7c1h"]
+_data = {
+&"RESET": SubResource("Animation_f8a8w"),
+&"press": SubResource("Animation_q4srv")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jcnr4"]
+height = 0.3
+radius = 0.1
+
+[sub_resource type="Animation" id="Animation_v7cu8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.3, 0.019, 0.245)]
+}
+
+[sub_resource type="Animation" id="Animation_scvm6"]
+resource_name = "press"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(3, 0.5, 3),
+"update": 0,
+"values": [Vector3(0.3, 0.019, 0.245), Vector3(0.3, -0.099, 0.245), Vector3(0.3, 0.019, 0.245)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4dmb"]
+_data = {
+&"RESET": SubResource("Animation_v7cu8"),
+&"press": SubResource("Animation_scvm6")
+}
+
+[sub_resource type="Animation" id="Animation_xvnrv"]
+resource_name = "press"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(3, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.245), Vector3(0, -0.1, 0.245), Vector3(0, 0, 0.245)]
+}
+
+[sub_resource type="Animation" id="Animation_g4dmb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.019, 0.245)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q4srv"]
+_data = {
+&"RESET": SubResource("Animation_g4dmb"),
+&"press": SubResource("Animation_xvnrv")
+}
+
+[node name="CaptchaObj" type="Node3D" node_paths=PackedStringArray("s_man", "disable_timer", "minigame", "objective_node")]
+script = ExtResource("1_gdm5g")
+s_man = NodePath("ObjectiveSceenManager")
+disable_timer = NodePath("DisableTimer")
+minigame = NodePath("ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame")
+objective_node = NodePath("ObjectiveNode")
+punish_dur = 15.0
+
+[node name="ObjectiveNode" type="Node" parent="."]
+script = ExtResource("3_d4is2")
+
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="Ding" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("4_gdm5g")
+bus = &"SFX"
+
+[node name="Horn" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("5_vbxh6")
+bus = &"SFX"
+
+[node name="Buzzer" type="AudioStreamPlayer3D" parent="SFX"]
+stream = ExtResource("5_rbyea")
+bus = &"SFX"
+
+[node name="HornDelay" type="Timer" parent="SFX"]
+one_shot = true
+
+[node name="ObjectiveSceenManager" type="Node3D" parent="." node_paths=PackedStringArray("minigame", "disabled", "incorrect", "correct")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.513922, 0)
+script = ExtResource("6_d4is2")
+minigame = NodePath("MingameDisplay")
+disabled = NodePath("Disabled")
+incorrect = NodePath("Incorrect")
+correct = NodePath("Correct")
+
+[node name="MingameDisplay" type="Sprite3D" parent="ObjectiveSceenManager"]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0, 0, 0)
+material_overlay = SubResource("ShaderMaterial_rbyea")
+texture = SubResource("ViewportTexture_d4is2")
+
+[node name="SubViewport" type="SubViewport" parent="ObjectiveSceenManager/MingameDisplay"]
+
+[node name="CaptchaMiniGame" type="Node3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("6_p1evd")
+
+[node name="Camera3D" type="Camera3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147152, 0, -0.0164804)
+projection = 1
+size = 1.90542
+
+[node name="Background" type="MeshInstance3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -1.06523)
+mesh = SubResource("PlaneMesh_g4dmb")
+
+[node name="Show" type="Label3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7995, 0.4, -1)
+font = ExtResource("9_g4dmb")
+
+[node name="Obj" type="Label3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+font = ExtResource("9_g4dmb")
+
+[node name="Text" type="Label3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1505, 0.4, -1)
+text = "Rotate to look like:"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ObjectiveSceenManager/MingameDisplay"]
+transform = Transform3D(6.75676, 0, 0, 0, 6.75676, 0, 0, 0, 6.75676, 0, 0, 0.607956)
+
+[node name="Disabled" type="Sprite3D" parent="ObjectiveSceenManager"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.015066, 0.000897869, 0.00324064)
+visible = false
+material_overlay = SubResource("ShaderMaterial_gdm5g")
+texture = SubResource("GradientTexture2D_vbxh6")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="ObjectiveSceenManager/Disabled"]
+transform = Transform3D(0.833333, 0, 0, 0, 0.833333, 0, 0, 0, 0.833333, 0, 0, 0.07255)
+
+[node name="Incorrect" type="Sprite3D" parent="ObjectiveSceenManager"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.015066, 0.000897869, 0.00324064)
+visible = false
+material_overlay = SubResource("ShaderMaterial_vbxh6")
+texture = SubResource("GradientTexture2D_yioac")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="ObjectiveSceenManager/Incorrect"]
+transform = Transform3D(0.833333, 0, 0, 0, 0.833333, 0, 0, 0, 0.833333, 0, 0, 0.07255)
+light_color = Color(1, 0, 0, 1)
+
+[node name="Correct" type="Sprite3D" parent="ObjectiveSceenManager"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.015066, 0.000897869, 0.00324064)
+visible = false
+material_overlay = SubResource("ShaderMaterial_vbxh6")
+texture = SubResource("GradientTexture2D_rbyea")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="ObjectiveSceenManager/Correct"]
+transform = Transform3D(0.833333, 0, 0, 0, 0.833333, 0, 0, 0, 0.833333, 0, 0, 0.07255)
+light_color = Color(0, 0.784314, 0.0705882, 1)
+
+[node name="Obj" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.250496)
+mesh = SubResource("BoxMesh_gdm5g")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Obj"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.250496)
+shape = SubResource("ConcavePolygonShape3D_vbxh6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Obj"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, -0.5, 0.25)
+mesh = SubResource("PrismMesh_vbxh6")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Obj"]
+transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 0, -0.5, 0.25)
+shape = SubResource("ConcavePolygonShape3D_rbyea")
+
+[node name="Left" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.019, 0.245)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_p1evd")
+interact_message = "turn left"
+metadata/_custom_type_script = "uid://b3s178yt4aica"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Left"]
+mesh = SubResource("CylinderMesh_yioac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126846, 0)
+shape = SubResource("CylinderShape3D_11o48")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Left"]
+libraries = {
+&"": SubResource("AnimationLibrary_q7c1h")
+}
+
+[node name="Right" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.019, 0.245)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_p1evd")
+interact_message = "turn right"
+metadata/_custom_type_script = "uid://b3s178yt4aica"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Right"]
+mesh = SubResource("CylinderMesh_yioac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126846, 0)
+shape = SubResource("CylinderShape3D_jcnr4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Right"]
+libraries = {
+&"": SubResource("AnimationLibrary_g4dmb")
+}
+
+[node name="Middle" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019, 0.245)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_p1evd")
+interact_message = "submit"
+metadata/_custom_type_script = "uid://b3s178yt4aica"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Middle"]
+mesh = SubResource("CylinderMesh_yioac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.126846, 0)
+shape = SubResource("CylinderShape3D_jcnr4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Middle"]
+libraries = {
+&"": SubResource("AnimationLibrary_q4srv")
+}
+
+[node name="DisableTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="completed" from="ObjectiveNode" to="SFX/HornDelay" method="start"]
+[connection signal="timeout" from="SFX/HornDelay" to="SFX/Horn" method="play"]
+[connection signal="fail" from="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame" to="." method="_on_mini_game_fail"]
+[connection signal="fail" from="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame" to="SFX/Buzzer" method="play"]
+[connection signal="success" from="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame" to="." method="_on_mini_game_success"]
+[connection signal="success" from="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame" to="SFX/Ding" method="play"]
+[connection signal="is_pressed" from="Left" to="." method="_on_left_is_pressed"]
+[connection signal="is_pressed" from="Left" to="Left/AnimationPlayer" method="play" binds= ["press"]]
+[connection signal="is_pressed" from="Right" to="." method="_on_right_is_pressed"]
+[connection signal="is_pressed" from="Right" to="Right/AnimationPlayer" method="play" binds= ["press"]]
+[connection signal="is_pressed" from="Middle" to="." method="_on_middle_is_pressed"]
+[connection signal="is_pressed" from="Middle" to="Middle/AnimationPlayer" method="play" binds= ["press"]]
+[connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout"]

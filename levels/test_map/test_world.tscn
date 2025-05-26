@@ -1,11 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://drl44pii3gfh1"]
+[gd_scene load_steps=30 format=3 uid="uid://drl44pii3gfh1"]
 
 [ext_resource type="Script" uid="uid://bgispvho0cwmg" path="res://levels/level.gd" id="1_kbvng"]
 [ext_resource type="Script" uid="uid://b5t80hbipjcoh" path="res://levels/character_manager.gd" id="2_kbvng"]
 [ext_resource type="Script" uid="uid://byfu7xg2wqjyl" path="res://level_objects/spawns/player_spawn.gd" id="3_1vc8c"]
-[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test_point_objective.tscn" id="3_c576j"]
+[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test/test_point_objective.tscn" id="3_c576j"]
 [ext_resource type="PackedScene" uid="uid://c2gvyh0qsi420" path="res://menus/game_end_screen/summary_screen.tscn" id="4_lqt7o"]
-[ext_resource type="PackedScene" uid="uid://c6u5p0arbeioq" path="res://level_objects/objectives/test_area_objective.tscn" id="4_vytw3"]
+[ext_resource type="PackedScene" uid="uid://c6u5p0arbeioq" path="res://level_objects/objectives/test/test_area_objective.tscn" id="4_vytw3"]
 [ext_resource type="Material" uid="uid://dao77be232b10" path="res://characters/shaders/survivor_shader.tres" id="5_6q451"]
 [ext_resource type="Script" uid="uid://l81xuudo3eax" path="res://levels/objectives_manager.gd" id="6_37vfl"]
 [ext_resource type="PackedScene" uid="uid://b1qse64s6bngg" path="res://menus/UI/interact_prompt.tscn" id="6_edsus"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://couuwyubfag77" path="res://menus/UI/killer_seen_display.gd" id="9_8xujf"]
 [ext_resource type="PackedScene" uid="uid://b2gcs6jvvp6um" path="res://menus/UI/escape_menu/escape_menu.tscn" id="11_3ilff"]
 [ext_resource type="Theme" uid="uid://bkkvxg05cycuj" path="res://menus/GameTheme.tres" id="12_s3gax"]
+[ext_resource type="PackedScene" uid="uid://bnonojj308in0" path="res://level_objects/objectives/captcha/captcha_obj.tscn" id="16_cpulj"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_awotp"]
 
@@ -226,8 +227,8 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 script = ExtResource("6_lbfdw")
-killer = ExtResource("5_6q451")
-survivor = ExtResource("8_5odyp")
+killer = ExtResource("8_5odyp")
+survivor = ExtResource("5_6q451")
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 handle_input_locally = false
@@ -289,6 +290,9 @@ light_negative = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.215453, -22)
+
+[node name="CaptchaObj" parent="." instance=ExtResource("16_cpulj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -12)
 
 [connection signal="game_start" from="." to="CanvasLayer/SubViewportContainer" method="_on_world_game_start"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
