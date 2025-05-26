@@ -242,6 +242,7 @@ texture = SubResource("ViewportTexture_d4is2")
 [node name="CaptchaMiniGame" type="Node3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("6_p1evd")
+turns = 8
 
 [node name="Camera3D" type="Camera3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00147152, 0, -0.0164804)
