@@ -23,7 +23,7 @@ func update_display():
 	if get_remaning().size()==1:
 		obj_display.text = "Exit active"
 	elif get_remaning().size()>1:
-		obj_display.text = "Remaning objectives: %s"%(get_remaning().size()-1)
+		obj_display.text = "Remaining objectives: %s"%(get_remaning().size()-1)
 	else:
 		obj_display.text = ""
 
