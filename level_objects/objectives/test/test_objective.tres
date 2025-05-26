@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cqsvmyxts1wft"]
 
-[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test_point_objective.tscn" id="1_2po7y"]
+[ext_resource type="PackedScene" uid="uid://jds7c1op5hox" path="res://level_objects/objectives/test/test_point_objective.tscn" id="1_2po7y"]
 [ext_resource type="Script" uid="uid://rly1n6m7di5y" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_crxrq"]
 
 [resource]
