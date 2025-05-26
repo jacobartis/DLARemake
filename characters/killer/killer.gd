@@ -8,6 +8,7 @@ signal control_dropped()
 @onready var aud = %AudioListener3D
 @onready var vis = $VisibleDetector
 @export var highlight: HighlightManager
+@export var extra_highlight: Sprite3D
 @export var interactor:Interactor
 
 const SPEED = 8.75
@@ -48,9 +49,7 @@ func gain_control(id):
 @rpc("any_peer","call_local","reliable")
 func drop_control():
 	if is_killer():
-		if is_authority():
-			highlight.show()
-		highlight.highlight(Color.WHITE)
+		highlight.default()
 	set_multiplayer_authority(1)
 	control_dropped.emit()
 	cam.current = false
