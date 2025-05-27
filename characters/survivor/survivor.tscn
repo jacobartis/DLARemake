@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://hhg2l8rjh56j"]
+[gd_scene load_steps=30 format=4 uid="uid://hhg2l8rjh56j"]
 
 [ext_resource type="Script" uid="uid://pw8aum8wqk5u" path="res://characters/survivor/survivor.gd" id="1_eg0eo"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_j52uj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ct1ikdo68vese" path="res://characters/interactor_ray.gd" id="4_prlgj"]
 [ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="7_7ptos"]
 [ext_resource type="Script" uid="uid://c16yoq67kl62j" path="res://characters/survivor/heart_beat.gd" id="9_0d804"]
+[ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="11_gxjvr"]
 [ext_resource type="PackedScene" uid="uid://mtgo8uhhchmn" path="res://features/audio_input.tscn" id="11_llbkt"]
 [ext_resource type="AudioStream" uid="uid://crex3a86mql8b" path="res://characters/sfx/survivor_walk.mp3" id="12_ehuor"]
 
@@ -960,6 +961,11 @@ omni_attenuation = 0.467
 [node name="Walk" type="AudioStreamPlayer3D" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_ehuor")
 volume_db = -10.0
+
+[node name="HighlightManager" type="Node" parent="." node_paths=PackedStringArray("meshes") groups=["h_survivor", "highlight"]]
+script = ExtResource("11_gxjvr")
+meshes = [NodePath("../CharModel/Root/Skeleton3D/characterMedium")]
+metadata/_custom_type_script = "uid://dg48hvyodoq2h"
 
 [connection signal="killed" from="." to="DeathAnimation" method="play" binds= ["die"]]
 [connection signal="owner_updated" from="." to="AudioInput" method="_on_owner_updated"]
