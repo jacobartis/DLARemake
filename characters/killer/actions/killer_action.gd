@@ -7,3 +7,9 @@ class_name KillerAction
 
 func perform_action():
 	pass
+
+func enter_action():
+	pass
+
+func exit_action():
+	pass
