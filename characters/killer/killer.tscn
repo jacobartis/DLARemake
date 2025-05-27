@@ -1,19 +1,20 @@
-[gd_scene load_steps=33 format=4 uid="uid://dvquo8dq47kay"]
+[gd_scene load_steps=37 format=4 uid="uid://dvquo8dq47kay"]
 
 [ext_resource type="Script" uid="uid://vx64j622sod" path="res://characters/killer/killer.gd" id="1_h1eha"]
 [ext_resource type="Script" uid="uid://ccmurvcjf28h4" path="res://features/player_detector.gd" id="2_0uksx"]
 [ext_resource type="Script" uid="uid://bdnyf6se7tk48" path="res://characters/character_animation_player.gd" id="2_6c3bm"]
 [ext_resource type="PackedScene" uid="uid://bctuvuap4ye10" path="res://characters/models/Model/characterMedium.fbx" id="2_cp51w"]
 [ext_resource type="AnimationLibrary" uid="uid://ctblgenud87wx" path="res://characters/models/Animations/IdleAnim.res" id="3_e7eau"]
+[ext_resource type="Script" uid="uid://bo42nuh7wgk86" path="res://characters/killer/actions/killer_action_handler.gd" id="6_bul4c"]
 [ext_resource type="Texture2D" uid="uid://do0ygqmlim5ht" path="res://characters/models/Skins/cyborgFemaleA.png" id="6_i1ft4"]
-[ext_resource type="Script" uid="uid://c122ij7s5ew3p" path="res://characters/killer/killer_picker_ray.gd" id="7_3n1e1"]
-[ext_resource type="Script" uid="uid://bis2vij4e0omm" path="res://characters/killer/distraction_ray.gd" id="7_bul4c"]
-[ext_resource type="Texture2D" uid="uid://crhrdd4b4vnd6" path="res://characters/sprites/Indicator.png" id="8_08c2p"]
+[ext_resource type="Script" uid="uid://c122ij7s5ew3p" path="res://characters/killer/actions/killer_picker.gd" id="7_3n1e1"]
+[ext_resource type="Script" uid="uid://bis2vij4e0omm" path="res://characters/killer/actions/distraction_action.gd" id="7_bul4c"]
 [ext_resource type="Script" uid="uid://mnyasa03pcs1" path="res://characters/killer/visible_detector.gd" id="8_eehct"]
 [ext_resource type="Script" uid="uid://6hdo8xeqjljc" path="res://characters/killer/killer_pick_area.gd" id="8_jcivy"]
-[ext_resource type="Script" uid="uid://ypt14eqbmux4" path="res://characters/killer/dist_node.gd" id="8_tp4vx"]
-[ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="9_urqhd"]
+[ext_resource type="Script" uid="uid://ypt14eqbmux4" path="res://characters/killer/actions/dist_node.gd" id="8_tp4vx"]
+[ext_resource type="Script" uid="uid://c1cpn24w6jtfp" path="res://characters/killer/actions/sabotage_action.gd" id="10_tp4vx"]
 [ext_resource type="Script" uid="uid://cavh7vlmltk7q" path="res://characters/interactor.gd" id="12_6k8bb"]
+[ext_resource type="Script" uid="uid://0k5dyq7icw2j" path="res://characters/killer/highlight_manager_killer.gd" id="13_rpjh5"]
 [ext_resource type="AudioStream" uid="uid://d2xkeot25b53s" path="res://characters/sfx/RobotStep.mp3" id="14_pwbxm"]
 [ext_resource type="AudioStream" uid="uid://pfk7y1wp8kfd" path="res://characters/sfx/RobotVoice1.mp3" id="15_rpjh5"]
 [ext_resource type="AudioStream" uid="uid://cr4c2maqs4t6i" path="res://characters/sfx/RobotVoice2.mp3" id="16_bul4c"]
@@ -411,10 +412,25 @@ stream_1/stream = ExtResource("16_bul4c")
 stream_2/stream = SubResource("AudioStream_tp4vx")
 stream_3/stream = SubResource("AudioStream_hkowl")
 
-[node name="Killer" type="CharacterBody3D" node_paths=PackedStringArray("highlight", "interactor") groups=["killer", "player"]]
+[sub_resource type="Gradient" id="Gradient_rpjh5"]
+offsets = PackedFloat32Array(0.4, 0.494444, 0.566667, 0.652778)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0.908428, 0.908428, 0.908428, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bul4c"]
+gradient = SubResource("Gradient_rpjh5")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tp4vx"]
+font_size = 32
+
+[node name="Killer" type="CharacterBody3D" node_paths=PackedStringArray("highlight", "extra_highlight", "interactor") groups=["killer", "player"]]
 collision_layer = 9
 script = ExtResource("1_h1eha")
 highlight = NodePath("HighlightManager")
+extra_highlight = NodePath("ExtraHoverHighlight")
 interactor = NodePath("Interactor")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -495,6 +511,74 @@ mesh = SubResource("ArrayMesh_urqhd")
 [node name="CamHolder" type="Node3D" parent="CamNode"]
 unique_name_in_owner = true
 
+[node name="KillerActionHandler" type="Node3D" parent="CamNode/CamHolder" node_paths=PackedStringArray("actions", "killer_picker", "killer")]
+script = ExtResource("6_bul4c")
+actions = [NodePath("DistractionAction"), NodePath("SabotageAction")]
+killer_picker = NodePath("KillerPicker")
+killer = NodePath("../../..")
+
+[node name="DistractionAction" type="Node3D" parent="CamNode/CamHolder/KillerActionHandler" node_paths=PackedStringArray("dist_node", "ray", "killer", "ah", "cooldown")]
+script = ExtResource("7_bul4c")
+dist_node = NodePath("DistractionRay/Node/DistNode")
+ray = NodePath("DistractionRay")
+killer = NodePath("../../../..")
+ah = NodePath("..")
+cooldown = NodePath("DistractionRay/Timer")
+
+[node name="DistractionRay" type="RayCast3D" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction"]
+target_position = Vector3(0, 0, -50)
+
+[node name="Node" type="Node" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay"]
+
+[node name="DistNode" type="Node3D" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay/Node" node_paths=PackedStringArray("sfx")]
+visible = false
+script = ExtResource("8_tp4vx")
+sfx = NodePath("AudioDist")
+loops = 3
+
+[node name="AudioDist" type="AudioStreamPlayer3D" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay/Node/DistNode"]
+stream = ExtResource("14_pwbxm")
+bus = &"SFX"
+
+[node name="Sprite3D" type="Sprite3D" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay/Node/DistNode"]
+billboard = 1
+no_depth_test = true
+texture = SubResource("GradientTexture2D_rpjh5")
+
+[node name="Timer" type="Timer" parent="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay"]
+wait_time = 3.0
+one_shot = true
+
+[node name="SabotageAction" type="Node3D" parent="CamNode/CamHolder/KillerActionHandler" node_paths=PackedStringArray("ray", "killer", "ah", "cooldown")]
+script = ExtResource("10_tp4vx")
+ray = NodePath("SaboRay")
+killer = NodePath("../../../..")
+ah = NodePath("..")
+cooldown = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="CamNode/CamHolder/KillerActionHandler/SabotageAction"]
+wait_time = 3.0
+one_shot = true
+
+[node name="SaboRay" type="RayCast3D" parent="CamNode/CamHolder/KillerActionHandler/SabotageAction"]
+target_position = Vector3(0, 0, -200)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="KillerPicker" type="Node3D" parent="CamNode/CamHolder/KillerActionHandler" node_paths=PackedStringArray("ray", "killer", "ah")]
+script = ExtResource("7_3n1e1")
+ray = NodePath("KillerPickerRay")
+killer = NodePath("../../../..")
+ah = NodePath("..")
+
+[node name="KillerPickerRay" type="RayCast3D" parent="CamNode/CamHolder/KillerActionHandler/KillerPicker"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -200)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
 [node name="CamArm" type="SpringArm3D" parent="CamNode/CamHolder"]
 unique_name_in_owner = true
 spring_length = 5.0
@@ -503,51 +587,8 @@ spring_length = 5.0
 unique_name_in_owner = true
 cull_mask = 1048573
 
-[node name="KillerPickerRay" type="RayCast3D" parent="CamNode/CamHolder" node_paths=PackedStringArray("killer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-target_position = Vector3(0, 0, -200)
-collision_mask = 2
-collide_with_areas = true
-collide_with_bodies = false
-script = ExtResource("7_3n1e1")
-killer = NodePath("../../..")
-
 [node name="AudioListener3D" type="AudioListener3D" parent="CamNode/CamHolder"]
 unique_name_in_owner = true
-
-[node name="DistractionRay" type="RayCast3D" parent="CamNode/CamHolder" node_paths=PackedStringArray("killer", "dist_node", "cooldown")]
-target_position = Vector3(0, 0, -50)
-script = ExtResource("7_bul4c")
-killer = NodePath("../../..")
-dist_node = NodePath("Node/DistNode")
-cooldown = NodePath("Timer")
-
-[node name="Node" type="Node" parent="CamNode/CamHolder/DistractionRay"]
-
-[node name="DistNode" type="Node3D" parent="CamNode/CamHolder/DistractionRay/Node" node_paths=PackedStringArray("sfx")]
-script = ExtResource("8_tp4vx")
-sfx = NodePath("AudioDist")
-loops = 3
-
-[node name="AudioDist" type="AudioStreamPlayer3D" parent="CamNode/CamHolder/DistractionRay/Node/DistNode"]
-stream = ExtResource("14_pwbxm")
-bus = &"SFX"
-
-[node name="Sprite3D" type="Sprite3D" parent="CamNode/CamHolder/DistractionRay/Node/DistNode"]
-billboard = 1
-no_depth_test = true
-texture = SubResource("GradientTexture2D_rpjh5")
-
-[node name="Timer" type="Timer" parent="CamNode/CamHolder/DistractionRay"]
-wait_time = 3.0
-one_shot = true
-
-[node name="KillerHighlight" type="Sprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 1.40518, 0)
-billboard = 2
-no_depth_test = true
-fixed_size = true
-texture = ExtResource("8_08c2p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eg0eo")
@@ -577,9 +618,9 @@ script = ExtResource("2_0uksx")
 shape = SubResource("CylinderShape3D_h1eha")
 debug_color = Color(0.995841, 0, 0.197996, 0.42)
 
-[node name="HighlightManager" type="Node" parent="." node_paths=PackedStringArray("highlight_node")]
-script = ExtResource("9_urqhd")
-highlight_node = NodePath("../KillerHighlight")
+[node name="HighlightManager" type="Node" parent="." node_paths=PackedStringArray("meshes") groups=["h_killer", "highlight"]]
+script = ExtResource("13_rpjh5")
+meshes = [NodePath("../CharModel/Root/Skeleton3D/characterMedium")]
 
 [node name="ViewMarkers" type="Node3D" parent="."]
 
@@ -629,10 +670,43 @@ unit_size = 3.0
 max_distance = 20.0
 bus = &"SFX"
 
+[node name="ExtraHoverHighlight" type="Sprite3D" parent="."]
+visible = false
+billboard = 1
+no_depth_test = true
+texture = SubResource("GradientTexture2D_bul4c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.84
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.320007
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_tp4vx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="control_dropped" from="." to="PickArea" method="_on_killer_control_dropped"]
 [connection signal="new_controller" from="." to="VisibleDetector" method="_on_killer_new_controller"]
 [connection signal="new_controller" from="." to="PickArea" method="_on_killer_new_controller"]
-[connection signal="finished" from="CamNode/CamHolder/DistractionRay/Node/DistNode/AudioDist" to="CamNode/CamHolder/DistractionRay/Node/DistNode" method="_on_audio_dist_finished"]
+[connection signal="action_selected" from="CamNode/CamHolder/KillerActionHandler" to="CanvasLayer/Control/Label" method="set_text"]
+[connection signal="entering_mode" from="CamNode/CamHolder/KillerActionHandler" to="CanvasLayer/Control/Label" method="show"]
+[connection signal="exiting_mode" from="CamNode/CamHolder/KillerActionHandler" to="CanvasLayer/Control/Label" method="hide"]
+[connection signal="finished" from="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay/Node/DistNode/AudioDist" to="CamNode/CamHolder/KillerActionHandler/DistractionAction/DistractionRay/Node/DistNode" method="_on_audio_dist_finished"]
 [connection signal="hidden" from="VisibleDetector" to="." method="_on_visible_detector_screen_exited"]
 [connection signal="hidden" from="VisibleDetector" to="SFX/Voice" method="play"]
 [connection signal="seen" from="VisibleDetector" to="." method="_on_visible_detector_screen_entered"]
