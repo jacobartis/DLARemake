@@ -2,7 +2,7 @@ extends Node
 class_name HighlightManager
 
 @export var meshes:Array[MeshInstance3D] = []
-var mat
+var mat:StandardMaterial3D = null
 
 func _ready():
 	mat = StandardMaterial3D.new()
