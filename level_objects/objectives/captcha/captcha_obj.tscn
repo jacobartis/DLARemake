@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bnonojj308in0"]
+[gd_scene load_steps=43 format=3 uid="uid://bnonojj308in0"]
 
 [ext_resource type="Script" uid="uid://xd0m1g6vjx2i" path="res://level_objects/objectives/three_button_obj.gd" id="1_gdm5g"]
 [ext_resource type="Script" uid="uid://b3s178yt4aica" path="res://level_objects/interactable/point_interact.gd" id="2_p1evd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://clobix1dbtj7v" path="res://level_objects/objectives/shader/static.gdshader" id="8_gdm5g"]
 [ext_resource type="FontFile" uid="uid://bepbj6soag2x5" path="res://menus/Font/Emoji/NotoColorEmoji-Regular.ttf" id="9_g4dmb"]
 [ext_resource type="Script" uid="uid://dg48hvyodoq2h" path="res://features/highlight_manager.gd" id="11_q4srv"]
+[ext_resource type="Script" uid="uid://bmcycc5o1qlmi" path="res://level_objects/objectives/select_area.gd" id="12_f8a8w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rbyea"]
 render_priority = 0
@@ -24,6 +25,11 @@ viewport_path = NodePath("ObjectiveSceenManager/MingameDisplay/SubViewport")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g4dmb"]
 material = SubResource("StandardMaterial3D_xvnrv")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_f8a8w"]
+properties/0/path = NodePath("Obj:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdm5g"]
 render_priority = 0
@@ -196,15 +202,19 @@ _data = {
 &"press": SubResource("Animation_xvnrv")
 }
 
-[node name="CaptchaObj" type="Node3D" node_paths=PackedStringArray("s_man", "disable_timer", "minigame", "objective_node")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_q4srv"]
+size = Vector3(1, 2, 1)
+
+[node name="CaptchaObj" type="Node3D" node_paths=PackedStringArray("s_man", "disable_timer", "minigame", "objective_node", "highlight")]
 script = ExtResource("1_gdm5g")
 s_man = NodePath("ObjectiveSceenManager")
 disable_timer = NodePath("DisableTimer")
 minigame = NodePath("ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame")
 objective_node = NodePath("ObjectiveNode")
+highlight = NodePath("HighlightManager")
 punish_dur = 15.0
 
-[node name="ObjectiveNode" type="Node" parent="."]
+[node name="ObjectiveNode" type="Node" parent="." groups=["objective"]]
 script = ExtResource("3_d4is2")
 
 [node name="SFX" type="Node3D" parent="."]
@@ -239,9 +249,10 @@ texture = SubResource("ViewportTexture_d4is2")
 
 [node name="SubViewport" type="SubViewport" parent="ObjectiveSceenManager/MingameDisplay"]
 
-[node name="CaptchaMiniGame" type="Node3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport"]
+[node name="CaptchaMiniGame" type="Node3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport" node_paths=PackedStringArray("connected_obj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("6_p1evd")
+connected_obj = NodePath("../../../..")
 turns = 8
 
 [node name="Camera3D" type="Camera3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
@@ -264,6 +275,9 @@ font = ExtResource("9_g4dmb")
 [node name="Text" type="Label3D" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1505, 0.4, -1)
 text = "Rotate to look like:"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ObjectiveSceenManager/MingameDisplay/SubViewport/CaptchaMiniGame"]
+replication_config = SubResource("SceneReplicationConfig_f8a8w")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="ObjectiveSceenManager/MingameDisplay"]
 transform = Transform3D(6.75676, 0, 0, 0, 6.75676, 0, 0, 0, 6.75676, 0, 0, 0.607956)
@@ -384,6 +398,15 @@ one_shot = true
 script = ExtResource("11_q4srv")
 meshes = [NodePath("../Obj/MeshInstance3D"), NodePath("../Obj/MeshInstance3D2"), NodePath("../Left/MeshInstance3D"), NodePath("../Right/MeshInstance3D"), NodePath("../Middle/MeshInstance3D")]
 metadata/_custom_type_script = "uid://dg48hvyodoq2h"
+
+[node name="SelectArea" type="Area3D" parent="." node_paths=PackedStringArray("parent") groups=["objective_pick"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("12_f8a8w")
+parent = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SelectArea"]
+shape = SubResource("BoxShape3D_q4srv")
 
 [connection signal="completed" from="ObjectiveNode" to="SFX/HornDelay" method="start"]
 [connection signal="timeout" from="SFX/HornDelay" to="SFX/Horn" method="play"]

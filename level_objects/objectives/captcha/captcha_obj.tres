@@ -15,7 +15,9 @@ classname = "objective_captcha_obj"
 description = "Captcha objective."
 func_godot_internal = false
 base_classes = Array[Resource]([ExtResource("1_26rdg")])
-class_properties = {}
+class_properties = {
+"turns": 8
+}
 class_property_descriptions = {}
 auto_apply_to_matching_node_properties = false
 meta_properties = {
