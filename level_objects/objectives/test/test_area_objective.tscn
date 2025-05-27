@@ -166,7 +166,7 @@ mesh = SubResource("CylinderMesh_mxc8b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("CylinderMesh_0v25t")
 
-[node name="ObjectiveNode" type="Node" parent="."]
+[node name="ObjectiveNode" type="Node" parent="." groups=["objective"]]
 script = ExtResource("3_d818g")
 
 [node name="Light" type="Node3D" parent="."]
